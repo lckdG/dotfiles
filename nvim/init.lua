@@ -82,6 +82,8 @@ vim.keymap.set('n', '<leader>fh', telescope.help_tags, { desc = 'Telescope help 
 
 vim.lsp.enable("lua_ls")
 vim.lsp.enable("roslyn_ls")
+vim.lsp.enable("clangd")
+vim.lsp.enable('pyright')
 
 -- StartUp Commands
 vim.schedule(function ()
