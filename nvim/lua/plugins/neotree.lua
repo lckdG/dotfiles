@@ -8,5 +8,14 @@ return {
             "nvim-tree/nvim-web-devicons", -- optional, but recommended
         },
         lazy = false, -- neo-tree will lazily load itself
+        opts = {
+            auto_clean_after_session_restore = true,
+            close_if_last_window = true,
+            filesystem = {
+                follow_current_file = {
+                    enabled = true,
+                },
+            },
+        },
     }
 }
