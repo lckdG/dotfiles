@@ -14,11 +14,14 @@ My personal archive for the dotfiles that I am using, which is fairly minimal wi
 - **blink.cmp** - Auto Complete
 - **vim-autopairs** - QoL for brackets, parentheses pairing
 - **nvim-lspconfig** - LSP configurations
+- **lensline.nvim** - Codelens
 - **lazydev.nvim** - LuaLS for NeoVim configurations
 - **noice.nvim** - UI improvements
 - **nvim-web-devicons** - Well, icons ;)
 - **markview.nvim** - Markdown, LaTeX previews
 - **gitsigns.nvim** - Very nice git utilities
+- **which-key.nvim** - To memorize all the keybinds
+
 ## Themes
 
 ---
