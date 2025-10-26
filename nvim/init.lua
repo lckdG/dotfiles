@@ -73,6 +73,9 @@ vim.o.shellredir = '| Out-File -Encoding UTF8 %s'
 require("config.lazy")
 require('onedark').load()
 
+-- Session configs
+vim.o.sessionoptions = "blank, buffers, curdir, folds, help, tabpages, winsize, winpos, terminal, localoptions"
+
 -- Telescope
 local telescope = require('telescope.builtin')
 vim.keymap.set('n', '<leader>ff', telescope.find_files, { desc = 'Telescope find files' })
