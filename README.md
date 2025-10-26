@@ -15,6 +15,7 @@ My personal archive for the dotfiles that I am using, which is fairly minimal wi
 - **vim-autopairs** - QoL for brackets, parentheses pairing
 - **nvim-lspconfig** - LSP configurations
 - **lensline.nvim** - Codelens
+- **tiny-inline-diagnostic.nvim** - Improve the diagnostic messages
 - **lazydev.nvim** - LuaLS for NeoVim configurations
 - **noice.nvim** - UI improvements
 - **nvim-web-devicons** - Well, icons ;)
