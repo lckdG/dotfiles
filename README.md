@@ -13,6 +13,7 @@ My personal archive for the dotfiles that I am using, which is fairly minimal wi
 - **nvim-treesitter** - Syntax highlighting
 - **blink.cmp** - Auto Complete
 - **vim-autopairs** - QoL for brackets, parentheses pairing
+- **rainbow-delimiters.nvim** - QoL to look at the brackets clearly
 - **nvim-lspconfig** - LSP configurations
 - **lensline.nvim** - Codelens
 - **tiny-inline-diagnostic.nvim** - Improve the diagnostic messages
