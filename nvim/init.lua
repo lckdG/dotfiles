@@ -74,7 +74,7 @@ require("config.lazy")
 require('onedark').load()
 
 -- Session configs
-vim.o.sessionoptions = "blank, buffers, curdir, folds, help, tabpages, winsize, winpos, terminal, localoptions"
+vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
 
 -- Telescope
 local telescope = require('telescope.builtin')
