@@ -17,10 +17,8 @@ My personal archive for the dotfiles that I am using, which is fairly minimal wi
 - **lazydev.nvim** - LuaLS for NeoVim configurations
 - **noice.nvim** - UI improvements
 - **nvim-web-devicons** - Well, icons ;)
-- **markview.nvim** - Markdown, LateX previews
-- **gitsigns.nvim** - Utility to keep track of git file changes in realtime
-- **git-blame-nvim** - git blame in line-by-line manner
-
+- **markview.nvim** - Markdown, LaTeX previews
+- **gitsigns.nvim** - Very nice git utilities
 ## Themes
 
 ---
