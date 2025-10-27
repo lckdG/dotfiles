@@ -72,9 +72,6 @@ vim.o.shellredir = '| Out-File -Encoding UTF8 %s'
 -- LazyVim
 require("config.lazy")
 
--- require('onedark').load()
-require('kanagawa').load('wave')
-
 -- Session configs
 vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
 
@@ -99,4 +96,8 @@ vim.lsp.enable('pyright')
 -- StartUp Commands
 vim.schedule(function ()
     vim.cmd("Neotree")
+
+-- Colorscheme options: onedark, kanagawa, gruvbox-material
+    local colorscheme = 'gruvbox-material'
+    vim.cmd('colorscheme ' .. colorscheme)
 end)
