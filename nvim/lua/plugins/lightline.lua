@@ -1,0 +1,6 @@
+return {
+    'itchyny/lightline.vim',
+    init = function ()
+        vim.g.lightline = { colorscheme = 'rosepine', background = 'dark' }
+    end
+}
