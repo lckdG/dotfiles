@@ -14,6 +14,7 @@ return {
             priority = {
                 [''] = 110,
                 lua = 210,
+                c_sharp = 220,
             },
             highlight = {
                 'RainbowDelimiterRed',
