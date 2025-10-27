@@ -71,7 +71,9 @@ vim.o.shellredir = '| Out-File -Encoding UTF8 %s'
 
 -- LazyVim
 require("config.lazy")
-require('onedark').load()
+
+-- require('onedark').load()
+require('kanagawa').load('wave')
 
 -- Session configs
 vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
