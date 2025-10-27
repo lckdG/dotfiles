@@ -1,5 +1,5 @@
-vim.g.mapleader = '<Space>'
-vim.g.maplocalleader = '<Space>'
+vim.g.mapleader = ' '
+vim.g.maplocalleader = ' '
 
 vim.o.guifont = 'JetBrainsMono Nerd Font:h13'
 
