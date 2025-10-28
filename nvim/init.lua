@@ -95,8 +95,6 @@ vim.lsp.enable('pyright')
 
 -- StartUp Commands
 vim.schedule(function ()
-    vim.cmd("Neotree")
-
 -- Colorscheme options: onedark, kanagawa, gruvbox-material
     local colorscheme = 'gruvbox-material'
     vim.cmd('colorscheme ' .. colorscheme)
