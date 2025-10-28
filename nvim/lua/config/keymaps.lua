@@ -23,9 +23,28 @@ map('n', '<C-q>', '<cmd>close<CR>', { desc = 'Close current buffer'} )
 
 -- Telescope
 local telescope = require('telescope.builtin')
-vim.keymap.set('n', '<leader>ff', telescope.find_files, { desc = 'Telescope find files' })
-vim.keymap.set('n', '<leader>fg', telescope.live_grep, { desc = 'Telescope live grep' })
-vim.keymap.set('n', '<leader>fb', telescope.buffers, { desc = 'Telescope buffers' })
-vim.keymap.set('n', '<leader>fh', telescope.help_tags, { desc = 'Telescope help tags' })
+map('n', '<leader>ff', telescope.find_files, { desc = 'Telescope find files' })
+map('n', '<leader>fg', telescope.live_grep, { desc = 'Telescope live grep' })
+map('n', '<leader>fb', telescope.buffers, { desc = 'Telescope buffers' })
+map('n', '<leader>fh', telescope.help_tags, { desc = 'Telescope help tags' })
 
+-- Close buffers
+local close_buffers = require('close_buffers')
+map('n', '<leader>bdh', function()
+        close_buffers.delete( { type = 'hidden', force = true } )
+    end,
+    { desc = "Delete all hidden buffers" }
+)
+
+map('n', '<leader>bdn', function ()
+    close_buffers.delete( { type = 'nameless' } )
+    end,
+    { desc = "Delete nameless buffers" }
+)
+
+map('n', '<leader>bdw', function ()
+        close_buffers.wipe( { type = 'all', force = true} )
+    end,
+    { desc = "Wipe out all buffers" }
+)
 
