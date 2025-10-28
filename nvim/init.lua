@@ -10,10 +10,6 @@ vim.o.expandtab = true
 vim.o.softtabstop = 4
 vim.o.shiftwidth = 4
 
-vim.schedule(function()
-    vim.o.clipboard = 'unnamedplus'
-end)
-
 vim.o.breakindent = true
 vim.o.undofile = true
 
@@ -33,15 +29,6 @@ vim.o.inccommand = 'split'
 
 vim.o.confirm = true
 
-
-vim.api.nvim_create_autocmd('TextYankPost', {
-  desc = 'Highlight when yanking (copying) text',
-  group = vim.api.nvim_create_augroup('highlight-yank', { clear = true }),
-  callback = function()
-    vim.hl.on_yank()
-  end,
-})
-
 -- Set ups for using powershell with nvim
 vim.o.shell = "powershell.exe"
 vim.o.shellxquote = ''
@@ -53,6 +40,7 @@ vim.o.shellredir = '| Out-File -Encoding UTF8 %s'
 -- LazyVim
 require("config.lazy")
 require("config.keymaps")
+require("config.autos")
 
 -- Session configs
 vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
@@ -70,6 +58,8 @@ vim.lsp.enable('pyright')
 
 -- StartUp Commands
 vim.schedule(function ()
+    vim.o.clipboard = 'unnamedplus'
+
 -- Colorscheme options: onedark, kanagawa, gruvbox-material
     local colorscheme = 'gruvbox-material'
     vim.cmd('colorscheme ' .. colorscheme)
