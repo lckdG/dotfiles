@@ -33,26 +33,6 @@ vim.o.inccommand = 'split'
 
 vim.o.confirm = true
 
--- Keymaps
-vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>» ')
-vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
-vim.keymap.set('n', '<C-s>', '<cmd>w<CR>', { desc = "Quick save, in windows style" })
-
--- Focus switching
-vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
-vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
-vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
-vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
-
--- Tab splitting
-vim.keymap.set('n', '<C-Down>', '<cmd>split<CR>', { desc = 'Split window horizontally' })
-vim.keymap.set('n', '<C-Right>', '<cmd>vsplit<CR>', { desc = 'Split window vertically' })
-
--- To quickly open Neotree
-vim.keymap.set('', '<C-S-e>', '<cmd>Neotree toggle<CR>', { desc = 'Toggle Neotree'} )
-vim.keymap.set('n', '<C-S-Tab>', '<cmd>tabp<CR>', { desc = 'Go to previous tab'} )
-
-vim.keymap.set('n', '<C-q>', '<cmd>close<CR>', { desc = 'Close current buffer'} )
 
 vim.api.nvim_create_autocmd('TextYankPost', {
   desc = 'Highlight when yanking (copying) text',
@@ -72,16 +52,10 @@ vim.o.shellredir = '| Out-File -Encoding UTF8 %s'
 
 -- LazyVim
 require("config.lazy")
+require("config.keymaps")
 
 -- Session configs
 vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
-
--- Telescope
-local telescope = require('telescope.builtin')
-vim.keymap.set('n', '<leader>ff', telescope.find_files, { desc = 'Telescope find files' })
-vim.keymap.set('n', '<leader>fg', telescope.live_grep, { desc = 'Telescope live grep' })
-vim.keymap.set('n', '<leader>fb', telescope.buffers, { desc = 'Telescope buffers' })
-vim.keymap.set('n', '<leader>fh', telescope.help_tags, { desc = 'Telescope help tags' })
 
 -- File type correction
 vim.filetype.add {
