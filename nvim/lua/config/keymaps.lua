@@ -48,3 +48,14 @@ map('n', '<leader>bdw', function ()
     { desc = "Wipe out all buffers" }
 )
 
+
+-- ToggleTerm
+map('t', '<Esc>', [[<C-\><C-n>]], { desc = "Exit terminal mode" } )
+map('t', '<C-h>', [[<Cmd>wincmd h<CR>]], { desc = "Move to left window" } )
+map('t', '<C-j>', [[<Cmd>wincmd j<CR>]], { desc = "Move to bottom window" } )
+map('t', '<C-k>', [[<Cmd>wincmd k<CR>]], { desc = "Move to above window" } )
+map('t', '<C-l>', [[<Cmd>wincmd l<CR>]], { desc = "Move to right window" } )
+
+map('n', '<C-`>', [[<Cmd>ToggleTerm<CR>]], { desc = "Toggle the terminal" } )
+map('t', '<C-`>', [[<Cmd>ToggleTermToggleAll<CR>]] )
+
