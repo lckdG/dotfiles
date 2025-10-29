@@ -1,8 +1,10 @@
 local map = vim.keymap.set
 
 -- Keymaps
-map('n', '<Esc>', '<cmd>nohlsearch<CR>» ')
+map('n', '<Esc>', '<cmd>nohlsearch<CR>')
 map('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
+map('n', 'n', 'nzz')
+map('n', '<S-n>', '<S-n>zz')
 map('n', '<C-s>', '<cmd>w<CR>', { desc = "Quick save, in windows style" })
 
 -- Focus switching
