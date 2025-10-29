@@ -5,6 +5,8 @@ vim.o.guifont = 'JetBrainsMono Nerd Font:h13'
 vim.o.termguicolors = true
 
 vim.o.number = true
+vim.o.relativenumber = true
+
 vim.o.tabstop = 4
 vim.o.expandtab = true
 vim.o.softtabstop = 4
