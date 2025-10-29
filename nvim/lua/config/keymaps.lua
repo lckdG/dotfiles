@@ -5,6 +5,19 @@ map('n', '<Esc>', '<cmd>nohlsearch<CR>')
 map('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
 map('n', 'n', 'nzz')
 map('n', '<S-n>', '<S-n>zz')
+
+map('', '<F11>', function ()
+        if vim.g.neovide then
+            if vim.g.neovide_fullscreen then
+                vim.g.neovide_fullscreen = false
+            else
+                vim.g.neovide_fullscreen = true
+            end
+        end
+    end,
+    { desc = "Toggle fullscreen while in Neovide" }
+)
+
 map('n', '<C-s>', '<cmd>w<CR>', { desc = "Quick save, in windows style" })
 
 -- Focus switching
