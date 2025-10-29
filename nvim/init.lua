@@ -29,6 +29,11 @@ vim.o.inccommand = 'split'
 
 vim.o.confirm = true
 
+if vim.g.neovide then
+    vim.g.neovide_scale_factor = 0.9
+    vim.g.neovide_cursor_animate_command_line = false
+end
+
 -- Set ups for using powershell with nvim
 vim.o.shell = "powershell.exe"
 vim.o.shellxquote = ''
