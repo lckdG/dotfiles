@@ -6,13 +6,15 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end,
 })
 
--- vim.api.nvim_create_autocmd('QuitPre', {
---     desc = 'Clear buffers when exiting Vim',
---     group = vim.api.nvim_create_augroup('exit-clear-buffers', { clear = true }),
---     callback = function ()
---         require('close_buffers').delete( { type = 'hidden' })
---     end
--- })
+vim.api.nvim_create_autocmd('QuitPre', {
+    desc = 'Auto handles when exiting Vim',
+    group = vim.api.nvim_create_augroup('exit-clear-buffers', { clear = true }),
+    callback = function ()
+        require('close_buffers').delete( { type = 'hidden' })
+        require('auto-session').save_session()
+    end
+})
+
 
 -- Restore cursor to file position in previous editing session
 vim.api.nvim_create_autocmd("BufReadPost", {
