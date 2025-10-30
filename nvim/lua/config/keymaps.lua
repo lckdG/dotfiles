@@ -3,8 +3,14 @@ local map = vim.keymap.set
 -- Keymaps
 map('n', '<Esc>', '<cmd>nohlsearch<CR>')
 map('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
+
+-- Search and focus
 map('n', 'n', 'nzz')
 map('n', '<S-n>', '<S-n>zz')
+
+-- Quick line ending
+map('n', '<leader>a;', '<S-a>;<Esc>', { desc = "Add a semicolon to EOL" })
+map('n', '<leader>a,', '<S-a>,<Esc>', { desc = "Add a comma to EOL" })
 
 map('', '<F11>', function ()
         if vim.g.neovide then
@@ -64,7 +70,6 @@ map('n', '<leader>bdw', function ()
     end,
     { desc = "Wipe out all buffers" }
 )
-
 
 -- ToggleTerm
 map('t', '<Esc>', [[<C-\><C-n>]], { desc = "Exit terminal mode" } )
