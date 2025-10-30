@@ -31,10 +31,12 @@ map('n', '<C-Down>', '<cmd>split<CR>', { desc = 'Split window horizontally' })
 map('n', '<C-Right>', '<cmd>vsplit<CR>', { desc = 'Split window vertically' })
 
 -- To quickly open Neotree
-map('', '<C-S-e>', '<cmd>Neotree toggle<CR>', { desc = 'Toggle Neotree'} )
-map('n', '<C-S-Tab>', '<cmd>tabp<CR>', { desc = 'Go to previous tab'} )
+map('', '<C-S-e>', '<cmd>Neotree toggle<CR>', { desc = 'Toggle Neotree' } )
 
-map('n', '<C-q>', '<cmd>close<CR>', { desc = 'Close current buffer'} )
+map('n', '<C-Tab>', '<cmd>tabn<CR>', { desc = 'Go to next tab' } )
+map('n', '<C-S-Tab>', '<cmd>tabp<CR>', { desc = 'Go to previous tab' } )
+
+map('n', '<C-q>', '<cmd>close<CR>', { desc = 'Close current buffer' } )
 
 -- Telescope
 local telescope = require('telescope.builtin')
