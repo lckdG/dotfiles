@@ -5,6 +5,7 @@ local ignore_patterns = {
     ".exe", -- Executables
     ".asmdef", ".dll", -- Libraries
     ".tga$", ".png$", ".jpg$", ".jpeg$", ".psd$", ".gif$", ".tif$", ".svg$", -- Images, phew
+    ".hdr", ".exr", "_probes.asset", -- Unity lightmaps, ignore completely
     ".unity$", ".prefab$", ".anim$", ".mesh$", -- Unity specific, but don't ignore the .metas
 }
 
