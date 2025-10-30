@@ -1,7 +1,7 @@
 local ignore_patterns = {
     ".wav", ".flac", ".mp3", ".bnk", -- Sounds
     ".mesh", ".fbx", ".obj", -- 3D models
-    ".otf$", ".ttf$", -- Fonts
+    ".otf", ".ttf", -- Fonts
     ".exe", -- Executables
     ".asmdef", ".dll", -- Libraries
     ".tga$", ".png$", ".jpg$", ".jpeg$", ".psd$", ".gif$", ".tif$", ".svg$", -- Images, phew
