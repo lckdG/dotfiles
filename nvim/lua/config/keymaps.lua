@@ -81,3 +81,23 @@ map('t', '<C-l>', [[<Cmd>wincmd l<CR>]], { desc = "Move to right window" } )
 map('n', '<C-`>', [[<Cmd>ToggleTerm<CR>]], { desc = "Toggle the terminal" } )
 map('t', '<C-`>', [[<Cmd>ToggleTermToggleAll<CR>]] )
 
+-- Lazygit
+local Terminal = require('toggleterm.terminal').Terminal
+local lazygit = Terminal:new({
+    cmd = "lazygit",
+    dir = ".",
+    direction = "float",
+    float_opts = {
+        border = "double",
+    },
+    on_open = function (term)
+        vim.api.nvim_buf_set_keymap(term.bufnr, "n", "q", "<cmd>close<CR>", { noremap = true, silent = true } )
+    end,
+})
+
+function _lazygit_toggle()
+    lazygit:toggle()
+end
+
+map('n', '<leader>git', '<cmd>lua _lazygit_toggle()<CR>', { noremap = true, silent = true, desc = "Toggle lazygit" } )
+
