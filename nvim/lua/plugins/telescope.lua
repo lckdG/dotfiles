@@ -1,11 +1,14 @@
 local ignore_patterns = {
+    "GeneratedSoundBanks",
     ".wav", ".flac", ".mp3", ".bnk", -- Sounds
     ".mesh", ".fbx", ".obj", -- 3D models
     ".otf", ".ttf", -- Fonts
     ".exe", -- Executables
     ".asmdef", ".dll", -- Libraries
+    ".tgz", ".tar", ".zip", ".gz", ".iso", ".rar", -- Archive files
     ".tga$", ".png$", ".jpg$", ".jpeg$", ".psd$", ".gif$", ".tif$", ".svg$", -- Images, phew
     ".hdr", ".exr", "_probes.asset", -- Unity lightmaps, ignore completely
+    ".controller", ".overrideController", -- Unity animators
     ".unity$", ".prefab$", ".anim$", ".mesh$", -- Unity specific, but don't ignore the .metas
 }
 
