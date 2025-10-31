@@ -1,5 +1,3 @@
-local M = {}
-
 local map = vim.keymap.set
 
 -- Keymaps
@@ -73,39 +71,6 @@ map('n', '<leader>bdw', function ()
     { desc = "Wipe out all buffers" }
 )
 
--- ToggleTerm
-function M.set_terminal_keymaps()
-    local opts = { buffer = 0 }
-    map('t', '<Esc>', [[<C-\><C-n>]], { buffer = 0, desc = "Exit terminal mode" } )
-    map('t', '<C-h>', [[<Cmd>wincmd h<CR>]], { buffer = 0, desc = "Move to left window" } )
-    map('t', '<C-j>', [[<Cmd>wincmd j<CR>]], { buffer = 0, desc = "Move to bottom window" } )
-    map('t', '<C-k>', [[<Cmd>wincmd k<CR>]], { buffer = 0, desc = "Move to above window" } )
-    map('t', '<C-l>', [[<Cmd>wincmd l<CR>]], { buffer = 0, desc = "Move to right window" } )
-
-    map('t', '<C-`>', [[<Cmd>ToggleTermToggleAll<CR>]], { buffer = 0, desc = "Toggle the terminal" } )
-end
-
-map('n', '<C-`>', [[<Cmd>ToggleTerm<CR>]], { desc = "Toggle the terminal" } )
-
 -- Lazygit
-local Terminal = require('toggleterm.terminal').Terminal
-local lazygit = Terminal:new({
-    cmd = "lazygit",
-    dir = ".",
-    direction = "float",
-    float_opts = {
-        border = "double",
-    },
-    on_open = function (term)
-        vim.api.nvim_buf_set_keymap(term.bufnr, "n", "q", "<cmd>close<CR>", { noremap = true, silent = true } )
-    end,
-})
-
-function _lazygit_toggle()
-    lazygit:toggle()
-end
-
-map('n', '<leader>git', '<cmd>lua _lazygit_toggle()<CR>', { noremap = true, silent = true, desc = "Toggle lazygit" } )
-
-return M
+map('n', '<leader>gg', '<cmd>LazyGit<CR>', { desc = "Open lazygit in this directory" })
 
