@@ -39,7 +39,7 @@ map('', '<F11>', function ()
 
 -- Copy & paste with the system clipboard
 map('v', '<leader>y', '"+y', { desc = "Yank current selection to the system clipboard" })
-map('n', '<leader>yy', '"+y', { desc = "Yank current selection to the system clipboard" })
+map('n', '<leader>yy', '"+yy', { desc = "Yank current line to the system clipboard" })
 map({ 'n', 'v' }, '<leader>p', '"+p', { desc = "Paste below from the system clipboard" })
 map({ 'n', 'v' }, '<leader>P', '"+P', { desc = "Paste above from the system clipboard" })
 
