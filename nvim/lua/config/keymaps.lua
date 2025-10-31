@@ -86,11 +86,3 @@ map('n', '<leader>bdw', function ()
     { desc = "Wipe out all buffers" }
 )
 
--- Lazygit
-map('n', '<leader>gg', '<cmd>LazyGit<CR>', { desc = "Open lazygit in this directory" })
-map( {'n', 'v', 's', 'x', 'o', 'i', 'l', 'c', 't'}, '<C-S-v>', function()
-    vim.api.nvim_paste(vim.fn.getreg('+'), true, -1)
-    end,
-    { noremap = true, silent = true, desc = "Paste from clipboard" }
-)
-
