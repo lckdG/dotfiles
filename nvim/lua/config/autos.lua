@@ -27,3 +27,13 @@ vim.api.nvim_create_autocmd('QuitPre', {
     end
 })
 
+vim.api.nvim_create_autocmd("TermOpen", {
+    desc = 'Keymaps when attaching to terminal',
+    group = vim.api.nvim_create_augroup('term-open-keymaps', { clear = true }),
+    pattern = 'term://*',
+    callback = function ()
+        local keymaps = require("config.keymaps")
+        keymaps.set_terminal_keymaps()
+    end
+})
+

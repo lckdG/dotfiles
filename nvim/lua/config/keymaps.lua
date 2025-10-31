@@ -1,3 +1,5 @@
+local M = {}
+
 local map = vim.keymap.set
 
 -- Keymaps
@@ -72,14 +74,18 @@ map('n', '<leader>bdw', function ()
 )
 
 -- ToggleTerm
-map('t', '<Esc>', [[<C-\><C-n>]], { desc = "Exit terminal mode" } )
-map('t', '<C-h>', [[<Cmd>wincmd h<CR>]], { desc = "Move to left window" } )
-map('t', '<C-j>', [[<Cmd>wincmd j<CR>]], { desc = "Move to bottom window" } )
-map('t', '<C-k>', [[<Cmd>wincmd k<CR>]], { desc = "Move to above window" } )
-map('t', '<C-l>', [[<Cmd>wincmd l<CR>]], { desc = "Move to right window" } )
+function M.set_terminal_keymaps()
+    local opts = { buffer = 0 }
+    map('t', '<Esc>', [[<C-\><C-n>]], { buffer = 0, desc = "Exit terminal mode" } )
+    map('t', '<C-h>', [[<Cmd>wincmd h<CR>]], { buffer = 0, desc = "Move to left window" } )
+    map('t', '<C-j>', [[<Cmd>wincmd j<CR>]], { buffer = 0, desc = "Move to bottom window" } )
+    map('t', '<C-k>', [[<Cmd>wincmd k<CR>]], { buffer = 0, desc = "Move to above window" } )
+    map('t', '<C-l>', [[<Cmd>wincmd l<CR>]], { buffer = 0, desc = "Move to right window" } )
+
+    map('t', '<C-`>', [[<Cmd>ToggleTermToggleAll<CR>]], { buffer = 0, desc = "Toggle the terminal" } )
+end
 
 map('n', '<C-`>', [[<Cmd>ToggleTerm<CR>]], { desc = "Toggle the terminal" } )
-map('t', '<C-`>', [[<Cmd>ToggleTermToggleAll<CR>]] )
 
 -- Lazygit
 local Terminal = require('toggleterm.terminal').Terminal
@@ -100,4 +106,6 @@ function _lazygit_toggle()
 end
 
 map('n', '<leader>git', '<cmd>lua _lazygit_toggle()<CR>', { noremap = true, silent = true, desc = "Toggle lazygit" } )
+
+return M
 
