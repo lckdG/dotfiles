@@ -31,6 +31,7 @@ My personal archive for the dotfiles that I am using, which is fairly minimal wi
 ### Utilities
 - **markview.nvim** - Markdown, LaTeX previews
 - **gitsigns.nvim** - Very nice git utilities, used for line blame, tracking changes
+- **lazygit.nvim** - [lazygit](https://github.com/jesseduffield/lazygit) integration in neovim
 
 ## Themes
 
