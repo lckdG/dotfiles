@@ -46,6 +46,10 @@ vim.o.shellredir = '| Out-File -Encoding UTF8 %s'
 
 -- LazyVim
 require("config.lazy")
+
+-- Required by harpoon
+require("harpoon"):setup()
+
 require("config.keymaps")
 require("config.autos")
 
