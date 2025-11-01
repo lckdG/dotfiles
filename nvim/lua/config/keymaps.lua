@@ -56,15 +56,21 @@ map('n', '<C-S-Tab>', '<cmd>tabp<CR>', { desc = 'Go to previous tab' } )
 map('n', '<C-Down>', '<cmd>split<CR>', { desc = 'Split window horizontally' })
 map('n', '<C-Right>', '<cmd>vsplit<CR>', { desc = 'Split window vertically' })
 
--- To quickly open Neotree
-map('', '<C-S-e>', '<cmd>Neotree toggle<CR>', { desc = 'Toggle Neotree' } )
-
 -- Telescope
-local telescope = require('telescope.builtin')
-map('n', '<leader>ff', telescope.find_files, { desc = 'Telescope find files' })
-map('n', '<leader>fg', telescope.live_grep, { desc = 'Telescope live grep' })
-map('n', '<leader>fb', telescope.buffers, { desc = 'Telescope buffers' })
-map('n', '<leader>fh', telescope.help_tags, { desc = 'Telescope help tags' })
+local telescope = require('telescope')
+local tl_builtin = require('telescope.builtin')
+map('n', '<leader>fe', function ()
+    telescope.extensions.file_browser.file_browser({
+        path='%:p:h',
+        select_buffer = true,
+    })
+end,
+    { desc = 'Telescope find browser' }
+)
+map('n', '<leader>ff', tl_builtin.find_files, { desc = 'Telescope fuzzy find files' })
+map('n', '<leader>fg', tl_builtin.live_grep, { desc = 'Telescope live grep' })
+map('n', '<leader>fb', tl_builtin.buffers, { desc = 'Telescope buffers' })
+map('n', '<leader>fh', tl_builtin.help_tags, { desc = 'Telescope help tags' })
 
 -- Close buffers
 local close_buffers = require('close_buffers')
