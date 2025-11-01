@@ -46,6 +46,7 @@ vim.o.shellredir = '| Out-File -Encoding UTF8 %s'
 
 -- LazyVim
 require("config.lazy")
+require('nvim-treesitter.install').compilers = { "clang", "gcc" }
 
 -- Required by harpoon
 require("harpoon"):setup()
