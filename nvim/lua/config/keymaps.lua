@@ -6,6 +6,8 @@ map('', '<Space>', '<Nop>', { noremap = true, silent = true })
 map('n', '<Esc>', '<cmd>nohlsearch<CR>')
 map('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
 
+map('i', 'jk', '<Esc>', { noremap = true, silent = true })
+
 -- Search and focus
 map('n', 'n', 'nzz')
 map('n', '<S-n>', '<S-n>zz')
@@ -106,5 +108,6 @@ map('n', '<leader>h4', function () harpoon:list():select(4) end, { desc = "Jump 
 map('n', '<leader>hn', function () harpoon:list():next() end, { desc = "Jump to next file in harpoon list" })
 map('n', '<leader>hb', function () harpoon:list():prev() end, { desc = "Jump to previous file in harpoon list" })
 
-
+-- Oil
+map('n', '<C-S-e>', '<cmd>Oil --float<CR>', { silent = true, desc = "Open parent directory" })
 
