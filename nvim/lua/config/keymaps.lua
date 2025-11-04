@@ -51,24 +51,15 @@ map('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
 map('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
 map('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
-map('n', '<C-Tab>', '<cmd>tabn<CR>', { desc = 'Go to next tab' } )
-map('n', '<C-S-Tab>', '<cmd>tabp<CR>', { desc = 'Go to previous tab' } )
+map('n', '<leader>tn', '<cmd>tabn<CR>', { desc = 'Go to next tab' } )
+map('n', '<leader>tb', '<cmd>tabp<CR>', { desc = 'Go to previous tab' } )
 
 -- Tab splitting
 map('n', '<C-Down>', '<cmd>split<CR>', { desc = 'Split window horizontally' })
 map('n', '<C-Right>', '<cmd>vsplit<CR>', { desc = 'Split window vertically' })
 
 -- Telescope
-local telescope = require('telescope')
 local tl_builtin = require('telescope.builtin')
-map('n', '<leader>fe', function ()
-    telescope.extensions.file_browser.file_browser({
-        path='%:p:h',
-        select_buffer = true,
-    })
-end,
-    { desc = 'Telescope find browser' }
-)
 map('n', '<leader>ff', tl_builtin.find_files, { desc = 'Telescope fuzzy find files' })
 map('n', '<leader>fg', tl_builtin.live_grep, { desc = 'Telescope live grep' })
 map('n', '<leader>fb', tl_builtin.buffers, { desc = 'Telescope buffers' })
@@ -109,5 +100,5 @@ map('n', '<leader>hn', function () harpoon:list():next() end, { desc = "Jump to 
 map('n', '<leader>hb', function () harpoon:list():prev() end, { desc = "Jump to previous file in harpoon list" })
 
 -- Oil
-map('n', '<C-S-e>', '<cmd>Oil --float<CR>', { silent = true, desc = "Open parent directory" })
+map('n', '<leader>e', '<cmd>Oil --float<CR>', { silent = true, desc = "Open parent directory" })
 
