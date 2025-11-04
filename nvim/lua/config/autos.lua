@@ -22,7 +22,8 @@ vim.api.nvim_create_autocmd('QuitPre', {
     desc = 'Auto handles when exiting Vim',
     group = vim.api.nvim_create_augroup('exit-clear-buffers', { clear = true }),
     callback = function ()
-        if vim.g.auto_session_enabled then
+        local auto_session_config = require('auto-session.config')
+        if auto_session_config.enabled then
             require('close_buffers').delete( { type = 'hidden' })
             require('auto-session').save_session()
         end
