@@ -36,13 +36,15 @@ if vim.g.neovide then
     vim.g.neovide_cursor_animate_command_line = false
 end
 
--- Set ups for using powershell with nvim
-vim.o.shell = "powershell.exe"
-vim.o.shellxquote = ''
-vim.o.shellcmdflag = '-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command '
-vim.o.shellquote = ''
-vim.o.shellpipe = '| Out-File -Encoding UTF8 %s'
-vim.o.shellredir = '| Out-File -Encoding UTF8 %s'
+if vim.fn.has("win32") then
+    -- Set ups for using powershell with nvim
+    vim.o.shell = "powershell.exe"
+    vim.o.shellxquote = ''
+    vim.o.shellcmdflag = '-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command '
+    vim.o.shellquote = ''
+    vim.o.shellpipe = '| Out-File -Encoding UTF8 %s'
+    vim.o.shellredir = '| Out-File -Encoding UTF8 %s'
+end
 
 -- LazyVim
 require("config.lazy")
