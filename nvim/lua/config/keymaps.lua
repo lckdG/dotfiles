@@ -8,6 +8,9 @@ map('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]ui
 
 map('i', 'jk', '<Esc>', { noremap = true, silent = true })
 
+-- For bracket languages
+map('i', 'uu', '<Esc>o{<CR>', { remap = true, silent = true })
+
 -- Search and focus
 map('n', 'n', 'nzz')
 map('n', '<S-n>', '<S-n>zz')

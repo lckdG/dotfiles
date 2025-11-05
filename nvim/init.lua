@@ -19,7 +19,7 @@ vim.o.ignorecase = true
 vim.o.smartcase = true
 
 vim.o.updatetime = 250
-vim.o.timeoutlen = 100
+vim.o.timeoutlen = 300
 
 vim.o.splitright = true
 vim.o.splitbelow = true
