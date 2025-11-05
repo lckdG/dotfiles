@@ -91,7 +91,9 @@ return {
             virtual_text = false,
         }
 
-        local capabilities = require('blink.cmp').get_lsp_capabilities()
+        local capabilities = vim.lsp.protocol.make_client_capabilities()
+        capabilities = vim.tbl_deep_extend('force', capabilities, require('blink.cmp').get_lsp_capabilities())
+
         local servers = {
             lua_ls = {
                 settings = {
@@ -106,7 +108,12 @@ return {
 
             },
             roslyn_ls = {
-
+                settings = {
+                    ["csharp|background_analysis"] = {
+                        dotnet_analyzer_diagnostics_scope = "openFiles",
+                        dotnet_compiler_diagnostics_scope = "openFiles",
+                    },
+                },
             },
             pyright = {
 
@@ -114,31 +121,22 @@ return {
         }
 
         local mason_servers = {
-            ["lua-language-server"] = "lua_ls",
-            ["clangd"] = "clangd",
-            ["roslyn"] = "roslyn_ls",
-            ["pyright"] = "pyright",
+            "stylua",
+            "lua-language-server",
+            "clangd",
+            "roslyn",
+            "pyright"
         }
 
-        local ensure_installed = vim.tbl_keys(mason_servers or {})
-        vim.list_extend(ensure_installed, {
-            'stylua',
-        })
-
-        require('mason-tool-installer').setup { ensure_installed = ensure_installed }
-
+        require('mason-tool-installer').setup { ensure_installed = mason_servers }
         require('mason-lspconfig').setup {
             ensure_installed = {},
             automatic_installation = false,
-            handlers = {
-                function(server_name)
-                    local lsp_name = mason_servers[server_name]
-                    local server = servers[lsp_name] or {}
-                    server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
-                    require('lspconfig')[server_name].setup(server)
-                end,
-            },
         }
+
+        for server, config in pairs(servers) do
+            vim.lsp.config(server, config)
+        end
     end
 }
 
