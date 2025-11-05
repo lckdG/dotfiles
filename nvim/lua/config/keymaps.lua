@@ -8,9 +8,6 @@ map('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]ui
 
 map('i', 'jk', '<Esc>', { noremap = true, silent = true })
 
--- For bracket languages
-map('i', 'uu', '<Esc>o{<CR>', { remap = true, silent = true })
-
 -- Search and focus
 map('n', 'n', 'nzz')
 map('n', '<S-n>', '<S-n>zz')
@@ -18,6 +15,8 @@ map('n', '<S-n>', '<S-n>zz')
 -- Quick line editing
 map('n', '<leader>a;', '<S-a>;<Esc>', { desc = "Add a semicolon to EOL" })
 map('n', '<leader>a,', '<S-a>,<Esc>', { desc = "Add a comma to EOL" })
+map('i', 'uu', 'jko{<CR>', { remap = true, silent = true })
+map('i', 'u;', 'jk<S-a>;<CR>', { remap = true, silent = true })
 
 map('n', '<A-j>', ":m .+1<CR>==", { noremap = true, silent = true, desc = "Move line down" })
 map('n', '<A-k>', ":m .-2<CR>==", { noremap = true, silent = true, desc = "Move line up" })
@@ -45,8 +44,10 @@ map('', '<F11>', function ()
 -- Copy & paste with the system clipboard
 map('v', '<leader>y', '"+y', { desc = "Yank current selection to the system clipboard" })
 map('n', '<leader>yy', '"+yy', { desc = "Yank current line to the system clipboard" })
-map({ 'n', 'v' }, '<leader>p', '"+p', { desc = "Paste below from the system clipboard" })
-map({ 'n', 'v' }, '<leader>P', '"+P', { desc = "Paste above from the system clipboard" })
+map({ 'n', 'v' }, '<leader>pc', '"+p', { desc = "Paste below from the system clipboard" })
+map({ 'n', 'v' }, '<leader>PC', '"+P', { desc = "Paste here from the system clipboard" })
+map({ 'n', 'v' }, '<leader>py', '"0p', { desc = "Paste below last yanked text" })
+map({ 'n', 'v' }, '<leader>PY', '"0P', { desc = "Paste here last yanked text" })
 
 -- Focus switching
 map('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
