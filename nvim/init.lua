@@ -6,6 +6,7 @@ vim.o.termguicolors = true
 
 vim.o.number = true
 vim.o.relativenumber = true
+vim.o.scrolloff = 5
 vim.o.cursorline = true
 
 vim.o.tabstop = 4
@@ -20,13 +21,10 @@ vim.o.ignorecase = true
 vim.o.smartcase = true
 
 vim.o.updatetime = 250
-vim.o.timeoutlen = 300
+vim.o.timeoutlen = 250
 
 vim.o.splitright = true
 vim.o.splitbelow = true
-
-vim.o.signcolumn = 'yes'
-vim.o.scrolloff = 5
 
 vim.o.list = true
 vim.opt.listchars = { tab = '» ' , trail = '•', nbsp = '␣' }
@@ -78,6 +76,7 @@ vim.schedule(function ()
     vim.o.clipboard = 'unnamedplus'
 
 -- Colorscheme options: onedark, kanagawa, gruvbox-material
-    local colorscheme = 'gruvbox-material'
+-- Remember to change lazy.lua to load the correct theme!
+    local colorscheme = 'onedark'
     vim.cmd('colorscheme ' .. colorscheme)
 end)

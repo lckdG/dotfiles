@@ -17,7 +17,6 @@ vim.api.nvim_create_autocmd("BufReadPost", {
     end,
 })
 
-
 vim.api.nvim_create_autocmd('QuitPre', {
     desc = 'Auto handles when exiting Vim',
     group = vim.api.nvim_create_augroup('exit-clear-buffers', { clear = true }),
