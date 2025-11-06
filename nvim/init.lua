@@ -7,7 +7,6 @@ vim.o.termguicolors = true
 vim.o.number = true
 vim.o.relativenumber = true
 vim.o.scrolloff = 5
-vim.o.cursorline = true
 
 vim.o.tabstop = 4
 vim.o.expandtab = true
@@ -79,4 +78,7 @@ vim.schedule(function ()
 -- Remember to change lazy.lua to load the correct theme!
     local colorscheme = 'onedark'
     vim.cmd('colorscheme ' .. colorscheme)
+
+    vim.o.cursorline = true
+    vim.o.cursorlineopt = 'number'
 end)
