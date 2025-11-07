@@ -76,7 +76,7 @@ vim.schedule(function ()
 
 -- Colorscheme options: onedark, kanagawa, gruvbox-material
 -- Remember to change lazy.lua to load the correct theme!
-    local colorscheme = 'onedark'
+    local colorscheme = 'nordic'
     vim.cmd('colorscheme ' .. colorscheme)
 
     vim.o.cursorline = true
