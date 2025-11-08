@@ -16,7 +16,7 @@ return {
     dependencies = {
         'nvim-lua/plenary.nvim',
         { 'nvim-telescope/telescope-ui-select.nvim' },
-        { 'nvim-tree/nvim-web-devicons', enabled = vim.g.have_nerd_font }
+        { 'nvim-tree/nvim-web-devicons' }
     },
     config = function ()
         local telescope = require('telescope')
@@ -31,6 +31,10 @@ return {
                     preview_height = 0.5,
                 },
                 file_ignore_patterns = ignore_patterns,
+                preview = {
+                    filesize_limit = 1, -- MB
+                    highlight_limit = 0.2,
+                }
             },
             extensions = {
                 fzf = {
