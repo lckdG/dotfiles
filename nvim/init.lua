@@ -65,11 +65,6 @@ vim.filetype.add {
     hlsl = 'hlsl'
 }
 
-vim.lsp.enable("lua_ls")
-vim.lsp.enable("roslyn_ls")
-vim.lsp.enable("clangd")
-vim.lsp.enable('pyright')
-
 -- StartUp Commands
 vim.schedule(function ()
     vim.o.clipboard = 'unnamedplus'
