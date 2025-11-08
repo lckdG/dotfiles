@@ -76,4 +76,7 @@ vim.schedule(function ()
 
     vim.o.cursorline = true
     vim.o.cursorlineopt = 'number'
+
+    vim.o.winblend = 10
+    vim.o.winborder = "rounded"
 end)
