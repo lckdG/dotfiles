@@ -68,6 +68,7 @@ map('n', '<leader>ff', tl_builtin.find_files, { desc = 'Telescope fuzzy find fil
 map('n', '<leader>fg', tl_builtin.live_grep, { desc = 'Telescope live grep' })
 map('n', '<leader>fb', tl_builtin.buffers, { desc = 'Telescope buffers' })
 map('n', '<leader>fh', tl_builtin.help_tags, { desc = 'Telescope help tags' })
+map('n', '<leader>tt', '<cmd>Telescope colorscheme<CR>', { noremap = true, silent = true, desc = 'Open colorscheme picker' })
 
 -- Close buffers
 local close_buffers = require('close_buffers')
