@@ -1,6 +1,6 @@
 return {
     'neovim/nvim-lspconfig',
-    event = "VeryLazy",
+    event = { "BufReadPre", "BufNewFile" },
     dependencies = {
         {
             'mason-org/mason.nvim',
@@ -13,10 +13,7 @@ return {
         },
 
         'WhoIsSethDaniel/mason-tool-installer.nvim',
-
         { 'j-hui/fidget.nvim', opts = {} },
-
-        'saghen/blink.cmp',
     },
     config = function()
         vim.api.nvim_create_autocmd('LspAttach', {
@@ -90,9 +87,6 @@ return {
             },
             virtual_text = false,
         }
-
-        local capabilities = vim.lsp.protocol.make_client_capabilities()
-        capabilities = vim.tbl_deep_extend('force', capabilities, require('blink.cmp').get_lsp_capabilities())
 
         local servers = {
             lua_ls = {
