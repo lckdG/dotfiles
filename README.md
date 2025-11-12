@@ -8,9 +8,9 @@ My personal archive for the dotfiles that I am using, which is fairly minimal wi
 
 ### System
 - **lazy.nvim** - Package Manager
+- oil.nvim - File Manager
 - **auto-session** - Session Manager
 - **telescope.nvim** - Fuzzy finder
-- **telescope-file-browser.nvim** - Telescope extension for file management
 - **telescope-fzf-native.nvim** - Telescope extension
 - **nvim-treesitter** - Syntax highlighting
 - **blink.cmp** - Auto Complete
@@ -22,6 +22,7 @@ My personal archive for the dotfiles that I am using, which is fairly minimal wi
 ### TUI
 - **noice.nvim** - UI improvements
 - **lightline.vim** - Statusline & tabline decorator
+- todo-comments.nvim - Highlight & quickly find TODOs, HACKs, BUGs comments
 - **nvim-web-devicons** - Well, icons ;)
 ### Quality of Life
 - **dropbar.nvim** - IDE-like breadcrumbs, great to know which part of the document I'm at
@@ -32,7 +33,6 @@ My personal archive for the dotfiles that I am using, which is fairly minimal wi
 ### Utilities
 - **markview.nvim** - Markdown, LaTeX previews
 - **gitsigns.nvim** - Very nice git utilities, used for line blame, tracking changes
-- **lazygit.nvim** - [lazygit](https://github.com/jesseduffield/lazygit) integration in neovim
 - **close-buffers.nvim** - Close redundant buffers
 - **harpoon** - Quickly jump between working files
 
@@ -42,7 +42,7 @@ My personal archive for the dotfiles that I am using, which is fairly minimal wi
 
 Theme is loaded right after LazyVim, set up in *init.lua* file.
 - **onedark.nvim**
-- **kanagawa.nvim**
+- oldworld.nvim
 - **gruvbox-material.nvim**
 
 ## Dependencies
@@ -52,15 +52,15 @@ Theme is loaded right after LazyVim, set up in *init.lua* file.
 As I work mostly on Windows, I use [scoop](https://scoop.sh/) to install the packages. There are many dependencies to those plugins to run, below is the list of tools, executables that I used (can be more):
 - A C Compiler
 - Lua & Luarocks
-- Rust & Cargo (I use [Neovide](https://neovide.dev/) on top of nvim, for some nice, juicy cursor animations!).
-- ripgrep & fd
+- Rust & Cargo.
+- ripgrep & fd-find
 
 ## Language Servers
 
 ---
 
-- lua-language-server (installed from scoop).
-- Pyright (installed from pip).
-- Roslyn analyzer - Used to program in Unity C# (refer to lspconfig for installation instruction).
-- A C/C++ language server (clangd)
+- lua-language-server
+- Pyright
+- Roslyn - Used to program in Unity C#
+- clangd
 
