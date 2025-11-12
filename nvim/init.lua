@@ -69,7 +69,7 @@ vim.filetype.add {
 vim.schedule(function ()
     vim.o.clipboard = 'unnamedplus'
 
--- Colorscheme options: onedark, gruvbox-material, oldworld, kanso
+-- Colorscheme options: onedark, gruvbox-material, oldworld
 -- Remember to change lazy.lua to load the correct theme!
     local colorscheme = 'oldworld'
     vim.cmd('colorscheme ' .. colorscheme)
