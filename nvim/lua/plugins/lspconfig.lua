@@ -12,7 +12,6 @@ return {
             },
         },
 
-        'mason-org/mason-lspconfig.nvim',
         'WhoIsSethDaniel/mason-tool-installer.nvim',
 
         { 'j-hui/fidget.nvim', opts = {} },
@@ -130,10 +129,6 @@ return {
         }
 
         require('mason-tool-installer').setup { ensure_installed = mason_servers }
-        require('mason-lspconfig').setup {
-            ensure_installed = {},
-            automatic_installation = false,
-        }
 
         for server, config in pairs(servers) do
             vim.lsp.config(server, config)
