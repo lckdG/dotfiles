@@ -12,6 +12,9 @@ REM CALL scoop install neovide
 REM Unrem these if you want to use wezterm
 REM CALL scoop install wezterm
 
+REM Unrem these for starship use
+REM CALL scoop install starship
+
 CALL scoop update *
 
 CALL update-nvim.bat
