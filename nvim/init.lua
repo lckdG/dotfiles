@@ -71,12 +71,11 @@ vim.schedule(function ()
 
 -- Colorscheme options: onedark, gruvbox-material, oldworld
 -- Remember to change lazy.lua to load the correct theme!
-    local colorscheme = 'oldworld'
+    local colorscheme = 'gruvbox-material'
     vim.cmd('colorscheme ' .. colorscheme)
 
     vim.o.cursorline = true
     vim.o.cursorlineopt = 'number'
 
     vim.o.winblend = 5
-    vim.o.winborder = "single"
 end)
