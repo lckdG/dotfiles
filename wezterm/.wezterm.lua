@@ -2,8 +2,66 @@ local wezterm = require 'wezterm'
 
 local config = wezterm.config_builder()
 
-config.hide_tab_bar_if_only_one_tab = true
-config.use_fancy_tab_bar = true
+config.enable_tab_bar = true
+config.use_fancy_tab_bar = false
+config.tab_bar_at_bottom = true
+config.tab_max_width = 50
+config.tab_and_split_indices_are_zero_based = true
+
+-- local RIGHT_BORDER = ""
+local RIGHT_BORDER = wezterm.nerdfonts.pl_left_hard_divider
+
+local function tab_title(tab_info)
+    local title = tab_info.tab_title
+    if title and #title > 0 then
+        return title
+    end
+
+    return tab_info.active_pane.title
+end
+
+wezterm.on("format-tab-title", function(tab, _, _, _, hover, max_width)
+    local active_background = "fbf1c7"
+    local active_foreground = "d79921"
+
+    local hover_background = "928374"
+    local hover_foreground = "ebdbb2"
+
+    local default_background = "282828"
+    local default_foreground = "a89984"
+
+    local background = default_background
+    local foreground = default_foreground
+
+    if tab.is_active then
+        background = active_background
+        foreground = active_foreground
+    elseif hover then
+        background = hover_background
+        foreground = hover_foreground
+    end
+
+    local title = tab_title(tab)
+
+    title = wezterm.truncate_right(title, max_width - 2)
+
+    return {
+        -- Left Border
+        { Background = { Color = tab.is_active and active_background or default_background } },
+        { Foreground = { Color = default_background } },
+        { Text = (tab.is_active and tab.tab_index ~= 0) and RIGHT_BORDER or " " },
+
+        -- Tab title
+        { Background = { Color = background } },
+        { Foreground = { Color = foreground } },
+        { Text = " " .. title .. " " },
+
+        -- Right Border
+        { Background = { Color = default_background } },
+        { Foreground = { Color = tab.is_active and active_background or default_background } },
+        { Text = tab.is_active and RIGHT_BORDER or " " },
+    }
+end)
 
 -- config.window_decorations = "RESIZE | TITLE"
 config.window_decorations = "RESIZE"
@@ -26,7 +84,7 @@ config.inactive_pane_hsb = {
 config.font = wezterm.font 'JetBrainsMono Nerd Font'
 config.font_size = 13
 
-config.color_scheme = 'Orangish (terminal.sexy)'
+config.color_scheme = 'Gruvbox dark, hard (base16)'
 
 config.default_cursor_style = "BlinkingBlock"
 config.cursor_blink_rate = 500
