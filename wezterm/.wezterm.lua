@@ -58,7 +58,7 @@ wezterm.on("format-tab-title", function(tab, _, _, _, hover, max_width)
 end)
 
 config.initial_cols = 140
-config.initial_rows = 30
+config.initial_rows = 28
 
 -- config.window_decorations = "RESIZE | TITLE"
 config.window_decorations = "RESIZE"
