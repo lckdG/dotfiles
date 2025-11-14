@@ -31,6 +31,7 @@ return {
                     preview_height = 0.5,
                 },
                 file_ignore_patterns = ignore_patterns,
+                winblend = 0,
                 preview = {
                     filesize_limit = 1, -- MB
                     highlight_limit = 0.2,

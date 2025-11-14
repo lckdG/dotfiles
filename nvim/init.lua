@@ -76,6 +76,4 @@ vim.schedule(function ()
 
     vim.o.cursorline = true
     vim.o.cursorlineopt = 'number'
-
-    vim.o.winblend = 5
 end)
