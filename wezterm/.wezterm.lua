@@ -57,8 +57,11 @@ wezterm.on("format-tab-title", function(tab, _, _, _, hover, max_width)
     }
 end)
 
+config.front_end = "OpenGL"
+config.animation_fps = 60
+
 config.initial_cols = 140
-config.initial_rows = 28
+config.initial_rows = 30
 
 -- config.window_decorations = "RESIZE | TITLE"
 config.window_decorations = "RESIZE"
@@ -79,7 +82,6 @@ config.tab_bar_at_bottom = true
 config.tab_max_width = 50
 config.tab_and_split_indices_are_zero_based = true
 
-config.animation_fps = 60
 config.inactive_pane_hsb = {
     saturation = 0.5,
     brightness = 0.5,
@@ -91,7 +93,9 @@ config.font_size = 13
 config.color_scheme = 'Gruvbox dark, hard (base16)'
 
 config.default_cursor_style = "BlinkingBlock"
-config.cursor_blink_rate = 500
+config.cursor_blink_rate = 600
+config.cursor_blink_ease_in = "Constant"
+config.cursor_blink_ease_out = "Constant"
 
 config.default_prog = { 'powershell.exe', '-NoLogo' }
 config.scrollback_lines = 5000
