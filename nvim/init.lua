@@ -52,6 +52,11 @@ vim.loader.enable()
 require("config.lazy")
 require('nvim-treesitter.install').compilers = { "clang", "gcc" }
 
+-- Colorscheme options: onedark, gruvbox-material, oldworld
+-- Remember to change lazy.lua to load the correct theme!
+local colorscheme = 'gruvbox-material'
+vim.cmd('colorscheme ' .. colorscheme)
+
 -- Required by harpoon
 require("harpoon"):setup()
 
@@ -70,11 +75,6 @@ vim.filetype.add {
 -- StartUp Commands
 vim.schedule(function ()
     vim.o.clipboard = 'unnamedplus'
-
--- Colorscheme options: onedark, gruvbox-material, oldworld
--- Remember to change lazy.lua to load the correct theme!
-    local colorscheme = 'gruvbox-material'
-    vim.cmd('colorscheme ' .. colorscheme)
 
     vim.o.cursorline = true
     vim.o.cursorlineopt = 'number'
