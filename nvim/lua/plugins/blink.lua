@@ -4,20 +4,7 @@ return {
     version = '1.*',
     build = 'cargo build --release',
     dependencies = {
-        { 'folke/lazydev.nvim' },
-        { 
-            'L3MON4D3/LuaSnip',
-            version = '2.*',
-            build = (function ()
-                if vim.fn.has 'win32' == 1 or vim.fn.executable 'make' == 0 then
-                    return
-                end
 
-                return 'make install_jsregexp'
-            end)(),
-            dependencies = {},
-            opts = {},
-        }
     },
     opts = function(_, opts)
         opts.enabled = function ()
@@ -49,13 +36,17 @@ return {
             },
         }
 
-        opts.sources = {
-            default = { 'lsp', 'path', 'snippets', 'lazydev' },
+        opts.sources = vim.tbl_deep_extend("force", opts.sources or {}, {
+            default = { 'lsp', 'path', 'snippets', 'buffer', 'lazydev' },
             providers = {
-                lazydev = { module = 'lazydev.integrations.blink', score_offset = 100 },
+                lazydev = { module = "lazydev.integrations.blink", score_offset =  100 }
             },
+        })
+
+        opts.cmdline = {
+            enabled = true
         }
-        opts.snippets = { preset = 'luasnip' }
+
         opts.signature = { enabled = true }
     end,
 }
