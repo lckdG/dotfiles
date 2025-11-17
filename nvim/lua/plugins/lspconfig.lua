@@ -2,17 +2,7 @@ return {
     'neovim/nvim-lspconfig',
     event = { "BufReadPre", "BufNewFile" },
     dependencies = {
-        {
-            'mason-org/mason.nvim',
-            opts = {
-                registries = {
-                    "github:mason-org/mason-registry",
-                    "github:Crashdummyy/mason-registry",
-                },
-            },
-        },
-
-        'WhoIsSethDaniel/mason-tool-installer.nvim',
+        
     },
     config = function()
         vim.api.nvim_create_autocmd('LspAttach', {
@@ -112,16 +102,6 @@ return {
 
             },
         }
-
-        local mason_servers = {
-            "stylua",
-            "lua-language-server",
-            "clangd",
-            "roslyn",
-            "pyright"
-        }
-
-        require('mason-tool-installer').setup { ensure_installed = mason_servers }
 
         for server, config in pairs(servers) do
             vim.lsp.config(server, config)
