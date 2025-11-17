@@ -46,6 +46,8 @@ if vim.fn.has("win32") then
     vim.o.shellredir = '| Out-File -Encoding UTF8 %s'
 end
 
+vim.loader.enable()
+
 -- LazyVim
 require("config.lazy")
 require('nvim-treesitter.install').compilers = { "clang", "gcc" }

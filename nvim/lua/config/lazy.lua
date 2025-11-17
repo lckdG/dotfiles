@@ -29,7 +29,7 @@ require("lazy").setup({
     change_detection = { notify = false },
     checker = { enabled = true },
     performance = {
-        cache = { enabled = true },
+        cache = { enabled = false },
         rtp = {
             disabled_plugins = {
                 "netrw",
