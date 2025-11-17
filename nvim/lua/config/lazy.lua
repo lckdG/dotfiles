@@ -28,8 +28,9 @@ require("lazy").setup({
     -- automatically check for plugin updates
     change_detection = { notify = false },
     checker = { enabled = true },
+    rocks = { enabled = false },
     performance = {
-        cache = { enabled = false },
+        cache = { enabled = true },
         rtp = {
             disabled_plugins = {
                 "netrw",
