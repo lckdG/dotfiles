@@ -50,9 +50,9 @@ Theme is loaded right after LazyVim, set up in *init.lua* file.
 ---
 
 As I work mostly on Windows, I use [scoop](https://scoop.sh/) to install the packages. There are many dependencies to those plugins to run, below is the list of tools, executables that I used (can be more):
-- A C Compiler
-- Lua & Luarocks
-- Rust & Cargo.
+- tree-sitter-cli
+- ~Lua & Luarocks~
+- Rust & Cargo
 - ripgrep & fd-find
 
 ## Language Servers
@@ -63,4 +63,15 @@ As I work mostly on Windows, I use [scoop](https://scoop.sh/) to install the pac
 - Pyright
 - Roslyn - Used to program in Unity C#
 - clangd
+
+
+## Notes
+
+---
+
+### Roslyn server
+To install Roslyn, go to: [this link](https://dev.azure.com/azure-public/vside/_artifacts/feed/vs-impl) and filter for **Microsoft.CodeAnalysis.LanguageServer**, then choose the desired Roslyn language server that matches your OS, download it, **extract as zip**, then add the language server to PATH and start using.
+
+### Lua & Luarocks
+Lua and Luarocks are optional, it's cumbersome to install them on Windows so I opted to exclude them. If they're installed, consider enable rocks in lazy.nvim config.
 
