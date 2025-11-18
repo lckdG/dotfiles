@@ -2,15 +2,15 @@
 
 CALL scoop bucket add extras
 
-CALL scoop install make llvm rustup
+CALL scoop install make rustup
 CALL scoop install ripgrep fd
 CALL scoop install neovim
 
 REM tree sitter setup
 CALL cargo install --locked tree-sitter-cli
 
-REM Install lua language server
-CALL scoop install lua-language-server
+REM Install language servers
+CALL scoop install lua-language-server clangd
 
 REM Unrem these if you want to use neovide
 REM CALL scoop install neovide
