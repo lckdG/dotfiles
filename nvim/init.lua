@@ -59,7 +59,6 @@ vim.loader.enable()
 
 -- LazyVim
 require("config.lazy")
-require('nvim-treesitter.install').compilers = { "clang", "gcc" }
 
 -- Colorscheme options: onedark, gruvbox-material, oldworld
 -- Remember to change lazy.lua to load the correct theme!
