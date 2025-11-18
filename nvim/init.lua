@@ -31,6 +31,15 @@ vim.opt.listchars = { tab = '» ' , trail = '•', nbsp = '␣' }
 vim.o.inccommand = 'split'
 vim.o.confirm = true
 
+-- Session configs
+vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
+
+-- File type correction
+vim.filetype.add {
+    shader = 'hlsl',
+    hlsl = 'hlsl'
+}
+
 if vim.g.neovide then
     vim.g.neovide_scale_factor = 0.9
     vim.g.neovide_cursor_animate_command_line = false
@@ -59,15 +68,6 @@ vim.cmd('colorscheme ' .. colorscheme)
 
 require("config.keymaps")
 require("config.autos")
-
--- Session configs
-vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
-
--- File type correction
-vim.filetype.add {
-    shader = 'hlsl',
-    hlsl = 'hlsl'
-}
 
 -- StartUp Commands
 vim.schedule(function ()
