@@ -1,6 +1,6 @@
 return {
     'stevearc/oil.nvim',
-    lazy = false,
+    cmd = "Oil",
     ---@module 'oil'
     ---@type oil.SetupOpts
     opts = {

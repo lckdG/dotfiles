@@ -12,7 +12,7 @@ local ignore_patterns = {
 
 return {
     'nvim-telescope/telescope.nvim',
-    event = 'VimEnter',
+    lazy = true,
     dependencies = {
         'nvim-lua/plenary.nvim',
         { 'nvim-telescope/telescope-ui-select.nvim' },

@@ -1,6 +1,6 @@
 return {
     'saghen/blink.cmp',
-    event = "VeryLazy",
+    event = { "InsertEnter", "CmdlineEnter" },
     version = '1.*',
     build = 'cargo build --release',
     dependencies = {

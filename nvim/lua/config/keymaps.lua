@@ -63,47 +63,51 @@ map('n', '<C-Down>', '<cmd>split<CR>', { desc = 'Split window horizontally' })
 map('n', '<C-Right>', '<cmd>vsplit<CR>', { desc = 'Split window vertically' })
 
 -- Telescope
-local tl_builtin = require('telescope.builtin')
-map('n', '<leader>ff', tl_builtin.find_files, { desc = 'Telescope fuzzy find files' })
-map('n', '<leader>fg', tl_builtin.live_grep, { desc = 'Telescope live grep' })
-map('n', '<leader>fb', tl_builtin.buffers, { desc = 'Telescope buffers' })
-map('n', '<leader>fh', tl_builtin.help_tags, { desc = 'Telescope help tags' })
+map('n', '<leader>ff', function() require('telescope.builtin').find_files() end, { desc = 'Telescope fuzzy find files' })
+map('n', '<leader>fg', function() require('telescope.builtin').live_grep() end, { desc = 'Telescope live grep' })
+map('n', '<leader>fb', function() require('telescope.builtin').buffers() end, { desc = 'Telescope buffers' })
+map('n', '<leader>fh', function() require('telescope.builtin').help_tags() end, { desc = 'Telescope help tags' })
 map('n', '<leader>tt', '<cmd>Telescope colorscheme<CR>', { noremap = true, silent = true, desc = 'Open colorscheme picker' })
 
 -- Close buffers
-local close_buffers = require('close_buffers')
 map('n', '<leader>bdh', function()
-        close_buffers.delete( { type = 'hidden', force = true } )
+        require('close_buffers').delete( { type = 'hidden', force = true } )
     end,
     { desc = "Delete all hidden buffers" }
 )
 
 map('n', '<leader>bdn', function ()
-    close_buffers.delete( { type = 'nameless' } )
+    require('close_buffers').delete( { type = 'nameless' } )
     end,
     { desc = "Delete nameless buffers" }
 )
 
 map('n', '<leader>bdw', function ()
-        close_buffers.wipe( { type = 'all', force = true } )
+        require('close_buffers').wipe( { type = 'all', force = true } )
     end,
     { desc = "Wipe out all buffers" }
 )
 
 -- Harpoon
-local harpoon = require('harpoon')
+map('n', '<leader>he', function()
+    local harpoon = require('harpoon')
+    harpoon.ui:toggle_quick_menu(harpoon:list())
+end, { desc = "Open harpoon window" })
+map('n', '<leader>ha', function() require('harpoon'):list():add() end, { desc = "Add file to harpoon" })
 
-map('n', '<leader>he', function() harpoon.ui:toggle_quick_menu(harpoon:list()) end, { desc = "Open harpoon window" })
-map('n', '<leader>ha', function() harpoon:list():add() end, { desc = "Add file to harpoon" })
+map('n', '<leader>h1', function () require('harpoon'):list():select(1) end, { desc = "Jump to 1st file in harpoon list" })
+map('n', '<leader>h2', function () require('harpoon'):list():select(2) end, { desc = "Jump to 2nd file in harpoon list" })
+map('n', '<leader>h3', function () require('harpoon'):list():select(3) end, { desc = "Jump to 3rd file in harpoon list" })
+map('n', '<leader>h4', function () require('harpoon'):list():select(4) end, { desc = "Jump to 4th file in harpoon list" })
 
-map('n', '<leader>h1', function () harpoon:list():select(1) end, { desc = "Jump to 1st file in harpoon list" })
-map('n', '<leader>h2', function () harpoon:list():select(2) end, { desc = "Jump to 2nd file in harpoon list" })
-map('n', '<leader>h3', function () harpoon:list():select(3) end, { desc = "Jump to 3rd file in harpoon list" })
-map('n', '<leader>h4', function () harpoon:list():select(4) end, { desc = "Jump to 4th file in harpoon list" })
-
-map('n', '<leader>hn', function () harpoon:list():next() end, { desc = "Jump to next file in harpoon list" })
-map('n', '<leader>hb', function () harpoon:list():prev() end, { desc = "Jump to previous file in harpoon list" })
+map('n', '<leader>hn', function () require('harpoon'):list():next() end, { desc = "Jump to next file in harpoon list" })
+map('n', '<leader>hb', function () require('harpoon'):list():prev() end, { desc = "Jump to previous file in harpoon list" })
 
 -- Oil
 map('n', '<leader>e', '<cmd>Oil --float<CR>', { silent = true, desc = "Open parent directory" })
+
+-- Auto Session
+map('', '<F8>', function()
+    require("auto-session").restore_session(nil, { show_message = true, is_autorestore = false, is_startup_autorestore = false } )
+end)
 

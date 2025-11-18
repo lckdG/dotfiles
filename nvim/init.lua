@@ -57,9 +57,6 @@ require('nvim-treesitter.install').compilers = { "clang", "gcc" }
 local colorscheme = 'gruvbox-material'
 vim.cmd('colorscheme ' .. colorscheme)
 
--- Required by harpoon
-require("harpoon"):setup()
-
 require("config.keymaps")
 require("config.autos")
 
@@ -78,4 +75,7 @@ vim.schedule(function ()
 
     vim.o.cursorline = true
     vim.o.cursorlineopt = 'number'
+
+    -- Required by harpoon
+    require("harpoon"):setup()
 end)
