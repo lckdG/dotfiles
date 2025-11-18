@@ -17,7 +17,7 @@ local ensure_installed = {
 return {
     "nvim-treesitter/nvim-treesitter",
     branch = 'main',
-    lazy = false,
+    lazy = true,
     event = "BufRead",
     build = ":TSUpdate",
     config = function ()
