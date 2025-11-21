@@ -47,6 +47,6 @@ return {
             enabled = true
         }
 
-        opts.signature = { enabled = true }
+        -- opts.signature = { enabled = true }
     end,
 }
