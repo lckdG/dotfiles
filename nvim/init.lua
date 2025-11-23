@@ -30,6 +30,7 @@ vim.opt.listchars = { tab = '» ' , trail = '•', nbsp = '␣' }
 
 vim.o.inccommand = 'split'
 vim.o.confirm = true
+vim.o.laststatus = 1
 
 -- Session configs
 vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
