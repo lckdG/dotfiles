@@ -23,8 +23,8 @@ map('n', '<A-k>', ":m .-2<CR>==", { noremap = true, silent = true, desc = "Move 
 map('v', '<A-j>', ":m '>+1<CR>gv=gv", { noremap = true, silent = true, desc = "Move block down" })
 map('v', '<A-k>', ":m '<-2<CR>gv=gv", { noremap = true, silent = true, desc = "Move block up" })
 
-map({ 'n', 'v' }, "H", "^", { noremap = true, desc = "^" })
-map({ 'n', 'v' }, "L", "$", { noremap = true, desc = "$" })
+map('', "H", "^", { noremap = true, desc = "^" })
+map('', "L", "$", { noremap = true, desc = "$" })
 
 map('n', '<C-q>', '<cmd>close<CR>', { desc = 'Close current buffer' } )
 map('n', '<C-s>', '<cmd>w<CR>', { desc = "Quick save, in windows style" })
