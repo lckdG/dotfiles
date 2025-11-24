@@ -109,5 +109,9 @@ map('n', '<leader>e', '<cmd>Oil --float<CR>', { silent = true, desc = "Open pare
 -- Auto Session
 map('', '<F8>', function()
     require("auto-session").restore_session(nil, { show_message = true, is_autorestore = false, is_startup_autorestore = false } )
-end)
+end, { desc = "Restore last session" })
 
+-- UFO
+map('n', 'zR', function () require('ufo').openAllFolds() end)
+map('n', 'zM', function () require('ufo').closeAllFolds() end)
+map('n', '<leader>zf', 'Vj%zf', { desc = "Fold current block" })

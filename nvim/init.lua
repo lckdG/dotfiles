@@ -41,6 +41,12 @@ vim.filetype.add {
     hlsl = 'hlsl'
 }
 
+-- Fold configs
+vim.o.foldcolumn = '1'
+vim.o.foldlevel = 99
+vim.o.foldlevelstart = 99
+vim.o.foldenable = true
+
 if vim.g.neovide then
     vim.g.neovide_scale_factor = 0.9
     vim.g.neovide_cursor_animate_command_line = false
