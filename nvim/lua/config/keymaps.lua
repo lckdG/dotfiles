@@ -69,6 +69,14 @@ map('n', '<leader>fb', function() require('telescope.builtin').buffers() end, { 
 map('n', '<leader>fh', function() require('telescope.builtin').help_tags() end, { desc = 'Telescope help tags' })
 map('n', '<leader>tt', '<cmd>Telescope colorscheme<CR>', { noremap = true, silent = true, desc = 'Open colorscheme picker' })
 
+map('n', '<leader>ti', function ()
+    vim.g.telescope_enable_ignore_patterns = not vim.g.telescope_enable_ignore_patterns
+
+    require('telescope.config').set_defaults({
+        file_ignore_patterns = vim.g.telescope_enable_ignore_patterns and telescope_ignore_patterns or {},
+    })
+end, { noremap = true, desc = "Toggle Telescope ignore patterns"})
+
 -- Close buffers
 map('n', '<leader>bdh', function()
         require('close_buffers').delete( { type = 'hidden', force = true } )

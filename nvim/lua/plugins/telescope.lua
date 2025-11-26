@@ -1,11 +1,11 @@
-local ignore_patterns = {
+telescope_ignore_patterns = {
     "GeneratedSoundBanks", ".wwu", -- Wwise
     ".wav", ".flac", ".mp3", ".bnk", -- Sounds
     ".mesh", ".fbx", ".obj", -- 3D models
     ".otf", ".ttf", -- Fonts
     ".exe", -- Executables
     ".asmdef", ".dll", -- Libraries
-    ".tgz", ".tar", ".zip", ".gz", ".iso", ".rar", -- Archive files
+    ".tgz$", ".tar$", ".zip$", ".gz$", ".iso$", ".rar$", -- Archive files
     ".tga", ".png", ".jpg", ".jpeg", ".psd", ".gif", ".tif", ".svg", -- Images, phew
     ".meta", ".unity", ".prefab", ".anim", ".mesh", ".hdr", ".exr", "_probes.asset", ".controller", ".overrideController", -- Unity specific, but don't ignore the .metas
 }
@@ -30,7 +30,7 @@ return {
                     height = 0.9,
                     preview_height = 0.5,
                 },
-                file_ignore_patterns = ignore_patterns,
+                file_ignore_patterns = telescope_ignore_patterns,
                 winblend = 0,
                 preview = {
                     filesize_limit = 1, -- MB
