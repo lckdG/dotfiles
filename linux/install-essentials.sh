@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Main applications
-sudo pacman -S git-lfs cmake htop ibus-bamboo
+sudo pacman -S git-lfs cmake fastfetch htop ibus-bamboo
 sudo pacman -S ttf-jetbrains-mono-nerd ttf-nerd-fonts-symbols-mono
 sudo pacman -S fish wezterm code neovim
 
