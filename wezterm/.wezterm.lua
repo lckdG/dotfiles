@@ -65,8 +65,6 @@ config.initial_rows = 30
 
 -- config.window_decorations = "RESIZE | TITLE"
 config.window_decorations = "RESIZE"
-config.window_background_opacity = 0.0
-config.win32_system_backdrop = "Mica"
 
 config.window_close_confirmation = "NeverPrompt"
 config.window_padding = {
@@ -97,7 +95,14 @@ config.cursor_blink_rate = 600
 config.cursor_blink_ease_in = "Constant"
 config.cursor_blink_ease_out = "Constant"
 
-config.default_prog = { 'powershell.exe', '-NoLogo' }
+if wezterm.target_triple == "x86_64-pc-windows-msvc" then
+    config.default_prog = { 'powershell.exe', '-NoLogo' }
+    config.window_background_opacity = 0.0
+    config.win32_system_backdrop = "Mica"
+elseif wezterm.target_triple == "x86_64-unknown-linux-gnu" then
+    config.default_prog = { "/usr/bin/fish" }
+end
+
 config.scrollback_lines = 5000
 
 return config

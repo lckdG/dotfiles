@@ -62,6 +62,8 @@ if vim.fn.has("win32") then
     vim.o.shellquote = ''
     vim.o.shellpipe = '| Out-File -Encoding UTF8 %s'
     vim.o.shellredir = '| Out-File -Encoding UTF8 %s'
+elseif vim.fn.has("linux") then
+    vim.o.shell = "/usr/bin/fish"
 end
 
 vim.loader.enable()
