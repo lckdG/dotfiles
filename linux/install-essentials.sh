@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# git operations
+git config --global core.autocrlf input
+git config --global credential.helper manager
+
 # Main applications
 sudo pacman -S git-lfs cmake fastfetch htop ibus-bamboo
 sudo pacman -S ttf-jetbrains-mono-nerd ttf-nerd-fonts-symbols-mono
@@ -26,5 +30,5 @@ chmod +x update-nvim.sh update-wezterm.sh update-fish.sh
 ./update-fish.sh
 
 # AUR packages
-yay -S google-chrome sourcegit pinta unityhub
+yay -S google-chrome git-credential-manager-bin sourcegit pinta unityhub
 
