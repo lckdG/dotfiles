@@ -2,7 +2,7 @@
 
 # git operations
 git config --global core.autocrlf input
-git config --global credential.helper manager
+git config --global credential.credentialStore secretservice
 
 # Main applications
 sudo pacman -S git-lfs cmake fastfetch htop ibus-bamboo
@@ -30,5 +30,5 @@ chmod +x update-nvim.sh update-wezterm.sh update-fish.sh
 ./update-fish.sh
 
 # AUR packages
-yay -S google-chrome git-credential-manager-bin sourcegit pinta unityhub
+yay -S google-chrome sourcegit pinta unityhub
 
