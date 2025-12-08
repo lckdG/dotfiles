@@ -24,8 +24,6 @@ The archive for the dotfiles that I use daily, mostly (but not bounded to) consi
 
 ### Plugins
 
----
-
 #### System
 - **lazy.nvim** - Package Manager
 - oil.nvim - File Manager
