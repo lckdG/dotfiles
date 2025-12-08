@@ -12,10 +12,17 @@ The archive for the dotfiles that I use daily, mostly (but not bounded to) consi
 
 - [Table of contents](#table-of-contents)
 - [Neovim config](#neovim-config)
+    - [Plugins](#plugins)
+    - [Themes](#themes)
+    - [Language Servers](#language-servers)
+    - [Notes](#notes)
+    - [Windows-specific Notes](#windows-specific-notes)
+
+---
 
 ## Neovim Config
 
----
+### Plugins
 
 #### System
 - **lazy.nvim** - Package Manager
@@ -47,16 +54,12 @@ The archive for the dotfiles that I use daily, mostly (but not bounded to) consi
 
 ### Themes
 
----
-
 Theme is loaded right after LazyVim, set up in *init.lua* file.
 - **onedark.nvim**
 - **oldworld.nvim**
 - **gruvbox-material.nvim**
 
 ### Language Servers
-
----
 
 - lua-language-server
 - Pyright
@@ -65,14 +68,10 @@ Theme is loaded right after LazyVim, set up in *init.lua* file.
 
 ### Notes
 
----
-
 #### Roslyn server
 To install Roslyn, go to: [this link](https://dev.azure.com/azure-public/vside/_artifacts/feed/vs-impl) and filter for **Microsoft.CodeAnalysis.LanguageServer**, then choose the desired Roslyn language server that matches your OS, download it, **extract as zip**, then add the language server to PATH and start using.
 
 ### Windows-specific Notes
-
----
 
 #### Scoop
 
