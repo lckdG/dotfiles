@@ -1,12 +1,23 @@
 # dotfiles
 
-My personal archive for the dotfiles that I am using, which is fairly minimal with some key bindings and features very close to VSCode (my last text editor :) ).
-
-## Plugins
+The archive for the dotfiles that I use daily, mostly (but not bounded to) consists the configurations of:
+- Neovim
+- Fish shell
+- Wezterm
+- Linux setup
 
 ---
 
-### System
+## Table of contents
+
+- [Table of contents](#table-of-contents)
+- [Neovim config](#neovim-config)
+
+## Neovim Config
+
+---
+
+#### System
 - **lazy.nvim** - Package Manager
 - oil.nvim - File Manager
 - **auto-session** - Session Manager
@@ -14,48 +25,36 @@ My personal archive for the dotfiles that I am using, which is fairly minimal wi
 - **telescope-fzf-native.nvim** - Telescope extension
 - **nvim-treesitter** - Syntax highlighting
 - **blink.cmp** - Auto Complete
-### Language Server
+- **nvim-ufo** - Fold improvements
+#### Language Server
 - **nvim-lspconfig** - LSP configurations
-- **lensline.nvim** - Codelens
+- **symbol-usage.nvim** - Codelens
 - **tiny-inline-diagnostic.nvim** - Improve the diagnostic messages
-- **lazydev.nvim** - LuaLS for NeoVim configurations
-### TUI
-- **noice.nvim** - UI improvements
-- **lightline.vim** - Statusline & tabline decorator
-- todo-comments.nvim - Highlight & quickly find TODOs, HACKs, BUGs comments
+- **roslyn.nvim** - Roslyn LSP improvements
+#### TUI
+- **todo-comments.nvim** - Highlight & quickly find TODOs, HACKs, BUGs comments
 - **nvim-web-devicons** - Well, icons ;)
-### Quality of Life
-- **dropbar.nvim** - IDE-like breadcrumbs, great to know which part of the document I'm at
+#### Quality of Life
 - **vim-sandwich** - QoL for handling brackets, parentheses of current selection
 - **vim-autopairs** - QoL for brackets, parentheses pairing
 - **rainbow-delimiters.nvim** - QoL to look at the brackets clearly
 - **which-key.nvim** - To memorize all the keybinds
-### Utilities
+#### Utilities
 - **markview.nvim** - Markdown, LaTeX previews
 - **gitsigns.nvim** - Very nice git utilities, used for line blame, tracking changes
 - **close-buffers.nvim** - Close redundant buffers
 - **harpoon** - Quickly jump between working files
 
-## Themes
+### Themes
 
 ---
 
 Theme is loaded right after LazyVim, set up in *init.lua* file.
 - **onedark.nvim**
-- oldworld.nvim
+- **oldworld.nvim**
 - **gruvbox-material.nvim**
 
-## Dependencies
-
----
-
-As I work mostly on Windows, I use [scoop](https://scoop.sh/) to install the packages. There are many dependencies to those plugins to run, below is the list of tools, executables that I used (can be more):
-- tree-sitter-cli
-- ~Lua & Luarocks~
-- Rust & Cargo
-- ripgrep & fd-find
-
-## Language Servers
+### Language Servers
 
 ---
 
@@ -64,14 +63,25 @@ As I work mostly on Windows, I use [scoop](https://scoop.sh/) to install the pac
 - Roslyn - Used to program in Unity C#
 - clangd
 
-
-## Notes
+### Notes
 
 ---
 
-### Roslyn server
+#### Roslyn server
 To install Roslyn, go to: [this link](https://dev.azure.com/azure-public/vside/_artifacts/feed/vs-impl) and filter for **Microsoft.CodeAnalysis.LanguageServer**, then choose the desired Roslyn language server that matches your OS, download it, **extract as zip**, then add the language server to PATH and start using.
 
-### Lua & Luarocks
+### Windows-specific Notes
+
+---
+
+#### Scoop
+
+I use [scoop](https://scoop.sh/) to install the packages. There are many dependencies to those plugins to run, below is the list of tools, executables that I used (can be more):
+- tree-sitter-cli
+- ~Lua & Luarocks~
+- Rust & Cargo
+- ripgrep & fd-find
+
+#### Lua & Luarocks
 Lua and Luarocks are optional, it's cumbersome to install them on Windows so I opted to exclude them. If they're installed, consider enable rocks in lazy.nvim config.
 
