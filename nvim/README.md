@@ -7,6 +7,8 @@ The specific plugin options can be found in **lua/plugins/<plugin_name>.lua**. O
 - **plugins** for,... well, plugins ;)
 - **themes** for the themes that I actually use.
 
+---
+
 ## Table of contents
 
 - [Table of contents](#table-of-contents)
