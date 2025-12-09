@@ -1,4 +1,4 @@
-#!/bin/fish
+#!/bin/bash
 
 rsync -vr $HOME/.config/nvim/ nvim/
 rsync -vr $HOME/.config/wezterm/wezterm.lua wezterm/.wezterm.lua
