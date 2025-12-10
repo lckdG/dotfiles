@@ -10,7 +10,7 @@ Back in the day where I was a student, I had several attempts with Ubuntu, howev
 
 - [Table of contents](#table-of-contents)
 - [OS setup](#os-setup)
-- [The Essentials](#the-sessentials)
+- [The Essentials](#the-essentials)
     - [Notes](#notes)
 - [Utility Scripts](#utility-scripts)
 - [Unity Patching](#unity-patching)
