@@ -9,6 +9,8 @@ Back in the day where I was a student, I had several attempts with Ubuntu, howev
 ## Table of contents
 
 - [Table of contents](#table-of-contents)
+- [OS setup](#os-setup)
+- [The Essentials](#the-sessentials)
 
 ---
 
@@ -24,5 +26,20 @@ The scripts set up a minimal work environment for me, after this some more actio
 
 ## The Essentials
 
-*TDB*
+***Script: install-essentials.sh***
 
+Execute the script to:
+- Config basic git: convert CRLF to LF, use the OS' secretservice to store credentials
+- Install some main applications:
+    - Git-LFS, Cmake, *fastfetch*, *htop*, *ibus-bamboo* <sup>(\*)</sup>.
+    - Nerd font support, JetBrains Mono Nerd font.
+    - Fish shell, Wezterm, VSCode, Neovim.
+    - Rust, .NET (9.0).
+    - Neovim stuffs: tree-sitter-cli, lua-language-server.
+    - *Google Chrome*, *Sourcegit*, *Pinta*, *Unity Hub* <sup>(\*)</sup>
+- Apply configurations to:
+    - Neovim
+    - Wezterm
+    - Fish shell
+
+### Notes
