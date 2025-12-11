@@ -101,6 +101,9 @@ return {
             pyright = {
 
             },
+            ts_ls = {
+
+            },
         }
 
         for server, config in pairs(servers) do

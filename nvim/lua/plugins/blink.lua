@@ -48,6 +48,6 @@ return {
             completion = { menu = { auto_show = true } }
         }
 
-        -- opts.signature = { enabled = true }
+        opts.signature = { enabled = true }
     end,
 }
