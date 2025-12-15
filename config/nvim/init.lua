@@ -39,8 +39,10 @@ vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,
 
 -- File type correction
 vim.filetype.add {
-    shader = 'hlsl',
-    hlsl = 'hlsl'
+    extension = {
+        shader = 'hlsl',
+        hlsl = 'hlsl',
+    },
 }
 
 -- Fold configs
