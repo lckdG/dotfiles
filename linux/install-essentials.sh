@@ -7,7 +7,7 @@ git config --global credential.credentialStore secretservice
 # Main applications
 sudo pacman -S git-lfs cmake fastfetch htop ibus-bamboo
 sudo pacman -S ttf-jetbrains-mono-nerd ttf-nerd-fonts-symbols-mono
-sudo pacman -S fish wezterm code neovim
+sudo pacman -S stow fish wezterm code neovim
 
 # Install rust
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
@@ -23,12 +23,8 @@ curl -L https://dot.net/v1/dotnet-install.sh -o $HOME/Apps/dotnet/dotnet-install
 chmod +x $HOME/Apps/dotnet/dotnet-install.sh
 $HOME/Apps/dotnet/dotnet-install.sh --channel 9.0
 
-# Apply configs
-chmod +x update-nvim.sh update-wezterm.sh update-fish.sh
-./update-nvim.sh
-./update-wezterm.sh
-./update-fish.sh
-
 # AUR packages
-yay -S google-chrome sourcegit pinta unityhub
+yay -S sourcegit pinta unityhub
+
+echo All packages is installed successfully, to apply configs, execute the link-config.sh in the same directory!
 

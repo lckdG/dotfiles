@@ -20,5 +20,3 @@ REM CALL scoop install wezterm starship
 
 CALL scoop update *
 
-CALL update-nvim.bat
-

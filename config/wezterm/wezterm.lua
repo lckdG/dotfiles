@@ -101,6 +101,8 @@ if wezterm.target_triple == "x86_64-pc-windows-msvc" then
     config.win32_system_backdrop = "Mica"
 elseif wezterm.target_triple == "x86_64-unknown-linux-gnu" then
     config.default_prog = { "/usr/bin/fish" }
+    -- config.window_background_opacity = 0.95
+    -- config.kde_window_background_blur = true
 end
 
 config.scrollback_lines = 5000

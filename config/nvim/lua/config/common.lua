@@ -1,3 +1,4 @@
+
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
@@ -37,23 +38,19 @@ vim.g.telescope_enable_ignore_patterns = true
 -- Session configs
 vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
 
--- File type correction
-vim.filetype.add {
-    shader = 'hlsl',
-    hlsl = 'hlsl'
-}
-
 -- Fold configs
 vim.o.foldcolumn = '1'
 vim.o.foldlevel = 99
 vim.o.foldlevelstart = 99
 vim.o.foldenable = true
 
+-- Neovide configs
 if vim.g.neovide then
     vim.g.neovide_scale_factor = 0.9
     vim.g.neovide_cursor_animate_command_line = false
 end
 
+-- Shell configs
 if vim.fn.has("win32") then
     -- Set ups for using powershell with nvim
     vim.o.shell = "powershell.exe"
@@ -65,27 +62,3 @@ if vim.fn.has("win32") then
 elseif vim.fn.has("linux") then
     vim.o.shell = "/usr/bin/fish"
 end
-
-vim.loader.enable()
-
--- LazyVim
-require("config.lazy")
-
--- Colorscheme options: onedark, gruvbox-material, oldworld
--- Remember to change lazy.lua to load the correct theme!
-local colorscheme = 'gruvbox-material'
-vim.cmd('colorscheme ' .. colorscheme)
-
-require("config.keymaps")
-require("config.autos")
-
--- StartUp Commands
-vim.schedule(function ()
-    vim.o.clipboard = 'unnamedplus'
-
-    vim.o.cursorline = true
-    vim.o.cursorlineopt = 'number'
-
-    -- Required by harpoon
-    require("harpoon"):setup()
-end)
