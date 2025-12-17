@@ -40,6 +40,7 @@ Execute the script to:
     - Rust, .NET (9.0).
     - Neovim stuffs: tree-sitter-cli, lua-language-server.
     - *Sourcegit*, *Pinta*, *Unity Hub* [^*]
+<a id="configurations"></a>
 - Apply configurations to:
     - Neovim
     - Wezterm
@@ -53,9 +54,21 @@ While most items in the scripts install themselves, you still need to download a
 
 ## Utility Scripts
 
-*TDB*
+***Script: link-config.sh***
+
+**Prerequisites:** [GNU Stow](https://www.gnu.org/software/stow/)
+
+This script creates symbolic links to the listed [configuration directories](#configurations). Any changes made in the repository will be reflected directly to the applications, and vice versa.
 
 ## Unity Patching
 
-*TDB*
+***Script: fix-unity.sh***
+
+The script will attempt to:
+- Extract the **Payload~** file present in the <EDITOR>/Editor/Data/PlaybackEngines/AndroidPlayer diretory (use the *modules.asset* as a marker).
+- Fix broken links in the AndroidPlayer/NDK directory.
+
+As it finds all editor versions from the *$UNITY_EDITOR_ROOT* and perform the patch, replace the path to match that on your machine.
+
+The NDK links are broken because somehow there is a ***android-ndk-<version>/*** in the path. My script simply exclude that bit from all broken links and they work :)
 
