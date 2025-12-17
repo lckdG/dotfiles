@@ -39,7 +39,7 @@ Execute the script to:
     - Fish shell, Wezterm, VSCode, Neovim.
     - Rust, .NET (9.0).
     - Neovim stuffs: tree-sitter-cli, lua-language-server.
-    - *Google Chrome*, *Sourcegit*, *Pinta*, *Unity Hub* [^*]
+    - *Sourcegit*, *Pinta*, *Unity Hub* [^*]
 - Apply configurations to:
     - Neovim
     - Wezterm
