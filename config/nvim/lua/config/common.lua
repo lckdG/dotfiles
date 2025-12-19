@@ -33,7 +33,8 @@ vim.o.inccommand = 'split'
 vim.o.confirm = true
 
 vim.o.showcmdloc = 'statusline'
-vim.o.cmdheight = 0
+vim.o.showmode = false
+vim.o.cmdheight = 1
 vim.o.laststatus = 2
 
 vim.g.telescope_enable_ignore_patterns = true
