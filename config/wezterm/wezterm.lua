@@ -57,6 +57,21 @@ wezterm.on("format-tab-title", function(tab, _, _, _, hover, max_width)
     }
 end)
 
+config.mouse_bindings = {
+    {
+        event = { Down = { streak = 1, button = { WheelUp = 1 } } },
+        mods = "NONE",
+        action = wezterm.action.ScrollByPage(-0.25),
+        alt_screen = false,
+    },
+    {
+        event = { Down = { streak = 1, button = { WheelDown = 1 } } },
+        mods = "NONE",
+        action = wezterm.action.ScrollByPage(0.25),
+        alt_screen = false,
+    }
+}
+
 config.front_end = "OpenGL"
 config.animation_fps = 60
 
@@ -95,6 +110,8 @@ config.cursor_blink_rate = 600
 config.cursor_blink_ease_in = "Constant"
 config.cursor_blink_ease_out = "Constant"
 
+config.scrollback_lines = 5000
+
 if wezterm.target_triple == "x86_64-pc-windows-msvc" then
     config.default_prog = { 'powershell.exe', '-NoLogo' }
     config.window_background_opacity = 0.0
@@ -104,8 +121,6 @@ elseif wezterm.target_triple == "x86_64-unknown-linux-gnu" then
     -- config.window_background_opacity = 0.95
     -- config.kde_window_background_blur = true
 end
-
-config.scrollback_lines = 5000
 
 return config
 
