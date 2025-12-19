@@ -31,7 +31,10 @@ vim.opt.listchars = { tab = '» ' , trail = '•', nbsp = '␣' }
 
 vim.o.inccommand = 'split'
 vim.o.confirm = true
-vim.o.laststatus = 0
+
+vim.o.showcmdloc = 'statusline'
+vim.o.cmdheight = 0
+vim.o.laststatus = 2
 
 vim.g.telescope_enable_ignore_patterns = true
 
