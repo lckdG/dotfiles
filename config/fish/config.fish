@@ -1,3 +1,5 @@
+set -g fish_greeting ""
+
 if status is-interactive
     # Commands to run in interactive sessions can go here
     starship init fish | source
@@ -11,3 +13,4 @@ if status is-interactive
 
     abbr ff fastfetch
 end
+
