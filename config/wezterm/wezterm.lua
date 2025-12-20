@@ -83,9 +83,9 @@ config.window_decorations = "RESIZE"
 
 config.window_close_confirmation = "NeverPrompt"
 config.window_padding = {
-    left = 5,
-    right = 5,
-    top = 5,
+    left = 4,
+    right = 4,
+    top = 8,
     bottom = 0,
 }
 
