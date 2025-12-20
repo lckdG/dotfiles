@@ -12,7 +12,7 @@ return {
                 lualine_a = { "mode" },
                 lualine_b = { "filename" },
                 lualine_c = { },
-                lualine_x = { "%s", "searchcount" },
+                lualine_x = { "%S", "searchcount" },
                 lualine_y = { },
                 lualine_z = { "filetype" },
             },
