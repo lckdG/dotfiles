@@ -34,9 +34,9 @@ The scripts set up a minimal work environment for me, after this some more actio
 Execute the script to:
 - Config basic git: convert CRLF to LF, use the OS' secretservice to store credentials
 - Install some main applications:
-    - Git-LFS, Cmake, *fastfetch*, *htop*, *ibus-bamboo* [^*].
+    - wl-clipboard, Git-LFS, Cmake, *fastfetch*, *htop*, *ibus-bamboo* [^*].
     - Nerd font support, JetBrains Mono Nerd font.
-    - Fish shell, Wezterm, VSCode, Neovim.
+    - Fish shell, Wezterm, VSCode, Neovim, Lazygit.
     - Rust, .NET (9.0).
     - Neovim stuffs: tree-sitter-cli, lua-language-server.
     - *Sourcegit*, *Pinta*, *Unity Hub* [^*]
