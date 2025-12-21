@@ -12,6 +12,7 @@ if status is-interactive
     fish_add_path $HOME/Apps/Roslyn/content/LanguageServer/linux-x64/
 
     abbr ff fastfetch
+    abbr lg lazygit
 
     abbr sdh shutdown -h
     abbr sdr shutdown -r
