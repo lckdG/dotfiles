@@ -11,9 +11,9 @@ Back in the day where I was a student, I had several attempts with Ubuntu, howev
 - [Table of contents](#table-of-contents)
 - [OS setup](#os-setup)
 - [The Essentials](#the-essentials)
-    - [Notes](#notes)
 - [Utility Scripts](#utility-scripts)
 - [Unity Patching](#unity-patching)
+- [Switching Ibus](#switching-ibus)
 
 ---
 
@@ -48,9 +48,8 @@ Execute the script to:
 
 [^*]: Personal preferences or work related, removable.
 
-### Notes
-
-While most items in the scripts install themselves, you still need to download and put the Roslyn package to the preconfigured directory: *$HOME/Apps/Roslyn/*. Check the fish config for more informations.
+> [!NOTES]
+> While most items in the scripts install themselves, you still need to download and put the Roslyn package to the preconfigured directory: *$HOME/Apps/Roslyn/*. Check the fish config for more informations.
 
 ## Utility Scripts
 
@@ -72,3 +71,14 @@ As it finds all editor versions from the *$UNITY_EDITOR_ROOT* and perform the pa
 
 The NDK links are broken because somehow there is a ***android-ndk-<version>/*** in the path. My script simply exclude that bit from all broken links and they work :)
 
+## Switching Ibus
+
+***Script: change-input.sh***
+
+Assign this script to your system Shortcuts with a preferred keybindings, e.g. Alt+Shift.
+
+You may need to disable ibus method switching shortcut by the following terminal command:
+
+```bash
+gsettings set org.freedesktop.ibus.general.hotkey triggers "[]"
+```
