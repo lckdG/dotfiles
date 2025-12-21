@@ -15,8 +15,7 @@ The specific plugin options can be found in **lua/plugins/<plugin_name>.lua**. O
 - [Plugins](#plugins)
 - [Themes](#themes)
 - [Language Servers](#language-servers)
-- [Notes](#notes)
-- [Windows-specific Notes](#windows-specific-notes)
+- [Running on Windows](#running-on-windows)
 
 ---
 
@@ -47,6 +46,7 @@ The specific plugin options can be found in **lua/plugins/<plugin_name>.lua**. O
 
 ### Quality of Life
 
+- **nvim-treesitter-textobjects** - Improve textobjects manipulation
 - **vim-sandwich** - QoL for handling brackets, parentheses of current selection
 - **vim-autopairs** - QoL for brackets, parentheses pairing
 - **rainbow-delimiters.nvim** - QoL to look at the brackets clearly
@@ -73,15 +73,12 @@ Theme is loaded right after LazyVim, set up in *init.lua* file.
 - Roslyn - Used to program in Unity C#
 - clangd
 
-## Notes
+> [!NOTE]
+> **Language Servers**:
+> I used to use mason.nvim to install the language servers, however I decided to switch to the brute-force myself to install and add the executables to the shell paths. Either approaches work, but I feel it's fun to dig into each source to know how they are built, what are the steps, etc.
+> **Roslyn**: go to [this link](https://dev.azure.com/azure-public/vside/_artifacts/feed/vs-impl) and filter for **Microsoft.CodeAnalysis.LanguageServer**, then choose the desired Roslyn language server that matches your OS, download it, *extract as zip*, then add the language server to PATH and start using.
 
-### Language servers
-
-I used to use mason.nvim to install the language servers, however I decided to switch to the brute-force myself to install and add the executables to the shell paths. Either approaches work, but I feel it's fun to dig into each source to know how they are built, what are the steps, etc.
-
-Specific to Roslyn, go to [this link](https://dev.azure.com/azure-public/vside/_artifacts/feed/vs-impl) and filter for **Microsoft.CodeAnalysis.LanguageServer**, then choose the desired Roslyn language server that matches your OS, download it, *extract as zip*, then add the language server to PATH and start using.
-
-## Windows-specific Notes
+## Running on Windows
 
 ### Scoop
 
