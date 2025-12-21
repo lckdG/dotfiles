@@ -74,8 +74,10 @@ Theme is loaded right after LazyVim, set up in *init.lua* file.
 - clangd
 
 > [!NOTE]
-> **Language Servers**:
+> **Installations**:
+>
 > I used to use mason.nvim to install the language servers, however I decided to switch to the brute-force myself to install and add the executables to the shell paths. Either approaches work, but I feel it's fun to dig into each source to know how they are built, what are the steps, etc.
+>
 > **Roslyn**: go to [this link](https://dev.azure.com/azure-public/vside/_artifacts/feed/vs-impl) and filter for **Microsoft.CodeAnalysis.LanguageServer**, then choose the desired Roslyn language server that matches your OS, download it, *extract as zip*, then add the language server to PATH and start using.
 
 ## Running on Windows
