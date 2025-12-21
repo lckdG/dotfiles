@@ -48,7 +48,7 @@ Execute the script to:
 
 [^*]: Personal preferences or work related, removable.
 
-> [!NOTES]
+> [!NOTE]
 > While most items in the scripts install themselves, you still need to download and put the Roslyn package to the preconfigured directory: *$HOME/Apps/Roslyn/*. Check the fish config for more informations.
 
 ## Utility Scripts
