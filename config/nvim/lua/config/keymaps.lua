@@ -124,6 +124,7 @@ map('n', 'zM', function () require('ufo').closeAllFolds() end)
 map('n', '<leader>zf', 'Vj%zf', { desc = "Fold current block" })
 
 -- Text objects
+-- -- Selections
 map({'x', 'o'}, 'af', function()
     require('nvim-treesitter-textobjects.select').select_textobject('@function.outer', 'textobjects')
 end, { desc = "outer function" } )
@@ -150,4 +151,30 @@ end)
 
 map({'x', 'o'}, 'as', 'a"', { remap = true, desc = 'outer ""' })
 map({'x', 'o'}, 'is', 'i"', { remap = true, desc = 'inner ""' })
+
+-- -- Jumps
+map({'n', 'x', 'o'}, ']f', function ()
+    require('nvim-treesitter-textobjects.move').goto_next_start('@function.outer', 'textobjects')
+end)
+
+map({'n', 'x', 'o'}, ']F', function ()
+    require('nvim-treesitter-textobjects.move').goto_next_end('@function.outer', 'textobjects')
+end)
+
+map({'n', 'x', 'o'}, '[f', function ()
+    require('nvim-treesitter-textobjects.move').goto_previous_start('@function.outer', 'textobjects')
+end)
+
+map({'n', 'x', 'o'}, '[F', function ()
+    require('nvim-treesitter-textobjects.move').goto_previous_end('@function.outer', 'textobjects')
+end)
+
+-- -- Repeat Jumps
+map({'n', 'x', 'o'}, ';', function ()
+    require('nvim-treesitter-textobjects.repeatable_move').repeat_last_move_next()
+end)
+
+map({'n', 'x', 'o'}, ',', function ()
+    require('nvim-treesitter-textobjects.repeatable_move').repeat_last_move_previous()
+end)
 

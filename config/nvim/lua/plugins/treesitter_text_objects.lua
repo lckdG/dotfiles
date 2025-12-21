@@ -11,6 +11,9 @@ return {
                 lookahead = true,
                 include_surrounding_whitespace = false,
             },
+            move = {
+                set_jumps = false,
+            },
         }
     end
 }
