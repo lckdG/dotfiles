@@ -1,7 +1,7 @@
-
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
+vim.o.mouse = ''
 vim.o.guifont = 'JetBrainsMono Nerd Font:h13'
 vim.o.termguicolors = true
 
@@ -31,7 +31,11 @@ vim.opt.listchars = { tab = '» ' , trail = '•', nbsp = '␣' }
 
 vim.o.inccommand = 'split'
 vim.o.confirm = true
-vim.o.laststatus = 0
+
+vim.o.showcmdloc = 'statusline'
+vim.o.showmode = false
+vim.o.cmdheight = 1
+vim.o.laststatus = 2
 
 vim.g.telescope_enable_ignore_patterns = true
 
