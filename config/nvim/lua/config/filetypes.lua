@@ -4,6 +4,6 @@ vim.filetype.add {
         cginc = 'glsl',
     },
     pattern = {
-        ['%jenkinsfile.*'] = 'groovy',
+        ["[Jj]enkinsfile.*"] = 'groovy',
     },
 }
