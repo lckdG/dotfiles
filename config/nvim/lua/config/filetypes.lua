@@ -3,4 +3,7 @@ vim.filetype.add {
         shader = 'glsl',
         cginc = 'glsl',
     },
+    pattern = {
+        ['%jenkinsfile.*'] = 'groovy',
+    },
 }
