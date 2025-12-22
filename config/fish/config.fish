@@ -13,11 +13,11 @@ if status is-interactive
 
     # Abbreviations
 
-    abbr ff fastfetch
-    abbr lg lazygit
+    abbr -a ff fastfetch
+    abbr -a lg lazygit
 
-    abbr sdh shutdown -h
-    abbr sdr shutdown -r
+    abbr -a sdh shutdown -h
+    abbr -a sdr shutdown -r
 
     abbr -a --position anywhere -- --bg "> /dev/null 2>&1 &"
 end
