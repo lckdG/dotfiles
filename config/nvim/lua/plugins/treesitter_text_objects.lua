@@ -10,6 +10,10 @@ return {
             select = {
                 lookahead = true,
                 include_surrounding_whitespace = false,
+                selection_modes = {
+                    ["@function.outer"] = 'V',
+                    ["@function.inner"] = 'V',
+                }
             },
             move = {
                 set_jumps = false,
