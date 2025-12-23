@@ -1,13 +1,13 @@
 telescope_ignore_patterns = {
-    "GeneratedSoundBanks", ".wwu", -- Wwise
-    ".wav", ".flac", ".mp3", ".bnk", -- Sounds
-    ".mesh", ".fbx", ".obj", -- 3D models
-    ".otf", ".ttf", -- Fonts
-    ".exe", -- Executables
-    ".asmdef", ".dll", -- Libraries
-    ".tgz$", ".tar$", ".zip$", ".gz$", ".iso$", ".rar$", -- Archive files
-    ".tga", ".png", ".jpg", ".jpeg", ".psd", ".gif", ".tif", ".svg", -- Images, phew
-    ".meta", ".unity", ".prefab", ".anim", ".mesh", ".hdr", ".exr", "_probes.asset", ".controller", ".overrideController", -- Unity specific, but don't ignore the .metas
+    "GeneratedSoundBanks", "%.wwu", -- Wwise
+    "%.wav", "%.flac", "%.mp3", "%.bnk", -- Sounds
+    "%.mesh", "%.fbx", "%.obj", -- 3D models
+    "%.otf", "%.ttf", -- Fonts
+    "%.exe", -- Executables
+    "%.asmdef", "%.dll", -- Libraries
+    "%.tgz$", "%.tar$", "%.zip$", "%.gz$", "%.iso$", "%.rar$", -- Archive files
+    "%.tga", "%.png", "%.jpg", "%.jpeg", "%.psd", "%.gif", "%.tif", "%.svg", -- Images, phew
+    "%.meta", "%.unity", "%.prefab", "%.anim", "%.mesh", "%.hdr", "%.exr", "%_probes%.asset", "%.controller", "%.overrideController", -- Unity specific, but don't ignore the .metas
 }
 
 return {
