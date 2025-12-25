@@ -74,3 +74,8 @@ customCommands:
     command: "git commit --message '{{.Form.Type}}{{ if .Form.Scope }}({{ .Form.Scope }}){{ end }}{{.Form.Breaking}}: {{.Form.Message}}'"
     loadingText: "Creating conventional commit..."
 
+  - key: <F2>
+    description: Open SourceGit
+    command: "sourcegit > /dev/null 2>&1 &"
+    context: "global"
+
