@@ -117,7 +117,8 @@ if wezterm.target_triple == "x86_64-pc-windows-msvc" then
     config.window_background_opacity = 0.0
     config.win32_system_backdrop = "Mica"
 elseif wezterm.target_triple == "x86_64-unknown-linux-gnu" then
-    config.enable_wayland = false
+    -- HACK: workaround to render on scaled displays
+    config.dpi = 96
     config.default_prog = { "/usr/bin/fish" }
     -- config.window_background_opacity = 0.95
     -- config.kde_window_background_blur = true
