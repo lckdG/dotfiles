@@ -76,6 +76,6 @@ customCommands:
 
   - key: <F2>
     description: Open SourceGit
-    command: "sourcegit > /dev/null 2>&1 &"
+    command: "sourcegit {{ .SelectedWorktree.Path }} > /dev/null 2>&1 &"
     context: "global"
 
