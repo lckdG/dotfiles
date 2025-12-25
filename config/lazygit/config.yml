@@ -1,5 +1,5 @@
 gui:
-  nerdFontVersion: "3"
+  nerdFontsVersion: "3"
 
 git:
   merging:
@@ -73,3 +73,4 @@ customCommands:
         initialValue: ""
     command: "git commit --message '{{.Form.Type}}{{ if .Form.Scope }}({{ .Form.Scope }}){{ end }}{{.Form.Breaking}}: {{.Form.Message}}'"
     loadingText: "Creating conventional commit..."
+
