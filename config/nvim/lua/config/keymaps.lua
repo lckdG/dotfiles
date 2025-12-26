@@ -121,27 +121,27 @@ map('n', '<leader>lspS', '<cmd>LspStop<CR>', { desc = "Stop Running LSPs", silen
 -- -- Selections
 map({'x', 'o'}, 'af', function()
     require('nvim-treesitter-textobjects.select').select_textobject('@function.outer', 'textobjects')
-end, { desc = "outer function" } )
+end, { desc = "outer a function" } )
 
 map({'x', 'o'}, 'if', function()
     require('nvim-treesitter-textobjects.select').select_textobject('@function.inner', 'textobjects')
-end, { desc = "inner function" } )
+end, { desc = "inner a function" } )
 
 map({'x', 'o'}, 'ac', function()
     require('nvim-treesitter-textobjects.select').select_textobject('@call.outer', 'textobjects')
-end)
+end, { desc = "outer a call" } )
 
 map({'x', 'o'}, 'ic', function()
     require('nvim-treesitter-textobjects.select').select_textobject('@call.inner', 'textobjects')
-end)
+end, { desc = "inner a call" } )
 
 map({'x', 'o'}, 'ad', function()
     require('nvim-treesitter-textobjects.select').select_textobject('@comment.outer', 'textobjects')
-end)
+end, { desc = "outer a comment block" } )
 
 map({'x', 'o'}, 'id', function()
     require('nvim-treesitter-textobjects.select').select_textobject('@comment.inner', 'textobjects')
-end)
+end, { desc = "inner a comment block" } )
 
 map({'x', 'o'}, 'as', 'a"', { remap = true, desc = 'outer ""' })
 map({'x', 'o'}, 'is', 'i"', { remap = true, desc = 'inner ""' })
@@ -149,26 +149,26 @@ map({'x', 'o'}, 'is', 'i"', { remap = true, desc = 'inner ""' })
 -- -- Jumps
 map({'n', 'x', 'o'}, ']f', function ()
     require('nvim-treesitter-textobjects.move').goto_next_start('@function.outer', 'textobjects')
-end)
+end, { desc = "Jump to next function start" } )
 
 map({'n', 'x', 'o'}, ']F', function ()
     require('nvim-treesitter-textobjects.move').goto_next_end('@function.outer', 'textobjects')
-end)
+end, { desc = "Jump to next function end" } )
 
 map({'n', 'x', 'o'}, '[f', function ()
     require('nvim-treesitter-textobjects.move').goto_previous_start('@function.outer', 'textobjects')
-end)
+end, { desc = "Jump to previous function start" } )
 
 map({'n', 'x', 'o'}, '[F', function ()
     require('nvim-treesitter-textobjects.move').goto_previous_end('@function.outer', 'textobjects')
-end)
+end, { desc = "Jump to previous function end" } )
 
 -- -- Repeat Jumps
 map({'n', 'x', 'o'}, ';', function ()
     require('nvim-treesitter-textobjects.repeatable_move').repeat_last_move_next()
-end)
+end, { desc = "Repeat last next move" } )
 
 map({'n', 'x', 'o'}, ',', function ()
     require('nvim-treesitter-textobjects.repeatable_move').repeat_last_move_previous()
-end)
+end, { desc = "Repeat last previous move" } )
 
