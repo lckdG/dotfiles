@@ -28,18 +28,6 @@ map('', "L", "$", { noremap = true, desc = "$" })
 map('n', '<C-q>', '<cmd>close<CR>', { desc = 'Close current buffer' } )
 map('n', '<C-s>', '<cmd>w<CR>', { desc = "Quick save, in windows style" })
 
-map('', '<F11>', function ()
-        if vim.g.neovide then
-            if vim.g.neovide_fullscreen then
-                vim.g.neovide_fullscreen = false
-            else
-                vim.g.neovide_fullscreen = true
-            end
-        end
-    end,
-    { desc = "Toggle fullscreen while in Neovide" }
-)
-
 -- Copy & paste with the system clipboard
 map('v', '<leader>y', '"+y', { desc = "Yank current selection to the system clipboard" })
 map('n', '<leader>yy', '"+yy', { desc = "Yank current line to the system clipboard" })
