@@ -1,3 +1,9 @@
+local clangd = vim.fn.has("win32") and {
+    cmd = { vim.fn.expand("~") .. "/scoop/apps/clangd/current/bin/clangd" }
+} or {
+
+}
+
 return {
     'neovim/nvim-lspconfig',
     event = { "BufReadPre", "BufNewFile" },
@@ -87,9 +93,7 @@ return {
                     },
                 },
             },
-            clangd = {
-
-            },
+            clangd = clangd,
             roslyn = {
                 settings = {
                     ["csharp|background_analysis"] = {
