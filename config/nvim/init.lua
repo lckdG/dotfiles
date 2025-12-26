@@ -6,6 +6,7 @@ require('config.lazy')
 local colorscheme = 'gruvbox-material'
 vim.cmd('colorscheme ' .. colorscheme)
 
+require('config.diagnostic')
 require('config.keymaps')
 require('config.autos')
 

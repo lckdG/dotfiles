@@ -48,12 +48,6 @@ vim.o.foldlevel = 99
 vim.o.foldlevelstart = 99
 vim.o.foldenable = true
 
--- Neovide configs
-if vim.g.neovide then
-    vim.g.neovide_scale_factor = 0.9
-    vim.g.neovide_cursor_animate_command_line = false
-end
-
 -- Shell configs
 if vim.fn.has("win32") then
     -- Set ups for using powershell with nvim
