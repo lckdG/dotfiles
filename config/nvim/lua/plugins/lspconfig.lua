@@ -1,14 +1,8 @@
-local clangd = vim.fn.has("win32") and {
-    cmd = { vim.fn.expand("~") .. "/scoop/apps/clangd/current/bin/clangd" }
-} or {
-
-}
-
 return {
     'neovim/nvim-lspconfig',
     event = { "BufReadPre", "BufNewFile" },
     dependencies = {
-        
+
     },
     config = function()
         vim.api.nvim_create_autocmd('LspAttach', {
@@ -83,37 +77,15 @@ return {
             virtual_text = false,
         }
 
-        local servers = {
-            lua_ls = {
-                settings = {
-                    Lua = {
-                        completion = {
-                            callSnippet = 'Replace',
-                        },
-                    },
-                },
-            },
-            clangd = clangd,
-            roslyn = {
-                settings = {
-                    ["csharp|background_analysis"] = {
-                        dotnet_analyzer_diagnostics_scope = "openFiles",
-                        dotnet_compiler_diagnostics_scope = "openFiles",
-                    },
-                },
-            },
-            pyright = {
+        local lsp_dir = vim.fn.stdpath("config") .. "/lsp"
+        local lsp_configs = {}
 
-            },
-            ts_ls = {
-
-            },
-        }
-
-        for server, config in pairs(servers) do
-            vim.lsp.config(server, config)
-            vim.lsp.enable(server)
+        for _, f in ipairs(vim.fn.readdir(lsp_dir)) do
+            local server_name = f:gsub("%.lua", "")
+            table.insert(lsp_configs, server_name)
         end
+
+        vim.lsp.enable(lsp_configs)
     end
 }
 
