@@ -5,13 +5,13 @@ gui:
   expandFocusedSidePanel: true
   expandedSidePanelWeight: 2
   showFileTree: false
-
+  statusPanelView: allBranchesLog
 git:
   merging:
     args: "--no-ff"
-
+  allBranchesLogCmds:
+    - git log --graph --all --color=always --abbrev-commit --decorate --date=relative --pretty=medium --stat
   diffContextSize: 4
-
   log:
     order: 'date-order'
 
