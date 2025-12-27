@@ -49,7 +49,7 @@ vim.o.foldlevelstart = 99
 vim.o.foldenable = true
 
 -- Shell configs
-if vim.fn.has("win32") then
+if vim.fn.has("win32") == 1 then
     -- Set ups for using powershell with nvim
     vim.o.shell = "powershell.exe"
     vim.o.shellxquote = ''
@@ -57,6 +57,6 @@ if vim.fn.has("win32") then
     vim.o.shellquote = ''
     vim.o.shellpipe = '| Out-File -Encoding UTF8 %s'
     vim.o.shellredir = '| Out-File -Encoding UTF8 %s'
-elseif vim.fn.has("linux") then
+elseif vim.fn.has("linux") == 1 then
     vim.o.shell = "/usr/bin/fish"
 end
