@@ -117,10 +117,10 @@ map('n', 'zM', function () require('ufo').closeAllFolds() end)
 map('n', '<leader>zf', 'Vj%zf', { desc = "Fold current block" })
 
 -- LSP Keys
-map('n', '<leader>lspr', '<cmd>LspRestart<CR>', { desc = "Restart LSP", silent = true } )
-map('n', '<leader>lspl', '<cmd>LspLog<CR>', { desc = "Open LSP Log", silent = true } )
-map('n', '<leader>lsps', '<cmd>LspStart<CR>', { desc = "Start LSPs", silent = true } )
-map('n', '<leader>lspS', '<cmd>LspStop<CR>', { desc = "Stop Running LSPs", silent = true } )
+map('n', '<leader>lsr', '<cmd>LspRestart<CR>', { desc = "Restart LSP", silent = true } )
+map('n', '<leader>lsl', '<cmd>LspLog<CR>', { desc = "Open LSP Log", silent = true } )
+map('n', '<leader>lss', '<cmd>LspStart<CR>', { desc = "Start LSPs", silent = true } )
+map('n', '<leader>lsS', '<cmd>LspStop<CR>', { desc = "Stop Running LSPs", silent = true } )
 
 -- Text objects
 -- -- Selections
