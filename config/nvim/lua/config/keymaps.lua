@@ -36,18 +36,23 @@ map({ 'n', 'v' }, '<leader>PC', '"+P', { desc = "Paste here from the system clip
 map({ 'n', 'v' }, '<leader>py', '"0p', { desc = "Paste below last yanked text" })
 map({ 'n', 'v' }, '<leader>PY', '"0P', { desc = "Paste here last yanked text" })
 
--- Focus switching
+-- Windows manipulations
+-- -- Focus
 map('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
 map('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
 map('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
 map('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
-map('n', '<leader>tn', '<cmd>tabn<CR>', { desc = 'Go to next tab' } )
-map('n', '<leader>tb', '<cmd>tabp<CR>', { desc = 'Go to previous tab' } )
+-- -- Tab splitting
+map('n', '<leader>hs', '<cmd>split<CR>', { desc = 'Split window horizontally' })
+map('n', '<leader>vs', '<cmd>vsplit<CR>', { desc = 'Split window vertically' })
 
--- Tab splitting
-map('n', '<C-Down>', '<cmd>split<CR>', { desc = 'Split window horizontally' })
-map('n', '<C-Right>', '<cmd>vsplit<CR>', { desc = 'Split window vertically' })
+-- -- Tab Sizing
+local windowStep = 2
+map('n', '<C-Right>', windowStep .. '<C-w>>', { desc = 'Increase window width', remap = true, silent = true } )
+map('n', '<C-Left>', windowStep .. '<C-w><', { desc = 'Decrease window width', remap = true, silent = true } )
+map('n', '<C-Up>', windowStep .. '<C-w>+', { desc = 'Increase window height', remap = true, silent = true } )
+map('n', '<C-Down>', windowStep .. '<C-w>-', { desc = 'Decease window height', remap = true, silent = true } )
 
 -- Telescope
 map('n', '<leader>ff', function() require('telescope.builtin').find_files() end, { desc = 'Telescope fuzzy find files' })
