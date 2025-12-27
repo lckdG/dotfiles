@@ -6,14 +6,10 @@ vim.api.nvim_create_autocmd('LspAttach', {
             vim.keymap.set(mode, keys, func, { buffer = event.buf, desc = 'LSP: ' .. desc })
         end
 
-        map('grn', vim.lsp.buf.rename, '[R]e[n]ame')
-        map('gra', vim.lsp.buf.code_action, '[G]o to Code [A]ction', { 'n', 'x' })
         map('grr', require('telescope.builtin').lsp_references, '[G]o to [R]eferences')
         map('gri', require('telescope.builtin').lsp_implementations, '[G]o to [I]mplementation')
         map('grd', require('telescope.builtin').lsp_definitions, '[G]o to [D]efinition')
-        map('grD', vim.lsp.buf.declaration, '[G]o to [D]eclaration')
         map('gO', require('telescope.builtin').lsp_document_symbols, 'Open Document Symbols')
-        map('gW', require('telescope.builtin').lsp_dynamic_workspace_symbols, 'Open Workspace Symbols')
         map('grt', require('telescope.builtin').lsp_type_definitions, '[G]oto [T]ype Definition')
 
         local client = vim.lsp.get_client_by_id(event.data.client_id)
