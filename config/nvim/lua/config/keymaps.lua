@@ -155,17 +155,21 @@ map({'x', 'o'}, 'is', 'i"', { remap = true, desc = 'inner ""' })
 -- -- Jumps
 map({'n', 'x', 'o'}, ']f', function ()
     require('nvim-treesitter-textobjects.move').goto_next_start('@function.outer', 'textobjects')
+    vim.cmd("normal! zz")
 end, { desc = "Jump to next function start" } )
 
 map({'n', 'x', 'o'}, ']F', function ()
     require('nvim-treesitter-textobjects.move').goto_next_end('@function.outer', 'textobjects')
+    vim.cmd("normal! zz")
 end, { desc = "Jump to next function end" } )
 
 map({'n', 'x', 'o'}, '[f', function ()
     require('nvim-treesitter-textobjects.move').goto_previous_start('@function.outer', 'textobjects')
+    vim.cmd("normal! zz")
 end, { desc = "Jump to previous function start" } )
 
 map({'n', 'x', 'o'}, '[F', function ()
     require('nvim-treesitter-textobjects.move').goto_previous_end('@function.outer', 'textobjects')
+    vim.cmd("normal! zz")
 end, { desc = "Jump to previous function end" } )
 
