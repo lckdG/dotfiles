@@ -165,12 +165,3 @@ map({'n', 'x', 'o'}, '[F', function ()
     require('nvim-treesitter-textobjects.move').goto_previous_end('@function.outer', 'textobjects')
 end, { desc = "Jump to previous function end" } )
 
--- -- Repeat Jumps
-map({'n', 'x', 'o'}, ';', function ()
-    require('nvim-treesitter-textobjects.repeatable_move').repeat_last_move_next()
-end, { desc = "Repeat last next move" } )
-
-map({'n', 'x', 'o'}, ',', function ()
-    require('nvim-treesitter-textobjects.repeatable_move').repeat_last_move_previous()
-end, { desc = "Repeat last previous move" } )
-
