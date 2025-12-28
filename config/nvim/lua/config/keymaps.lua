@@ -115,7 +115,6 @@ end, { desc = "Restore last session" })
 -- UFO
 map('n', 'zR', function () require('ufo').openAllFolds() end)
 map('n', 'zM', function () require('ufo').closeAllFolds() end)
-map('n', '<leader>zf', 'Vj%zf', { desc = "Fold current block" })
 
 -- LSP Keys
 map('n', '<leader>lsr', '<cmd>LspRestart<CR>', { desc = "Restart LSP", silent = true } )
