@@ -3,9 +3,6 @@ map('', '<Space>', '<Nop>', { noremap = true, silent = true })
 
 -- Keymaps
 map('n', '<Esc>', '<cmd>nohlsearch<CR>')
-map('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
-
--- map('i', 'jk', '<Esc>', { noremap = true, silent = true })
 
 -- Search and focus
 map('n', 'n', 'nzz')
@@ -14,8 +11,15 @@ map('n', '<S-n>', '<S-n>zz')
 -- Quick line editing
 map('n', '<leader>a;', '<S-a>;<Esc>', { desc = "Add a semicolon to EOL" })
 map('n', '<leader>a,', '<S-a>,<Esc>', { desc = "Add a comma to EOL" })
-map('i', 'uu', '<C-c>o{<CR>', { remap = true, silent = true })
--- map('i', 'u;', '<Esc><S-a>;<CR>', { remap = true, silent = true })
+
+-- Fake insert leader
+map('i', '<C-e>b', "<C-c>o{<CR>", { remap = true, silent = true })
+map('i', '<C-e>,', "<C-c><S-a>,", { remap = true, silent = true })
+map('i', '<C-e>;', "<C-c><S-a>;", { remap = true, silent = true })
+
+-- -- C++ specific
+map('i', '<C-e>-', "->", { remap = true, silent = true })
+map('i', '<C-e>s', "::", { remap = true, silent = true })
 
 map('n', '<A-j>', ":m .+1<CR>==", { noremap = true, silent = true, desc = "Move line down" })
 map('n', '<A-k>', ":m .-2<CR>==", { noremap = true, silent = true, desc = "Move line up" })
