@@ -29,12 +29,9 @@ map('n', '<C-q>', '<cmd>close<CR>', { desc = 'Close current buffer' } )
 map('n', '<C-s>', '<cmd>w<CR>', { desc = "Quick save, in windows style" })
 
 -- Copy & paste with the system clipboard
-map('v', '<leader>y', '"+y', { desc = "Yank current selection to the system clipboard" })
-map('n', '<leader>yy', '"+yy', { desc = "Yank current line to the system clipboard" })
-map({ 'n', 'v' }, '<leader>pc', '"+p', { desc = "Paste below from the system clipboard" })
-map({ 'n', 'v' }, '<leader>PC', '"+P', { desc = "Paste here from the system clipboard" })
-map({ 'n', 'v' }, '<leader>py', '"0p', { desc = "Paste below last yanked text" })
-map({ 'n', 'v' }, '<leader>PY', '"0P', { desc = "Paste here last yanked text" })
+map({ 'n', 'v', 'x' }, '<leader>cy', '"+y', { desc = "Yank to the system clipboard" })
+map({ 'n', 'v', 'x' }, '<leader>cp', '"+p', { desc = "Paste after from the system clipboard" })
+map({ 'n', 'v', 'x' }, '<leader>cP', '"+P', { desc = "Paste before from the system clipboard" })
 
 -- Windows manipulations
 -- -- Focus
