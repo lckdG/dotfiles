@@ -9,6 +9,7 @@ vim.cmd('colorscheme ' .. colorscheme)
 require('config.diagnostic')
 require('config.keymaps')
 require('config.autos')
+require('config.abbrevs')
 
 -- StartUp Commands
 vim.schedule(function ()
