@@ -175,6 +175,10 @@ end, { desc = "Jump to previous function end" } )
 -- Quickfix
 map('n', '<leader>qf', function ()
     vim.ui.input({ prompt = "Enter severities (1=E, 2=W, 3=I, 4=H): "}, function (input)
+        if input == nil or input == "" then
+            return
+        end
+
         local severities = {}
         for char in string.gmatch(input, "[1-4]") do
             table.insert(severities, tonumber(char))
