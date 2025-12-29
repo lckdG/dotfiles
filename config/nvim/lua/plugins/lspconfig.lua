@@ -2,15 +2,11 @@ return {
     'neovim/nvim-lspconfig',
     event = { "BufReadPre", "BufNewFile" },
     config = function()
-        local lsp_dir = vim.fn.stdpath("config") .. "/lsp"
-        local lsp_configs = {}
-
-        for _, f in ipairs(vim.fn.readdir(lsp_dir)) do
-            local server_name = f:gsub("%.lua", "")
-            table.insert(lsp_configs, server_name)
+        local lspconfigs = require('lsp')
+        for server, config in pairs(lspconfigs) do
+            vim.lsp.enable(server)
+            vim.lsp.config(server, config)
         end
-
-        vim.lsp.enable(lsp_configs)
     end
 }
 
