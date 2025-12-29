@@ -20,8 +20,8 @@ vim.o.undofile = true
 vim.o.ignorecase = true
 vim.o.smartcase = true
 
-vim.o.updatetime = 250
-vim.o.timeoutlen = 250
+vim.o.updatetime = 2000
+vim.o.timeoutlen = 500
 
 vim.o.splitright = true
 vim.o.splitbelow = true
