@@ -113,6 +113,8 @@ config.cursor_blink_ease_out = "Constant"
 config.scrollback_lines = 5000
 
 if wezterm.target_triple == "x86_64-pc-windows-msvc" then
+    -- HACK: workaround for frame freeze on windows
+    config.max_fps = 240
     config.default_prog = { 'powershell.exe', '-NoLogo' }
     config.window_background_opacity = 0.0
     config.win32_system_backdrop = "Mica"
