@@ -70,25 +70,6 @@ map('n', '<leader>ti', function ()
     })
 end, { noremap = true, desc = "Toggle Telescope ignore patterns"})
 
--- Close buffers
-map('n', '<leader>bdh', function()
-        require('close_buffers').delete( { type = 'hidden', force = true } )
-    end,
-    { desc = "Delete all hidden buffers" }
-)
-
-map('n', '<leader>bdn', function ()
-    require('close_buffers').delete( { type = 'nameless' } )
-    end,
-    { desc = "Delete nameless buffers" }
-)
-
-map('n', '<leader>bdw', function ()
-        require('close_buffers').wipe( { type = 'all', force = true } )
-    end,
-    { desc = "Wipe out all buffers" }
-)
-
 -- Harpoon
 map('n', '<leader>he', function()
     local harpoon = require('harpoon')
@@ -107,20 +88,9 @@ map('n', '<leader>hb', function () require('harpoon'):list():prev() end, { desc 
 -- Oil
 map('n', '<leader>e', '<cmd>Oil --float<CR>', { silent = true, desc = "Open parent directory" })
 
--- Auto Session
-map('', '<F8>', function()
-    require("auto-session").restore_session(nil, { show_message = true, is_autorestore = false, is_startup_autorestore = false } )
-end, { desc = "Restore last session" })
-
 -- UFO
 map('n', 'zR', function () require('ufo').openAllFolds() end)
 map('n', 'zM', function () require('ufo').closeAllFolds() end)
-
--- LSP Keys
-map('n', '<leader>lsr', '<cmd>LspRestart<CR>', { desc = "Restart LSP", silent = true } )
-map('n', '<leader>lsl', '<cmd>LspLog<CR>', { desc = "Open LSP Log", silent = true } )
-map('n', '<leader>lss', '<cmd>LspStart<CR>', { desc = "Start LSPs", silent = true } )
-map('n', '<leader>lsS', '<cmd>LspStop<CR>', { desc = "Stop Running LSPs", silent = true } )
 
 -- Text objects
 -- -- Selections

@@ -10,6 +10,7 @@ require('config.diagnostic')
 require('config.keymaps')
 require('config.autos')
 require('config.abbrevs')
+require('config.commands')
 
 -- StartUp Commands
 vim.schedule(function ()
