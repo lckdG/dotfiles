@@ -9,6 +9,9 @@ cabbr("ch", "checkhealth")
 cabbr("Lz", "Lazy")
 cabbr("lz", "Lazy")
 
+-- Reload last session
+cabbr("rl", "ReloadSession")
+
 -- Lsp commands
 cabbr("lsr", "LspRestart")
 cabbr("lsl", "LspLog")
