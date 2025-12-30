@@ -1,16 +1,12 @@
-require('config.common')
-require('config.filetypes')
-require('config.lazy')
+local config = require('config')
+config.initialize()
 
 -- Colorscheme options: onedark, gruvbox-material, oldworld
 local colorscheme = 'gruvbox-material'
 vim.cmd('colorscheme ' .. colorscheme)
 
-require('config.diagnostic')
-require('config.keymaps')
-require('config.autos')
-require('config.abbrevs')
-require('config.commands')
+config.hook_workflow()
+config.hook_commands()
 
 -- StartUp Commands
 vim.schedule(function ()
