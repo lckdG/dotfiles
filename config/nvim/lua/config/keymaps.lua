@@ -75,15 +75,17 @@ map('n', '<leader>he', function()
     local harpoon = require('harpoon')
     harpoon.ui:toggle_quick_menu(harpoon:list())
 end, { desc = "Open harpoon window" })
+
 map('n', '<leader>ha', function() require('harpoon'):list():add() end, { desc = "Add file to harpoon" })
-
-map('n', '<leader>h1', function () require('harpoon'):list():select(1) end, { desc = "Jump to 1st file in harpoon list" })
-map('n', '<leader>h2', function () require('harpoon'):list():select(2) end, { desc = "Jump to 2nd file in harpoon list" })
-map('n', '<leader>h3', function () require('harpoon'):list():select(3) end, { desc = "Jump to 3rd file in harpoon list" })
-map('n', '<leader>h4', function () require('harpoon'):list():select(4) end, { desc = "Jump to 4th file in harpoon list" })
-
 map('n', '<leader>hn', function () require('harpoon'):list():next() end, { desc = "Jump to next file in harpoon list" })
 map('n', '<leader>hb', function () require('harpoon'):list():prev() end, { desc = "Jump to previous file in harpoon list" })
+
+local harpoon_item_count = 6
+for i = 1, harpoon_item_count, 1 do
+    local keymap = '<leader>h' .. i
+    local desc = "Jump to item #" .. i .. " in harpoon list"
+    map('n',keymap, function () require('harpoon'):list():select(i) end, { desc = desc })
+end
 
 -- Oil
 map('n', '<leader>e', '<cmd>Oil --float<CR>', { silent = true, desc = "Open parent directory" })
