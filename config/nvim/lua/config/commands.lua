@@ -11,3 +11,21 @@ vim.api.nvim_create_user_command("CloseNamelessBufs", function ()
     require('close_buffers').delete({ type = 'nameless' })
 end, {})
 
+-- Quickfix list
+vim.api.nvim_create_user_command("Quickfix", function()
+    vim.ui.input({ prompt = "Enter severities (1=E, 2=W, 3=I, 4=H): "}, function (input)
+        if input == nil or input == "" then
+            return
+        end
+
+        local severities = {}
+        for char in string.gmatch(input, "[1-4]") do
+            table.insert(severities, tonumber(char))
+        end
+
+        vim.diagnostic.setqflist({
+            severity = severities
+        })
+    end)
+end, {})
+

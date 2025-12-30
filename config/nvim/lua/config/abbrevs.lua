@@ -15,3 +15,6 @@ cabbr("lsl", "LspLog")
 cabbr("lss", "LspStart")
 cabbr("lsS", "LspStop")
 
+-- Quickfix
+cabbr("qf", "Quickfix")
+
