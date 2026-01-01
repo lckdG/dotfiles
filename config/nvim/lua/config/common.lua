@@ -2,7 +2,6 @@ vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
 vim.o.mouse = ''
-vim.o.guifont = 'JetBrainsMono Nerd Font:h13'
 vim.o.termguicolors = true
 
 vim.o.number = true
