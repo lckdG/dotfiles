@@ -6,15 +6,15 @@ return {
     config = function ()
         require("lualine").setup {
             options = {
-                theme = "gruvbox-material",
+                theme = "codedark",
             },
             sections = {
                 lualine_a = { "mode" },
                 lualine_b = { "filename" },
                 lualine_c = { },
                 lualine_x = { "%S", "searchcount" },
-                lualine_y = { },
-                lualine_z = { "filetype" },
+                lualine_y = { "filetype" },
+                lualine_z = { "location" },
             },
             inactive_sections = {
                 lualine_a = { "mode" },
