@@ -16,7 +16,7 @@ return {
                 }
             },
             move = {
-                set_jumps = false,
+                set_jumps = true,
             },
         }
     end
