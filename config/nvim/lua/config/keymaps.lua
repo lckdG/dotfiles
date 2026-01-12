@@ -57,6 +57,7 @@ map('n', '<leader>fg', function() require('telescope.builtin').live_grep() end, 
 map('n', '<leader>fb', function() require('telescope.builtin').buffers() end, { desc = 'Telescope buffers' })
 map('n', '<leader>fh', function() require('telescope.builtin').help_tags() end, { desc = 'Telescope help tags' })
 map('n', '<leader>tt', function () require('telescope.builtin').colorscheme() end, { noremap = true, silent = true, desc = 'Open colorscheme picker' })
+map('n', '<leader>fs', function () require('telescope.builtin').grep_string() end, { desc = "Telescope grep string under the cursor" })
 
 map('n', '<leader>ti', function ()
     vim.g.telescope_enable_ignore_patterns = not vim.g.telescope_enable_ignore_patterns
