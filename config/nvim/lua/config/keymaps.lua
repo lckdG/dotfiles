@@ -3,6 +3,7 @@ map('', '<Space>', '<Nop>', { noremap = true, silent = true })
 
 -- Keymaps
 map('n', '<Esc>', '<cmd>nohlsearch<CR>')
+map({ 'n', 'o', 'x' }, '<A-r>', '"', { noremap = true, silent = true, desc = "Registers" })
 
 -- Search and focus
 map('n', 'n', 'nzz')
@@ -31,11 +32,6 @@ map('', "L", "$", { noremap = true, desc = "$" })
 
 map('n', '<C-q>', '<cmd>close<CR>', { desc = 'Close current buffer' } )
 map('n', '<C-s>', '<cmd>w<CR>', { desc = "Quick save, in windows style" })
-
--- Copy & paste with the system clipboard
-map({ 'n', 'v', 'x' }, '<leader>cy', '"+y', { desc = "Yank to the system clipboard" })
-map({ 'n', 'v', 'x' }, '<leader>cp', '"+p', { desc = "Paste after from the system clipboard" })
-map({ 'n', 'v', 'x' }, '<leader>cP', '"+P', { desc = "Paste before from the system clipboard" })
 
 -- Windows manipulations
 -- -- Focus
