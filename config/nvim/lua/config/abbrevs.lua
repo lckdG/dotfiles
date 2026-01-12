@@ -21,3 +21,7 @@ cabbr("lsS", "LspStop")
 -- Quickfix
 cabbr("qf", "Quickfix")
 
+-- Registers
+cabbr("re", "reg")
+cabbr("Reg", "reg")
+
