@@ -2,3 +2,7 @@
 
 **/fish/*
 !config.fish
+
+**/lazygit/*
+!**/lazygit/config.yml
+!**/lazygit/config.yaml
