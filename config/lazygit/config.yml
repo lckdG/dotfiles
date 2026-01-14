@@ -1,9 +1,10 @@
 gui:
   nerdFontsVersion: "3"
   skipDiscardChangeWarning: true
-  sidePanelWidth: 0.45
+  sidePanelWidth: 0.40
   expandFocusedSidePanel: true
   expandedSidePanelWeight: 2
+  mainPanelSplitMode: horizontal
   showFileTree: false
   statusPanelView: allBranchesLog
 git:
