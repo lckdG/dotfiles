@@ -25,3 +25,5 @@ cabbr("qf", "Quickfix")
 cabbr("re", "reg")
 cabbr("Reg", "reg")
 
+cabbr("cts", "ClearTrailingSpaces")
+

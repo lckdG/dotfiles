@@ -29,3 +29,8 @@ vim.api.nvim_create_user_command("Quickfix", function()
     end)
 end, {})
 
+vim.api.nvim_create_user_command("ClearTrailingSpaces", function ()
+    vim.cmd([[ %s/\s\+\n/\r/g ]])
+    vim.cmd([[ wa ]])
+end, {})
+
