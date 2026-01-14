@@ -1,7 +1,7 @@
 return {
     "nvim-treesitter/nvim-treesitter-textobjects",
     branch = "main",
-    event = "BufRead",
+    lazy = true,
     init = function ()
         vim.g.no_plugin_maps = true
     end,

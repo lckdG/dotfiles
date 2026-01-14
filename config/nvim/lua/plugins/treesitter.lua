@@ -18,8 +18,11 @@ return {
     "nvim-treesitter/nvim-treesitter",
     branch = 'main',
     lazy = true,
-    event = "BufRead",
+    event = { "BufReadPre", "BufNewFile" },
     build = ":TSUpdate",
+    dependencies = {
+        "nvim-treesitter/nvim-treesitter-textobjects",
+    },
     config = function ()
         require("nvim-treesitter").install(ensure_installed)
         for _, parser in ipairs(ensure_installed) do
