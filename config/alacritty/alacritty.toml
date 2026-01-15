@@ -1,0 +1,20 @@
+[general]
+import = [
+    "alacritty-theme/themes/gruvbox_dark.toml"
+]
+
+[window]
+dimensions = { columns = 140, lines = 30 }
+padding = { x = 3, y = 3 }
+# decorations = "None"
+
+[scrolling]
+history = 5000
+multiplier = 3
+
+[font]
+normal = { family = "JetBrainsMono Nerd Font", style = "Regular" }
+size = 11
+
+[cursor]
+style = { shape = "block", blinking = "On" }
