@@ -103,6 +103,7 @@ config.inactive_pane_hsb = {
 
 config.font = wezterm.font 'JetBrainsMono Nerd Font'
 config.font_size = 11
+config.unicode_version = 14
 
 config.color_scheme = 'Gruvbox dark, hard (base16)'
 
