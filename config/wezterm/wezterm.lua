@@ -101,7 +101,12 @@ config.inactive_pane_hsb = {
     brightness = 0.5,
 }
 
-config.font = wezterm.font 'GoMonoNerdFont'
+config.font = wezterm.font_with_fallback {
+    "GoMono Nerd Font",
+    "GoMonoNerdFont",
+    "FiraCode Nerd Font"
+}
+
 config.font_size = 12
 config.unicode_version = 14
 
