@@ -26,4 +26,5 @@ cabbr("re", "reg")
 cabbr("Reg", "reg")
 
 cabbr("cts", "ClearTrailingSpaces")
+cabbr("lg", "LazyGit")
 
