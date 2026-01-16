@@ -56,7 +56,7 @@ map('n', '<leader>ff', function() require('telescope.builtin').find_files() end,
 map('n', '<leader>fg', function() require('telescope.builtin').live_grep() end, { desc = 'Telescope live grep' })
 map('n', '<leader>fb', function() require('telescope.builtin').buffers() end, { desc = 'Telescope buffers' })
 map('n', '<leader>fh', function() require('telescope.builtin').help_tags() end, { desc = 'Telescope help tags' })
-map('n', '<leader>tt', function () require('telescope.builtin').colorscheme() end, { noremap = true, silent = true, desc = 'Open colorscheme picker' })
+map('n', '<leader>tc', function () require('telescope.builtin').colorscheme() end, { noremap = true, silent = true, desc = 'Open colorscheme picker' })
 map('n', '<leader>fs', function () require('telescope.builtin').grep_string() end, { desc = "Telescope grep string under the cursor" })
 
 map('n', '<leader>ti', function ()
@@ -140,4 +140,30 @@ map({'n', 'x', 'o'}, '[F', function ()
     require('nvim-treesitter-textobjects.move').goto_previous_end('@function.outer', 'textobjects')
     vim.cmd("normal! zz")
 end, { desc = "Jump to previous function end" } )
+
+-- ToggleTerm
+
+map('n', '<leader>ttf', function ()
+    vim.cmd("ToggleTerm direction=float")
+end, { silent = true, desc = "Open floating terminal" })
+
+map('n', '<leader>ttv', function()
+    vim.cmd("ToggleTerm direction=vertical")
+end, { silent = true, desc = "Open a vertical terminal" })
+
+map('n', '<leader>tth', function()
+    vim.cmd("ToggleTerm direction=horizontal")
+end, { silent = true, desc = "Open a horizontal terminal" })
+
+map('n', '<leader>ttn', function()
+    vim.cmd("TermNew")
+end, { silent = true, desc = "Open a new terminal, in current direction" })
+
+map('n', '<leader>tts', function()
+    vim.cmd("TermSelect")
+end, { silent = true, desc = "Select a terminal to open" })
+
+map('n', '<leader>ttr', function()
+    vim.cmd("ToggleTermSetName")
+end, { silent = true, desc = "Set name to a terminal" })
 
