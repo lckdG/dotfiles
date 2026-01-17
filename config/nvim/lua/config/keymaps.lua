@@ -85,7 +85,7 @@ for i = 1, harpoon_item_count, 1 do
 end
 
 -- Oil
-map('n', '<leader>e', '<cmd>Oil --float<CR>', { silent = true, desc = "Open parent directory" })
+map('n', '<leader>o', '<cmd>Oil --float<CR>', { silent = true, desc = "Open parent directory" })
 
 -- UFO
 map('n', 'zR', function () require('ufo').openAllFolds() end)
