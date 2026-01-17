@@ -167,3 +167,7 @@ map('n', '<leader>ttr', function()
     vim.cmd("ToggleTermSetName")
 end, { silent = true, desc = "Set name to a terminal" })
 
+map('n', '<leader>ttc', function()
+    vim.cmd("ToggleTerm")
+end, { silent = true, desc = "Toggle terminal states"})
+
