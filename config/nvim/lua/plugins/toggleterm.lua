@@ -13,7 +13,7 @@ return {
             on_open = function (term)
                 vim.cmd("startinsert!")
                 vim.api.nvim_buf_set_keymap(term.bufnr, "t", '<Esc>', '<Esc>', { noremap = true })
-                vim.api.nvim_buf_set_keymap(term.bufnr, "t", "q", "<Cmd>close<CR>", { noremap = true, silent = true })
+                vim.api.nvim_buf_set_keymap(term.bufnr, "t", "<C-q>", "<Cmd>close<CR>", { noremap = true, silent = true })
             end,
 
             on_close = function (term)
