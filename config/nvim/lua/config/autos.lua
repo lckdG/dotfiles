@@ -86,7 +86,7 @@ vim.api.nvim_create_autocmd('TermOpen', {
         map('t', '<C-j>', [[ <Cmd>wincmd j<CR> ]], opts)
         map('t', '<C-k>', [[ <Cmd>wincmd k<CR> ]], opts)
         map('t', '<C-l>', [[ <Cmd>wincmd l<CR> ]], opts)
-        map('t', '<C-w>', [[ <C-\><C-n><C-w> ]], opts)
+        map('t', '<C-q>', [[ <Cmd>wincmd q<CR> ]], opts)
     end
 })
 
