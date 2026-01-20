@@ -102,12 +102,12 @@ config.inactive_pane_hsb = {
 }
 
 config.font = wezterm.font_with_fallback {
-    "Lilex Nerd Font",
+    { family="Lilex Nerd Font", weight="Medium", italic=false },
     "GoMono Nerd Font",
     "GoMonoNerdFont",
 }
 
-config.font_size = 12
+config.font_size = 13
 config.unicode_version = 14
 
 config.color_scheme = 'Gruvbox dark, hard (base16)'
