@@ -93,14 +93,6 @@ config.inactive_pane_hsb = {
     brightness = 1.0,
 }
 
-config.font = wezterm.font_with_fallback {
-    { family="Lilex Nerd Font", weight="Medium", italic=false },
-    { family="LilexNerdFont", weight="Medium", italic=false },
-    "GoMono Nerd Font",
-    "GoMonoNerdFont",
-    "Symbols Nerd Font",
-}
-
 config.font_size = 13
 config.unicode_version = 14
 
@@ -113,14 +105,29 @@ config.cursor_blink_ease_out = "Constant"
 
 config.scrollback_lines = 5000
 
+local fonts_mapping = {
+    win = {
+        { family = "Lilex Nerd Font", weight = "Medium", italic = false },
+        "GoMono Nerd Font",
+        "Symbols Nerd Font",
+    },
+    linux = {
+        { family = "LilexNerdFont", weight = "Medium", italic = false },
+        "GoMonoNerdFont",
+        "SymbolsNerdFont",
+    }
+}
+
 if wezterm.target_triple == "x86_64-pc-windows-msvc" then
     config.default_prog = { 'powershell.exe', '-NoLogo' }
     config.window_background_opacity = 0.0
     config.win32_system_backdrop = "Mica"
+    config.font = wezterm.font_with_fallback(fonts_mapping["win"])
 elseif wezterm.target_triple == "x86_64-unknown-linux-gnu" then
     -- HACK: workaround to render on scaled displays
     config.dpi = 96
     config.default_prog = { "/usr/bin/fish" }
+    config.font = wezterm.font_with_fallback(fonts_mapping["linux"])
     -- config.window_background_opacity = 0.95
     -- config.kde_window_background_blur = true
 end
