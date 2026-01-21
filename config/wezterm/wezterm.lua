@@ -73,8 +73,8 @@ config.mouse_bindings = {
 }
 
 config.front_end = "OpenGL"
-config.animation_fps = 120
-config.max_fps = 240
+config.animation_fps = 60
+config.max_fps = 180
 
 config.initial_cols = 140
 config.initial_rows = 30
@@ -105,6 +105,7 @@ config.font = wezterm.font_with_fallback {
     { family="Lilex Nerd Font", weight="Medium", italic=false },
     "GoMono Nerd Font",
     "GoMonoNerdFont",
+    "Symbols Nerd Font",
 }
 
 config.font_size = 13
