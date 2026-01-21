@@ -95,6 +95,7 @@ config.inactive_pane_hsb = {
 
 config.font = wezterm.font_with_fallback {
     { family="Lilex Nerd Font", weight="Medium", italic=false },
+    { family="LilexNerdFont", weight="Medium", italic=false },
     "GoMono Nerd Font",
     "GoMonoNerdFont",
     "Symbols Nerd Font",
