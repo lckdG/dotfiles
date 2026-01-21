@@ -3,6 +3,7 @@ local roslyn = require('lsp.roslyn')
 local clangd = require('lsp.clangd')
 local pyright = require('lsp.pyright')
 local ts_ls = require('lsp.ts_ls')
+local gopls = require('lsp.gopls')
 
 return {
     lua_ls = lua_ls,
@@ -10,5 +11,6 @@ return {
     clangd = clangd,
     pyright = pyright,
     ts_ls = ts_ls,
+    gopls = gopls,
 }
 
