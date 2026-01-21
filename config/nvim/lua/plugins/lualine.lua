@@ -13,7 +13,7 @@ return {
                 lualine_b = { "filename" },
                 lualine_c = { },
                 lualine_x = { "%S", "searchcount" },
-                lualine_y = { "location" },
+                lualine_y = { "location", "progress" },
                 lualine_z = { "filetype" },
             },
             inactive_sections = {
@@ -21,11 +21,12 @@ return {
                 lualine_b = { "filename" },
                 lualine_c = { },
                 lualine_x = { "searchcount" },
-                lualine_y = { },
+                lualine_y = { "progress" },
                 lualine_z = { "filetype" },
             },
             extensions = {
-
+                "quickfix",
+                "toggleterm",
             },
         }
     end
