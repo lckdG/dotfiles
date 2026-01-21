@@ -141,6 +141,8 @@ local act = wezterm.action
 config.leader = { key = "b", mods = "CTRL", timeout_milisecond = 1000 }
 config.keys = {
     { key = "b", mods = "LEADER|CTRL", action = act({ SendString = "\x02" })},
+    { key = "c", mods = "LEADER", action = act.ActivateCopyMode },
+
     { key = "-", mods = "LEADER", action = act({ SplitVertical = { domain = "CurrentPaneDomain" } }) },
     { key = "|", mods = "LEADER|SHIFT", action = act({ SplitHorizontal = { domain = "CurrentPaneDomain" } }) },
     { key = "n", mods = "LEADER", action = act({ SpawnTab = "CurrentPaneDomain" }) },
@@ -152,10 +154,14 @@ config.keys = {
     { key = "DownArrow", mods = "LEADER|CTRL", action = act({ AdjustPaneSize = { "Down", 5 } }) },
     { key = "UpArrow", mods = "LEADER|CTRL", action = act({ AdjustPaneSize = { "Up", 5 } }) },
     { key = "RightArrow", mods = "LEADER|CTRL", action = act({ AdjustPaneSize = { "Right", 5 } }) },
+
+    { key = "z", mods = "LEADER", action = act.TogglePaneZoomState },
+    { key = "f", mods = "LEADER", action = act.ToggleFullScreen },
+
     { key = "d", mods = "LEADER", action = act({ CloseCurrentPane = { confirm = true } }) },
     { key = "x", mods = "LEADER", action = act({ CloseCurrentTab = { confirm = true } }) },
+
     { key = "w", mods = "LEADER", action = act.ShowLauncherArgs({ flags = "FUZZY|WORKSPACES" }) },
-    { key = "c", mods = "LEADER", action = act.ActivateCopyMode },
     { key = "w", mods = "LEADER|SHIFT", action = act.PromptInputLine {
         description = wezterm.format {
             { Attribute = { Intensity = "Bold" } },
