@@ -57,20 +57,7 @@ wezterm.on("format-tab-title", function(tab, _, _, _, hover, max_width)
     }
 end)
 
-config.mouse_bindings = {
-    {
-        event = { Down = { streak = 1, button = { WheelUp = 1 } } },
-        mods = "NONE",
-        action = wezterm.action.ScrollByPage(-0.25),
-        alt_screen = false,
-    },
-    {
-        event = { Down = { streak = 1, button = { WheelDown = 1 } } },
-        mods = "NONE",
-        action = wezterm.action.ScrollByPage(0.25),
-        alt_screen = false,
-    }
-}
+config.term = "wezterm"
 
 config.front_end = "OpenGL"
 config.animation_fps = 60
@@ -131,6 +118,25 @@ elseif wezterm.target_triple == "x86_64-unknown-linux-gnu" then
     -- config.window_background_opacity = 0.95
     -- config.kde_window_background_blur = true
 end
+
+--------------- Key Bindings ---------------
+
+config.mouse_bindings = {
+    {
+        event = { Down = { streak = 1, button = { WheelUp = 1 } } },
+        mods = "NONE",
+        action = wezterm.action.ScrollByPage(-0.25),
+        alt_screen = false,
+    },
+    {
+        event = { Down = { streak = 1, button = { WheelDown = 1 } } },
+        mods = "NONE",
+        action = wezterm.action.ScrollByPage(0.25),
+        alt_screen = false,
+    }
+}
+
+--------------------------------------------
 
 return config
 
