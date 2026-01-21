@@ -89,8 +89,8 @@ config.tab_max_width = 50
 config.tab_and_split_indices_are_zero_based = true
 
 config.inactive_pane_hsb = {
-    saturation = 0.5,
-    brightness = 0.5,
+    saturation = 1.0,
+    brightness = 1.0,
 }
 
 config.font = wezterm.font_with_fallback {
