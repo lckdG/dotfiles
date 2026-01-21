@@ -57,7 +57,12 @@ wezterm.on("format-tab-title", function(tab, _, _, _, hover, max_width)
     }
 end)
 
+wezterm.on("update-right-status", function(window, pane)
+    window:set_right_status(window:active_workspace())
+end)
+
 config.term = "wezterm"
+config.default_workspace = "home"
 
 config.front_end = "OpenGL"
 config.animation_fps = 60
@@ -146,6 +151,7 @@ config.keys = {
     { key = "-", mods = "LEADER", action = act({ SplitVertical = { domain = "CurrentPaneDomain" } }) },
     { key = "|", mods = "LEADER|SHIFT", action = act({ SplitHorizontal = { domain = "CurrentPaneDomain" } }) },
     { key = "n", mods = "LEADER", action = act({ SpawnTab = "CurrentPaneDomain" }) },
+
     { key = "h", mods = "LEADER", action = act({ ActivatePaneDirection = "Left" }) },
     { key = "j", mods = "LEADER", action = act({ ActivatePaneDirection = "Down" }) },
     { key = "k", mods = "LEADER", action = act({ ActivatePaneDirection = "Up" }) },
