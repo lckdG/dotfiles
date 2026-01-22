@@ -41,8 +41,8 @@ map('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
 map('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
 -- -- Tab splitting
-map('n', '<leader>hs', '<cmd>split<CR>', { desc = 'Split window horizontally' })
-map('n', '<leader>vs', '<cmd>vsplit<CR>', { desc = 'Split window vertically' })
+map('n', '<leader>-', '<cmd>split<CR>', { desc = 'Split window horizontally' })
+map('n', '<leader>|', '<cmd>vsplit<CR>', { desc = 'Split window vertically' })
 
 -- -- Tab Sizing
 local windowStep = 2
