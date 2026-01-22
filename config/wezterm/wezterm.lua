@@ -88,7 +88,7 @@ wezterm.on("update-status", function(window, pane)
         { Text = " " .. LEFT_BORDER },
         { Background = { Color = bg_color1 } },
         { Foreground = { Color = fg_color1 } },
-        { Text = "  WS: " .. window:active_workspace() .. "  " },
+        { Text = " " .. wezterm.nerdfonts.md_folder_open .. " " .. window:active_workspace() .. "  " },
     }))
 end)
 
