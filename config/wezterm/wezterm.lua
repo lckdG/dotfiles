@@ -76,15 +76,27 @@ wezterm.on("update-status", function(window, pane)
 
     local bg_color1 = "#458588"
     local bg_color2 = "#83a598"
+    local bg_color3 = "#282828"
     local fg_color1 = "#fbf1c7"
-    local fg_color2 = "#282828"
+    local fg_color2 = "#1d2021"
+    local fg_color3 = "#a89984"
 
     window:set_right_status(wezterm.format({
+        -- Current date time
+        { Foreground = { Color = bg_color3 } },
+        { Text = " " .. LEFT_BORDER },
+        { Foreground = { Color = fg_color3 } },
+        { Background = { Color = bg_color3 } },
+        { Text = " " .. wezterm.strftime "%H:%M %d-%m-%Y" },
+
+        -- Key mods
         { Foreground = { Color = bg_color2 } },
         { Text = " " .. LEFT_BORDER },
         { Foreground = { Color = fg_color2 } },
         { Background = { Color = bg_color2 } },
         { Text = " " .. filtered_mods },
+
+        -- Active workspace
         { Foreground = { Color = bg_color1 } },
         { Text = " " .. LEFT_BORDER },
         { Background = { Color = bg_color1 } },
