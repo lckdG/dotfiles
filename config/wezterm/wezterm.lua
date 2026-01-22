@@ -13,18 +13,18 @@ local function tab_title(tab_info)
 end
 
 -- local RIGHT_BORDER = ""
-local RIGHT_BORDER = wezterm.nerdfonts.pl_left_hard_divider
-local LEFT_BORDER = wezterm.nerdfonts.pl_right_hard_divider
+local RIGHT_BORDER = wezterm.nerdfonts.ple_upper_left_triangle
+local LEFT_BORDER = wezterm.nerdfonts.ple_lower_right_triangle
 
-wezterm.on("format-tab-title", function(tab, _, _, _, hover, max_width)
-    local active_background = "fbf1c7"
-    local active_foreground = "d79921"
+wezterm.on("format-tab-title", function(tab, tabs, _, _, hover, max_width)
+    local active_background = "689d6a"
+    local active_foreground = "282828"
 
-    local hover_background = "928374"
+    local hover_background = "d65d0e"
     local hover_foreground = "ebdbb2"
 
-    local default_background = "282828"
-    local default_foreground = "a89984"
+    local default_background = "8ec07c"
+    local default_foreground = "fbf1c7"
 
     local background = default_background
     local foreground = default_foreground
@@ -52,9 +52,9 @@ wezterm.on("format-tab-title", function(tab, _, _, _, hover, max_width)
         { Text = " " .. title .. " " },
 
         -- Right Border
-        { Background = { Color = default_background } },
+        { Background = { Color = (tab.tab_index < #tabs - 1) and default_background or "333333" } },
         { Foreground = { Color = tab.is_active and active_background or default_background } },
-        { Text = tab.is_active and RIGHT_BORDER or " " },
+        { Text = RIGHT_BORDER },
     }
 end)
 
