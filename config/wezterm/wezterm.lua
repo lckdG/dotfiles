@@ -14,6 +14,7 @@ end
 
 -- local RIGHT_BORDER = ""
 local RIGHT_BORDER = wezterm.nerdfonts.pl_left_hard_divider
+local LEFT_BORDER = wezterm.nerdfonts.pl_right_hard_divider
 
 wezterm.on("format-tab-title", function(tab, _, _, _, hover, max_width)
     local active_background = "fbf1c7"
@@ -60,7 +61,24 @@ end)
 wezterm.on("update-status", function(window, pane)
     local mods, leds = window:keyboard_modifiers()
     local window_mod = window:leader_is_active() and "LEADER" or mods
-    window:set_right_status(window_mod .. "  " .. window:active_workspace())
+
+    local bg_color1 = "#458588"
+    local bg_color2 = "#83a598"
+    local fg_color1 = "#fbf1c7"
+    local fg_color2 = "#282828"
+
+    window:set_right_status(wezterm.format({
+        { Foreground = { Color = bg_color2 } },
+        { Text = " " .. LEFT_BORDER },
+        { Foreground = { Color = fg_color2 } },
+        { Background = { Color = bg_color2 } },
+        { Text = " " .. window_mod },
+        { Foreground = { Color = bg_color1 } },
+        { Text = " " .. LEFT_BORDER },
+        { Background = { Color = bg_color1 } },
+        { Foreground = { Color = fg_color1 } },
+        { Text = "  WS: " .. window:active_workspace() .. "  " },
+    }))
 end)
 
 config.term = "wezterm"
