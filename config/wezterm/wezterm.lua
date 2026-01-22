@@ -20,8 +20,7 @@ wezterm.on("format-tab-title", function(tab, tabs, _, _, hover, max_width)
     local active_background = "689d6a"
     local active_foreground = "282828"
 
-    local hover_background = "d65d0e"
-    local hover_foreground = "ebdbb2"
+    local hover_foreground = "504945"
 
     local default_background = "8ec07c"
     local default_foreground = "fbf1c7"
@@ -33,7 +32,6 @@ wezterm.on("format-tab-title", function(tab, tabs, _, _, hover, max_width)
         background = active_background
         foreground = active_foreground
     elseif hover then
-        background = hover_background
         foreground = hover_foreground
     end
 
@@ -49,7 +47,10 @@ wezterm.on("format-tab-title", function(tab, tabs, _, _, hover, max_width)
         -- Tab title
         { Background = { Color = background } },
         { Foreground = { Color = foreground } },
+        { Attribute = { Intensity = (tab.is_active or hover) and "Bold" or "Normal" } },
+        { Attribute = { Underline = hover and "Double" or "None" } },
         { Text = " " .. title .. " " },
+        "ResetAttributes",
 
         -- Right Border
         { Background = { Color = (tab.tab_index < #tabs - 1) and default_background or "333333" } },
@@ -88,6 +89,7 @@ wezterm.on("update-status", function(window, pane)
         { Text = " " .. LEFT_BORDER },
         { Background = { Color = bg_color1 } },
         { Foreground = { Color = fg_color1 } },
+        { Attribute = { Intensity = "Bold" } },
         { Text = " " .. wezterm.nerdfonts.md_folder_open .. " " .. window:active_workspace() .. "  " },
     }))
 end)
