@@ -57,8 +57,10 @@ wezterm.on("format-tab-title", function(tab, _, _, _, hover, max_width)
     }
 end)
 
-wezterm.on("update-right-status", function(window, pane)
-    window:set_right_status(window:active_workspace())
+wezterm.on("update-status", function(window, pane)
+    local mods, leds = window:keyboard_modifiers()
+    local window_mod = window:leader_is_active() and "LEADER" or mods
+    window:set_right_status(window_mod .. "  " .. window:active_workspace())
 end)
 
 config.term = "wezterm"
@@ -174,6 +176,9 @@ config.keys = {
 
     { key = "d", mods = "LEADER", action = act({ CloseCurrentPane = { confirm = true } }) },
     { key = "x", mods = "LEADER", action = act({ CloseCurrentTab = { confirm = true } }) },
+
+    { key = "n", mods = "LEADER|CTRL", action = act.SwitchWorkspaceRelative(1)},
+    { key = "p", mods = "LEADER|CTRL", action = act.SwitchWorkspaceRelative(-1)},
 
     { key = "w", mods = "LEADER", action = act.ShowLauncherArgs({ flags = "FUZZY|WORKSPACES" }) },
     { key = "w", mods = "LEADER|SHIFT", action = act.PromptInputLine {
