@@ -60,7 +60,18 @@ end)
 
 wezterm.on("update-status", function(window, pane)
     local mods, leds = window:keyboard_modifiers()
-    local window_mod = window:leader_is_active() and "LEADER" or mods
+    local all_mods = window:leader_is_active() and "LEADER" or mods
+
+    local filtered_mods = "NONE"
+    for match in string.gmatch(all_mods, "([^|]+)") do
+        if not string.find(match, "_") then
+            if filtered_mods == "NONE" then
+                filtered_mods = match
+            else
+                filtered_mods = match .. "|" .. filtered_mods
+            end
+        end
+    end
 
     local bg_color1 = "#458588"
     local bg_color2 = "#83a598"
@@ -72,7 +83,7 @@ wezterm.on("update-status", function(window, pane)
         { Text = " " .. LEFT_BORDER },
         { Foreground = { Color = fg_color2 } },
         { Background = { Color = bg_color2 } },
-        { Text = " " .. window_mod },
+        { Text = " " .. filtered_mods },
         { Foreground = { Color = bg_color1 } },
         { Text = " " .. LEFT_BORDER },
         { Background = { Color = bg_color1 } },
