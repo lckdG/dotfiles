@@ -130,6 +130,7 @@ config.window_padding = {
 config.enable_tab_bar = true
 config.use_fancy_tab_bar = false
 config.tab_bar_at_bottom = true
+config.show_new_tab_button_in_tab_bar = false
 config.tab_max_width = 50
 config.tab_and_split_indices_are_zero_based = true
 
