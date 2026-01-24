@@ -41,7 +41,6 @@ local white_1 = "fbf1c7"
 local white_2 = "ebdbb2"
 
 local tab_bg = "333333"
-
 ----------------------------------------------
 
 wezterm.on("format-tab-title", function(tab, tabs, _, _, hover, max_width)
@@ -199,11 +198,19 @@ local fonts_mapping = {
     }
 }
 
+local launch_menu = {}
+
 if wezterm.target_triple == "x86_64-pc-windows-msvc" then
     config.default_prog = { 'powershell.exe', '-NoLogo' }
     config.window_background_opacity = 0.0
     config.win32_system_backdrop = "Mica"
     config.font = wezterm.font_with_fallback(fonts_mapping["win"])
+
+    table.insert(launch_menu, {
+        label = "Powershell",
+        args = { "powershell.exe", "-NoLogo" }
+    })
+
 elseif wezterm.target_triple == "x86_64-unknown-linux-gnu" then
     -- HACK: workaround to render on scaled displays
     config.dpi = 96
@@ -211,7 +218,29 @@ elseif wezterm.target_triple == "x86_64-unknown-linux-gnu" then
     config.font = wezterm.font_with_fallback(fonts_mapping["linux"])
     -- config.window_background_opacity = 0.95
     -- config.kde_window_background_blur = true
+
+    table.insert(launch_menu, {
+        label = "Fish",
+        args = { "/bin/fish" }
+    })
+
+    table.insert(launch_menu, {
+        label = "Bash",
+        args = { "/bin/bash" }
+    })
 end
+
+table.insert(launch_menu, {
+    label = "Neovim",
+    args = { "nvim" }
+})
+
+table.insert(launch_menu, {
+    label = "Lazygit",
+    args = { "lazygit" }
+})
+
+config.launch_menu = launch_menu
 
 --------------- Key Bindings ---------------
 
@@ -239,7 +268,7 @@ config.keys = {
 
     { key = "-", mods = "LEADER", action = act({ SplitVertical = { domain = "CurrentPaneDomain" } }) },
     { key = "|", mods = "LEADER|SHIFT", action = act({ SplitHorizontal = { domain = "CurrentPaneDomain" } }) },
-    { key = "n", mods = "LEADER", action = act({ SpawnTab = "CurrentPaneDomain" }) },
+    { key = "n", mods = "LEADER", action = act.ShowLauncherArgs { flags = "LAUNCH_MENU_ITEMS" } },
 
     { key = "h", mods = "LEADER", action = act({ ActivatePaneDirection = "Left" }) },
     { key = "j", mods = "LEADER", action = act({ ActivatePaneDirection = "Down" }) },
