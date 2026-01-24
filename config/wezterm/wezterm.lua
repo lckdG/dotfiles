@@ -20,14 +20,8 @@ local aqua_2 = "8ec07c"
 local blue_1 = "458588"
 local blue_2 = "83a598"
 
-local red_1 = "cc241d"
-local red_2 = "fb4934"
-
-local orange_1 = "d65d0e"
-local orange_2 = "fe8019"
-
-local purple_1 = "b16286"
-local purple_2 = "d3869b"
+local yellow_1 = "d79921"
+local yellow_2 = "fabd2f"
 
 local black_1 = "1d2021"
 local black_2 = "282828"
@@ -44,11 +38,11 @@ local tab_bg = "333333"
 ----------------------------------------------
 
 wezterm.on("format-tab-title", function(tab, tabs, _, _, hover, max_width)
-    local background = aqua_1
-    local foreground = black_2
+    local background = black_4
+    local foreground = gray_2
 
     if tab.is_active then
-        background = aqua_2
+        background = yellow_1
         foreground = white_1
     elseif hover then
         foreground = black_4
@@ -93,43 +87,43 @@ wezterm.on("update-status", function(window, pane)
     local workspaces = utils.get_workspace_carousel()
     local left_status = {}
 
-    table.insert(left_status, { Background = { Color = purple_1 } })
-    table.insert(left_status, { Foreground = { Color = black_3 } })
+    table.insert(left_status, { Background = { Color = black_1 } })
+    table.insert(left_status, { Foreground = { Color = aqua_1 } })
     table.insert(left_status, { Text = " " .. WORKSPACE_ICON .. " " })
     if workspaces.left ~= nil then
+        table.insert(left_status, { Foreground = { Color = gray_2 } })
         table.insert(left_status, { Text = " " .. workspaces.left .. " " })
     end
 
-    table.insert(left_status, { Background = { Color = purple_2 } })
-    table.insert(left_status, { Foreground = { Color = purple_1 } })
+    table.insert(left_status, { Background = { Color = aqua_1 } })
+    table.insert(left_status, { Foreground = { Color = black_1 } })
     table.insert(left_status, { Text = RIGHT_BORDER })
     table.insert(left_status, { Attribute = { Intensity = "Bold" } })
-    table.insert(left_status, { Foreground = { Color = white_1 } })
+    table.insert(left_status, { Foreground = { Color = white_2 } })
     table.insert(left_status, { Text = " " ..  workspaces.active .. " " })
 
     if (workspaces.right ~= nil) then
-        table.insert(left_status, { Background = { Color = purple_1 } })
-        table.insert(left_status, { Foreground = { Color = purple_2 } })
+        table.insert(left_status, { Background = { Color = black_1 } })
+        table.insert(left_status, { Foreground = { Color = aqua_1 } })
         table.insert(left_status, { Text = RIGHT_BORDER })
 
-        table.insert(left_status, { Background = { Color = purple_1 } })
-        table.insert(left_status, { Foreground = { Color = black_3 } })
+        table.insert(left_status, { Foreground = { Color = gray_2 } })
         table.insert(left_status, { Attribute = { Intensity = "Normal" } })
         table.insert(left_status, { Text = " " .. workspaces.right .. " " })
     end
 
-    table.insert(left_status, { Background = { Color = black_3 } })
-    table.insert(left_status, { Foreground = { Color =  workspaces.right ~= nil and purple_1 or purple_2 } })
+    table.insert(left_status, { Background = { Color = tab_bg } } )
+    table.insert(left_status, { Foreground = { Color = workspaces.right ~= nil and black_1 or aqua_1 } })
     table.insert(left_status, { Text = RIGHT_BORDER })
 
     window:set_left_status(wezterm.format(left_status))
 
     window:set_right_status(wezterm.format({
         -- Key mods
-        { Foreground = { Color = blue_2 } },
+        { Foreground = { Color = black_4 } },
         { Text = " " .. LEFT_BORDER },
-        { Foreground = { Color = black_1 } },
-        { Background = { Color = blue_2 } },
+        { Foreground = { Color = gray_1 } },
+        { Background = { Color = black_4 } },
         { Text = " " .. KEY_ICON .. " " .. filtered_mods },
 
         -- Current date time
