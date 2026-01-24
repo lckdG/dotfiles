@@ -1,6 +1,8 @@
 local wezterm = require 'wezterm'
 local config = wezterm.config_builder()
 
+local utils = require('utils')
+
 --------------- Useful Symbols ---------------
 
 local RIGHT_BORDER = wezterm.nerdfonts.ple_upper_left_triangle
@@ -39,16 +41,6 @@ local tab_bg = "333333"
 
 ----------------------------------------------
 
-local function basename(s)
-    return string.gsub(s, '(.*[/\\])(.*)', '%2')
-end
-
-local function get_tab_title(tab)
-    local process_name = tab.active_pane.foreground_process_name
-    local full_name = (process_name ~= nil and process_name ~= "") and process_name or tab.active_pane.title
-
-    return basename(full_name)
-end
 
 wezterm.on("format-tab-title", function(tab, tabs, _, _, hover, max_width)
     local background = aqua_1
@@ -61,82 +53,26 @@ wezterm.on("format-tab-title", function(tab, tabs, _, _, hover, max_width)
         foreground = black_4
     end
 
-    local title = get_tab_title(tab)
-
     return {
         -- Left Border
-        { Background = { Color = background } },
-        { Foreground = { Color = tab.is_active and aqua_1 or background } },
-        { Text = (tab.is_active and tab.tab_index == 0) and " " or RIGHT_BORDER },
+        { Background = { Color = tab_bg } },
+        { Foreground = { Color = background } },
+        { Text = LEFT_BORDER },
 
         -- Tab title
         { Background = { Color = background } },
         { Foreground = { Color = foreground } },
         { Attribute = { Intensity = (tab.is_active or hover) and "Bold" or "Normal" } },
         { Attribute = { Underline = hover and "Double" or "None" } },
-        { Text = " " .. title .. " " },
+        { Text = " " .. tab.tab_index .. " " },
         "ResetAttributes",
 
         -- Right Border
-        { Background = { Color = (tab.tab_index < #tabs - 1) and aqua_1 or tab_bg } },
+        { Background = { Color = tab_bg } },
         { Foreground = { Color = background } },
         { Text = RIGHT_BORDER },
     }
 end)
-
-local function indexOf(value, array)
-    for i, v in ipairs(array) do
-        if v == value then
-            return i
-        end
-    end
-
-    return -1
-end
-
-local function get_workspace_carousel()
-    local all_workspaces = wezterm.mux.get_workspace_names()
-    local active_workspace = wezterm.mux.get_active_workspace()
-
-    if #all_workspaces == 1 then
-        return {
-            active = active_workspace,
-            left = nil,
-            right = nil
-        }
-    elseif #all_workspaces == 2 then
-        local index = indexOf(active_workspace, all_workspaces)
-        if index == 2 then
-            return {
-                active = active_workspace,
-                left = all_workspaces[1],
-                right = nil
-            }
-        end
-
-        return {
-            active = active_workspace,
-            left = nil,
-            right = all_workspaces[2]
-        }
-    else
-        local index = indexOf(active_workspace, all_workspaces)
-        local leftIndex = index - 1
-        local rightIndex = index + 1
-
-        if index == 1 then
-            leftIndex = #all_workspaces
-        elseif index == #all_workspaces then
-            rightIndex = 1
-        end
-
-        return {
-            active = active_workspace,
-            left = all_workspaces[leftIndex],
-            right = all_workspaces[rightIndex]
-        }
-    end
-end
 
 wezterm.on("update-status", function(window, pane)
     local mods, leds = window:keyboard_modifiers()
@@ -153,7 +89,7 @@ wezterm.on("update-status", function(window, pane)
         end
     end
 
-    local workspaces = get_workspace_carousel()
+    local workspaces = utils.get_workspace_carousel()
     local left_status = {}
 
     table.insert(left_status, { Background = { Color = orange_1 } })
