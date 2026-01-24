@@ -1,48 +1,69 @@
 local wezterm = require 'wezterm'
 local config = wezterm.config_builder()
 
-local function get_process(tab)
-    local process_name = tab.active_pane.foreground_process_name:match("([^/\\]+)%.exe$") or tab.active_pane.foreground_process_name:match("([^/\\]+)$")
+--------------- Useful Symbols ---------------
 
-    return process_name
-end
-
-local function tab_title(tab_info)
-    local process = get_process(tab_info)
-    return process
-end
-
--- local RIGHT_BORDER = ""
 local RIGHT_BORDER = wezterm.nerdfonts.ple_upper_left_triangle
 local LEFT_BORDER = wezterm.nerdfonts.ple_lower_right_triangle
 
+local RIGHT_PIXELATED_SQUARES = wezterm.nerdfonts.ple_pixelated_squares_big_mirrored
+local LEFT_PIXELATED_SQUARES = wezterm.nerdfonts.ple_pixelated_squares_big
+
+---------------- Color scheme ----------------
+
+local aqua_1 = "689d6a"
+local aqua_2 = "8ec07c"
+
+local blue_1 = "458588"
+local blue_2 = "83a598"
+
+local red_1 = "cc241d"
+local red_2 = "fb4934"
+
+local black_1 = "1d2021"
+local black_2 = "282828"
+local black_3 = "3c3836"
+local black_4 = "504945"
+
+local gray_1 = "a89984"
+local gray_2 = "928374"
+
+local white_1 = "fbf1c7"
+local white_2 = "ebdbb2"
+
+local tab_bg = "333333"
+
+----------------------------------------------
+
+local function basename(s)
+    return string.gsub(s, '(.*[/\\])(.*)', '%2')
+end
+
+local function get_tab_title(tab)
+    local process_name = tab.active_pane.foreground_process_name
+    local full_name = (process_name ~= nil and process_name ~= "") and process_name or tab.active_pane.title
+
+    return basename(full_name)
+end
+
 wezterm.on("format-tab-title", function(tab, tabs, _, _, hover, max_width)
-    local active_background = "689d6a"
-    local active_foreground = "282828"
-
-    local hover_foreground = "504945"
-
-    local default_background = "8ec07c"
-    local default_foreground = "fbf1c7"
-
-    local background = default_background
-    local foreground = default_foreground
+    local background = aqua_1
+    local foreground = black_2
 
     if tab.is_active then
-        background = active_background
-        foreground = active_foreground
+        background = aqua_2
+        foreground = white_1
     elseif hover then
-        foreground = hover_foreground
+        foreground = black_4
     end
 
-    local title = tab_title(tab)
-    title = wezterm.truncate_right(title, max_width - 2)
+    local title = get_tab_title(tab)
 
     return {
         -- Left Border
-        { Background = { Color = tab.is_active and active_background or default_background } },
-        { Foreground = { Color = default_background } },
-        { Text = (tab.is_active and tab.tab_index ~= 0) and RIGHT_BORDER or " " },
+        { Background = { Color = background } },
+        { Foreground = { Color = tab.is_active and aqua_1 or background } },
+        { Text = (tab.is_active and tab.tab_index == 0) and " " or RIGHT_BORDER },
 
         -- Tab title
         { Background = { Color = background } },
@@ -53,8 +74,8 @@ wezterm.on("format-tab-title", function(tab, tabs, _, _, hover, max_width)
         "ResetAttributes",
 
         -- Right Border
-        { Background = { Color = (tab.tab_index < #tabs - 1) and default_background or "333333" } },
-        { Foreground = { Color = tab.is_active and active_background or default_background } },
+        { Background = { Color = (tab.tab_index < #tabs - 1) and aqua_1 or tab_bg } },
+        { Foreground = { Color = background } },
         { Text = RIGHT_BORDER },
     }
 end)
@@ -74,33 +95,26 @@ wezterm.on("update-status", function(window, pane)
         end
     end
 
-    local bg_color1 = "#458588"
-    local bg_color2 = "#83a598"
-    local bg_color3 = "#282828"
-    local fg_color1 = "#fbf1c7"
-    local fg_color2 = "#1d2021"
-    local fg_color3 = "#a89984"
-
     window:set_right_status(wezterm.format({
         -- Current date time
-        { Foreground = { Color = bg_color3 } },
+        { Foreground = { Color = black_2 } },
         { Text = " " .. LEFT_BORDER },
-        { Foreground = { Color = fg_color3 } },
-        { Background = { Color = bg_color3 } },
+        { Foreground = { Color = gray_1 } },
+        { Background = { Color = black_2 } },
         { Text = " " .. wezterm.strftime "%H:%M %d-%m-%Y" },
 
         -- Key mods
-        { Foreground = { Color = bg_color2 } },
+        { Foreground = { Color = blue_2 } },
         { Text = " " .. LEFT_BORDER },
-        { Foreground = { Color = fg_color2 } },
-        { Background = { Color = bg_color2 } },
+        { Foreground = { Color = black_1 } },
+        { Background = { Color = blue_2 } },
         { Text = " " .. filtered_mods },
 
         -- Active workspace
-        { Foreground = { Color = bg_color1 } },
+        { Foreground = { Color = blue_1 } },
         { Text = " " .. LEFT_BORDER },
-        { Background = { Color = bg_color1 } },
-        { Foreground = { Color = fg_color1 } },
+        { Background = { Color = blue_1 } },
+        { Foreground = { Color = white_1 } },
         { Attribute = { Intensity = "Bold" } },
         { Text = " " .. wezterm.nerdfonts.md_folder_open .. " " .. window:active_workspace() .. "  " },
     }))
@@ -129,9 +143,9 @@ config.window_padding = {
 
 config.enable_tab_bar = true
 config.use_fancy_tab_bar = false
-config.tab_bar_at_bottom = true
-config.show_new_tab_button_in_tab_bar = false
+config.tab_bar_at_bottom = false
 config.tab_max_width = 50
+config.show_new_tab_button_in_tab_bar = false
 config.tab_and_split_indices_are_zero_based = true
 
 config.inactive_pane_hsb = {
@@ -197,7 +211,7 @@ config.mouse_bindings = {
 
 local act = wezterm.action
 
-config.leader = { key = "b", mods = "CTRL", timeout_milisecond = 1000 }
+config.leader = { key = "b", mods = "CTRL", timeout_milisecond = 2000 }
 config.keys = {
     { key = "b", mods = "LEADER|CTRL", action = act({ SendString = "\x02" })},
     { key = "c", mods = "LEADER", action = act.ActivateCopyMode },
