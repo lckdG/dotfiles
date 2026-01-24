@@ -6,8 +6,9 @@ local config = wezterm.config_builder()
 local RIGHT_BORDER = wezterm.nerdfonts.ple_upper_left_triangle
 local LEFT_BORDER = wezterm.nerdfonts.ple_lower_right_triangle
 
-local RIGHT_PIXELATED_SQUARES = wezterm.nerdfonts.ple_pixelated_squares_big_mirrored
-local LEFT_PIXELATED_SQUARES = wezterm.nerdfonts.ple_pixelated_squares_big
+local TIME_ICON = wezterm.nerdfonts.fa_clock_o
+local KEY_ICON = wezterm.nerdfonts.md_keyboard_outline
+local WORKSPACE_ICON = wezterm.nerdfonts.md_folder_open
 
 ---------------- Color scheme ----------------
 
@@ -19,6 +20,9 @@ local blue_2 = "83a598"
 
 local red_1 = "cc241d"
 local red_2 = "fb4934"
+
+local orange_1 = "d65d0e"
+local orange_2 = "fe8019"
 
 local black_1 = "1d2021"
 local black_2 = "282828"
@@ -80,6 +84,60 @@ wezterm.on("format-tab-title", function(tab, tabs, _, _, hover, max_width)
     }
 end)
 
+local function indexOf(value, array)
+    for i, v in ipairs(array) do
+        if v == value then
+            return i
+        end
+    end
+
+    return -1
+end
+
+local function get_workspace_carousel()
+    local all_workspaces = wezterm.mux.get_workspace_names()
+    local active_workspace = wezterm.mux.get_active_workspace()
+
+    if #all_workspaces == 1 then
+        return {
+            active = active_workspace,
+            left = nil,
+            right = nil
+        }
+    elseif #all_workspaces == 2 then
+        local index = indexOf(active_workspace, all_workspaces)
+        if index == 2 then
+            return {
+                active = active_workspace,
+                left = all_workspaces[1],
+                right = nil
+            }
+        end
+
+        return {
+            active = active_workspace,
+            left = nil,
+            right = all_workspaces[2]
+        }
+    else
+        local index = indexOf(active_workspace, all_workspaces)
+        local leftIndex = index - 1
+        local rightIndex = index + 1
+
+        if index == 1 then
+            leftIndex = #all_workspaces
+        elseif index == #all_workspaces then
+            rightIndex = 1
+        end
+
+        return {
+            active = active_workspace,
+            left = all_workspaces[leftIndex],
+            right = all_workspaces[rightIndex]
+        }
+    end
+end
+
 wezterm.on("update-status", function(window, pane)
     local mods, leds = window:keyboard_modifiers()
     local all_mods = window:leader_is_active() and "LEADER" or mods
@@ -95,28 +153,54 @@ wezterm.on("update-status", function(window, pane)
         end
     end
 
-    window:set_right_status(wezterm.format({
-        -- Current date time
-        { Foreground = { Color = black_2 } },
-        { Text = " " .. LEFT_BORDER },
-        { Foreground = { Color = gray_1 } },
-        { Background = { Color = black_2 } },
-        { Text = " " .. wezterm.strftime "%H:%M %d-%m-%Y" },
+    local workspaces = get_workspace_carousel()
+    local left_status = {}
 
+    table.insert(left_status, { Background = { Color = orange_1 } })
+    table.insert(left_status, { Foreground = { Color = black_3 } })
+    table.insert(left_status, { Text = " " .. WORKSPACE_ICON .. " " })
+    if workspaces.left ~= nil then
+        table.insert(left_status, { Text = " " .. workspaces.left .. " " })
+    end
+
+    table.insert(left_status, { Background = { Color = orange_2 } })
+    table.insert(left_status, { Foreground = { Color = orange_1 } })
+    table.insert(left_status, { Text = RIGHT_BORDER })
+    table.insert(left_status, { Attribute = { Intensity = "Bold" } })
+    table.insert(left_status, { Foreground = { Color = white_1 } })
+    table.insert(left_status, { Text = " " ..  workspaces.active .. " " })
+
+    if (workspaces.right ~= nil) then
+        table.insert(left_status, { Background = { Color = orange_1 } })
+        table.insert(left_status, { Foreground = { Color = orange_2 } })
+        table.insert(left_status, { Text = RIGHT_BORDER })
+
+        table.insert(left_status, { Background = { Color = orange_1 } })
+        table.insert(left_status, { Foreground = { Color = black_3 } })
+        table.insert(left_status, { Attribute = { Intensity = "Normal" } })
+        table.insert(left_status, { Text = " " .. workspaces.right .. " " })
+    end
+
+    table.insert(left_status, { Background = { Color = black_3 } })
+    table.insert(left_status, { Foreground = { Color =  workspaces.right ~= nil and orange_1 or orange_2 } })
+    table.insert(left_status, { Text = RIGHT_BORDER })
+
+    window:set_left_status(wezterm.format(left_status))
+
+    window:set_right_status(wezterm.format({
         -- Key mods
         { Foreground = { Color = blue_2 } },
         { Text = " " .. LEFT_BORDER },
         { Foreground = { Color = black_1 } },
         { Background = { Color = blue_2 } },
-        { Text = " " .. filtered_mods },
+        { Text = " " .. KEY_ICON .. " " .. filtered_mods },
 
-        -- Active workspace
+        -- Current date time
         { Foreground = { Color = blue_1 } },
         { Text = " " .. LEFT_BORDER },
-        { Background = { Color = blue_1 } },
         { Foreground = { Color = white_1 } },
-        { Attribute = { Intensity = "Bold" } },
-        { Text = " " .. wezterm.nerdfonts.md_folder_open .. " " .. window:active_workspace() .. "  " },
+        { Background = { Color = blue_1 } },
+        { Text = " " .. TIME_ICON .. "  " .. wezterm.strftime "%H:%M %d-%m-%Y" .. " " },
     }))
 end)
 
@@ -143,7 +227,7 @@ config.window_padding = {
 
 config.enable_tab_bar = true
 config.use_fancy_tab_bar = false
-config.tab_bar_at_bottom = false
+config.tab_bar_at_bottom = true
 config.tab_max_width = 50
 config.show_new_tab_button_in_tab_bar = false
 config.tab_and_split_indices_are_zero_based = true
