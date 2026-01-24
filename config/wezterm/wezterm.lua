@@ -38,6 +38,10 @@ local tab_bg = "333333"
 ----------------------------------------------
 
 wezterm.on("format-tab-title", function(tab, tabs, _, _, hover, max_width)
+    if #tabs == 1 then
+        return { }
+    end
+
     local background = black_4
     local foreground = gray_2
 
