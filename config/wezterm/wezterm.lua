@@ -26,6 +26,9 @@ local red_2 = "fb4934"
 local orange_1 = "d65d0e"
 local orange_2 = "fe8019"
 
+local purple_1 = "b16286"
+local purple_2 = "d3869b"
+
 local black_1 = "1d2021"
 local black_2 = "282828"
 local black_3 = "3c3836"
@@ -40,7 +43,6 @@ local white_2 = "ebdbb2"
 local tab_bg = "333333"
 
 ----------------------------------------------
-
 
 wezterm.on("format-tab-title", function(tab, tabs, _, _, hover, max_width)
     local background = aqua_1
@@ -64,7 +66,7 @@ wezterm.on("format-tab-title", function(tab, tabs, _, _, hover, max_width)
         { Foreground = { Color = foreground } },
         { Attribute = { Intensity = (tab.is_active or hover) and "Bold" or "Normal" } },
         { Attribute = { Underline = hover and "Double" or "None" } },
-        { Text = " " .. tab.tab_index .. " " },
+        { Text = " " .. tab.tab_index + 1 .. " " },
         "ResetAttributes",
 
         -- Right Border
@@ -92,33 +94,33 @@ wezterm.on("update-status", function(window, pane)
     local workspaces = utils.get_workspace_carousel()
     local left_status = {}
 
-    table.insert(left_status, { Background = { Color = orange_1 } })
+    table.insert(left_status, { Background = { Color = purple_1 } })
     table.insert(left_status, { Foreground = { Color = black_3 } })
     table.insert(left_status, { Text = " " .. WORKSPACE_ICON .. " " })
     if workspaces.left ~= nil then
         table.insert(left_status, { Text = " " .. workspaces.left .. " " })
     end
 
-    table.insert(left_status, { Background = { Color = orange_2 } })
-    table.insert(left_status, { Foreground = { Color = orange_1 } })
+    table.insert(left_status, { Background = { Color = purple_2 } })
+    table.insert(left_status, { Foreground = { Color = purple_1 } })
     table.insert(left_status, { Text = RIGHT_BORDER })
     table.insert(left_status, { Attribute = { Intensity = "Bold" } })
     table.insert(left_status, { Foreground = { Color = white_1 } })
     table.insert(left_status, { Text = " " ..  workspaces.active .. " " })
 
     if (workspaces.right ~= nil) then
-        table.insert(left_status, { Background = { Color = orange_1 } })
-        table.insert(left_status, { Foreground = { Color = orange_2 } })
+        table.insert(left_status, { Background = { Color = purple_1 } })
+        table.insert(left_status, { Foreground = { Color = purple_2 } })
         table.insert(left_status, { Text = RIGHT_BORDER })
 
-        table.insert(left_status, { Background = { Color = orange_1 } })
+        table.insert(left_status, { Background = { Color = purple_1 } })
         table.insert(left_status, { Foreground = { Color = black_3 } })
         table.insert(left_status, { Attribute = { Intensity = "Normal" } })
         table.insert(left_status, { Text = " " .. workspaces.right .. " " })
     end
 
     table.insert(left_status, { Background = { Color = black_3 } })
-    table.insert(left_status, { Foreground = { Color =  workspaces.right ~= nil and orange_1 or orange_2 } })
+    table.insert(left_status, { Foreground = { Color =  workspaces.right ~= nil and purple_1 or purple_2 } })
     table.insert(left_status, { Text = RIGHT_BORDER })
 
     window:set_left_status(wezterm.format(left_status))
@@ -166,7 +168,6 @@ config.use_fancy_tab_bar = false
 config.tab_bar_at_bottom = true
 config.tab_max_width = 50
 config.show_new_tab_button_in_tab_bar = false
-config.tab_and_split_indices_are_zero_based = true
 
 config.inactive_pane_hsb = {
     saturation = 1.0,
