@@ -12,6 +12,9 @@ local KEY_ICON = wezterm.nerdfonts.md_keyboard_outline
 local WORKSPACE_ICON = wezterm.nerdfonts.md_folder_open
 
 local GIT_ICON = wezterm.nerdfonts.dev_git
+local LOCAL_BRANCH_ICON = wezterm.nerdfonts.dev_git_branch
+local REMOTE_BRANCH_ICON = wezterm.nerdfonts.cod_globe
+
 local ADD_ICON = wezterm.nerdfonts.cod_diff_added
 local CHANGED_ICON = wezterm.nerdfonts.cod_diff_modified
 local REMOVED_ICON = wezterm.nerdfonts.cod_diff_removed
@@ -119,6 +122,13 @@ local function create_right_status_info(window, pane)
         table.insert(right_status, { Background = { Color = colors.black_1 } })
         table.insert(right_status, { Foreground = { Color = colors.orange_2 } })
         table.insert(right_status, { Text = " " .. GIT_ICON .. " " } )
+
+        table.insert(right_status, { Foreground = { Color =  colors.gray_1 } })
+        table.insert(right_status, { Text = " " .. LOCAL_BRANCH_ICON .. " " .. git_info.localBranch })
+
+        if git_info.upstreamBranch ~= nil and git_info.upstreamBranch ~= "" then
+            table.insert(right_status, { Text = " " .. REMOTE_BRANCH_ICON .. " " .. git_info.upstreamBranch })
+        end
 
         table.insert(right_status, { Foreground = { Color = colors.green_1 } })
         table.insert(right_status, { Text = " " ..  ADD_ICON .. " "  .. git_info.addCount } )
