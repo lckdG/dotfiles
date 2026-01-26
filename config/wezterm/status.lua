@@ -5,9 +5,6 @@ local components = require('components')
 
 --------------- Useful Symbols ---------------
 
-local RIGHT_BORDER = wezterm.nerdfonts.ple_upper_left_triangle
-local LEFT_BORDER = wezterm.nerdfonts.ple_lower_right_triangle
-
 local TIME_ICON = wezterm.nerdfonts.fa_clock_o
 local KEY_ICON = wezterm.nerdfonts.md_keyboard_outline
 local WORKSPACE_ICON = wezterm.nerdfonts.md_folder_open
@@ -40,24 +37,16 @@ wezterm.on("format-tab-title", function(tab, tabs, _, _, hover, max_width)
         foreground = colors.black_4
     end
 
-    return {
-        -- Left Border
-        { Background = { Color = colors.tab_bg } },
-        { Foreground = { Color = background } },
-        { Text = LEFT_BORDER },
-
-        -- Tab title
-        { Background = { Color = background } },
-        { Foreground = { Color = foreground } },
-        { Attribute = { Intensity = (tab.is_active or hover) and "Bold" or "Normal" } },
-        { Attribute = { Underline = hover and "Double" or "None" } },
-        { Text = " " .. tab.tab_index + 1 .. " " },
-        "ResetAttributes",
-
-        -- Right Border
-        { Background = { Color = colors.tab_bg } },
-        { Foreground = { Color = background } },
-        { Text = RIGHT_BORDER },
+    return components.create_tab {
+        left_background = colors.tab_bg,
+        right_background = colors.tab_bg,
+        main_background = background,
+        text_configs = {
+            {
+                foreground = foreground,
+                text = " " .. tab.tab_index + 1 .. " ",
+            },
+        }
     }
 end)
 
