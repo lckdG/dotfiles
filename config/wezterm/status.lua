@@ -49,21 +49,7 @@ wezterm.on("format-tab-title", function(tab, tabs, _, _, hover, max_width)
     }
 end)
 
-wezterm.on("update-status", function(window, pane)
-    local mods, leds = window:keyboard_modifiers()
-    local all_mods = window:leader_is_active() and "LEADER" or mods
-
-    local filtered_mods = "NONE"
-    for match in string.gmatch(all_mods, "([^|]+)") do
-        if not string.find(match, "_") then
-            if filtered_mods == "NONE" then
-                filtered_mods = match
-            else
-                filtered_mods = match .. "|" .. filtered_mods
-            end
-        end
-    end
-
+local function create_left_status_info()
     local workspaces = utils.get_workspace_carousel()
     local left_status = {}
 
@@ -96,14 +82,33 @@ wezterm.on("update-status", function(window, pane)
     table.insert(left_status, { Foreground = { Color = workspaces.right ~= nil and colors.black_1 or colors.aqua_1 } })
     table.insert(left_status, { Text = RIGHT_BORDER })
 
+    return left_status
+end
+
+wezterm.on("update-status", function(window, pane)
+    local left_status = create_left_status_info()
     window:set_left_status(wezterm.format(left_status))
+
+    local mods, leds = window:keyboard_modifiers()
+    local all_mods = window:leader_is_active() and "LEADER" or mods
+
+    local filtered_mods = "NONE"
+    for match in string.gmatch(all_mods, "([^|]+)") do
+        if not string.find(match, "_") then
+            if filtered_mods == "NONE" then
+                filtered_mods = match
+            else
+                filtered_mods = match .. "|" .. filtered_mods
+            end
+        end
+    end
 
     window:set_right_status(wezterm.format({
         -- Key mods
-        { Foreground = { Color = colors.black_1 } },
+        { Foreground = { Color = colors.blue_2 } },
         { Text = " " .. LEFT_BORDER },
-        { Foreground = { Color = colors.gray_2 } },
-        { Background = { Color = colors.black_1 } },
+        { Foreground = { Color = colors.black_2 } },
+        { Background = { Color = colors.blue_2 } },
         { Text = " " .. KEY_ICON .. " " .. filtered_mods },
 
         -- Current date time
@@ -114,4 +119,5 @@ wezterm.on("update-status", function(window, pane)
         { Text = " " .. TIME_ICON .. "  " .. wezterm.strftime "%H:%M" .. "  " },
     }))
 end)
+
 
