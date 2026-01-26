@@ -12,6 +12,7 @@ local KEY_ICON = wezterm.nerdfonts.md_keyboard_outline
 local WORKSPACE_ICON = wezterm.nerdfonts.md_folder_open
 
 local GIT_ICON = wezterm.nerdfonts.dev_git
+local UNKNOWN_ICON = wezterm.nerdfonts.fa_question
 local AHEAD_ICON = wezterm.nerdfonts.oct_arrow_up
 local BEHIND_ICON = wezterm.nerdfonts.oct_arrow_down
 
@@ -111,42 +112,52 @@ local function get_key_mods(window)
     return filtered_mods
 end
 
-local function create_right_status_info(window, pane)
+local function create_git_component(pane, format_array, show_upstream)
+    show_upstream = show_upstream or false
     local git_info = utils.get_git_status(pane)
-    local key_mods = get_key_mods(window)
 
-    local right_status = {}
+    table.insert(format_array, { Foreground = { Color = colors.black_1 } })
+    table.insert(format_array, { Text = " " .. LEFT_BORDER })
+    table.insert(format_array, { Background = { Color = colors.black_1 } })
+    table.insert(format_array, { Foreground = { Color = colors.orange_2 } })
+    table.insert(format_array, { Text = " " .. GIT_ICON .. " " } )
+
     if git_info ~= nil then
-        table.insert(right_status, { Foreground = { Color = colors.black_1 } })
-        table.insert(right_status, { Text = " " .. LEFT_BORDER })
-        table.insert(right_status, { Background = { Color = colors.black_1 } })
-        table.insert(right_status, { Foreground = { Color = colors.orange_2 } })
-        table.insert(right_status, { Text = " " .. GIT_ICON .. " " } )
+        table.insert(format_array, { Foreground = { Color = colors.gray_1 } })
+        table.insert(format_array, { Text = git_info.localBranch })
 
-        table.insert(right_status, { Foreground = { Color = colors.gray_1 } })
-        table.insert(right_status, { Text = git_info.localBranch })
-
-        if git_info.upstreamBranch ~= nil and git_info.upstreamBranch ~= "" then
-            table.insert(right_status, { Text = " -> " .. git_info.upstreamBranch })
+        if show_upstream and git_info.upstreamBranch ~= nil and git_info.upstreamBranch ~= "" then
+            table.insert(format_array, { Text = " -> " .. git_info.upstreamBranch })
         end
 
         if git_info.aheadCount > 0 then
-            table.insert(right_status, { Foreground = { Color = colors.purple_2 } })
-            table.insert(right_status, { Text = " " .. AHEAD_ICON .. " " .. git_info.aheadCount })
+            table.insert(format_array, { Foreground = { Color = colors.purple_2 } })
+            table.insert(format_array, { Text = " " .. AHEAD_ICON .. " " .. git_info.aheadCount })
         end
 
         if git_info.behindCount > 0 then
-            table.insert(right_status, { Foreground = { Color = colors.purple_2 } })
-            table.insert(right_status, { Text = " " .. BEHIND_ICON .. " " .. git_info.behindCount })
+            table.insert(format_array, { Foreground = { Color = colors.purple_2 } })
+            table.insert(format_array, { Text = " " .. BEHIND_ICON .. " " .. git_info.behindCount })
         end
 
-        table.insert(right_status, { Foreground = { Color = colors.green_1 } })
-        table.insert(right_status, { Text = "  " ..  ADD_ICON .. " "  .. git_info.addCount } )
-        table.insert(right_status, { Foreground = { Color = colors.yellow_1 } })
-        table.insert(right_status, { Text = " " .. CHANGED_ICON .. " " .. git_info.changeCount })
-        table.insert(right_status, { Foreground = { Color = colors.red_1 } })
-        table.insert(right_status, { Text = " " .. REMOVED_ICON .. " " .. git_info.delCount })
+        table.insert(format_array, { Foreground = { Color = colors.green_1 } })
+        table.insert(format_array, { Text = "  " ..  ADD_ICON .. " "  .. git_info.addCount } )
+        table.insert(format_array, { Foreground = { Color = colors.yellow_1 } })
+        table.insert(format_array, { Text = " " .. CHANGED_ICON .. " " .. git_info.changeCount })
+        table.insert(format_array, { Foreground = { Color = colors.red_1 } })
+        table.insert(format_array, { Text = " " .. REMOVED_ICON .. " " .. git_info.delCount })
+    else
+        table.insert(format_array, { Foreground = { Color = colors.gray_1 } })
+        table.insert(format_array, { Text = UNKNOWN_ICON .. " " })
     end
+end
+
+local function create_right_status_info(window, pane)
+    local key_mods = get_key_mods(window)
+
+    local right_status = {}
+
+    create_git_component(pane, right_status)
 
     -- Key mods
     table.insert(right_status, { Foreground = { Color = colors.blue_2 } })

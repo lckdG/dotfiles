@@ -106,7 +106,7 @@ function M.get_git_status(pane)
 end
 
 function M.get_branch_names(status_string)
-    local _, _, branchNames = string.find(status_string, "##%s([%w/%.]+)[%s\n]")
+    local _, _, branchNames = string.find(status_string, "##%s([%w%./%-_]+)[%s\n]")
 
     local localBranch = ""
     local upstreamBranch = ""
