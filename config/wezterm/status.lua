@@ -11,6 +11,11 @@ local TIME_ICON = wezterm.nerdfonts.fa_clock_o
 local KEY_ICON = wezterm.nerdfonts.md_keyboard_outline
 local WORKSPACE_ICON = wezterm.nerdfonts.md_folder_open
 
+local GIT_ICON = wezterm.nerdfonts.dev_git
+local ADD_ICON = wezterm.nerdfonts.cod_diff_added
+local CHANGED_ICON = wezterm.nerdfonts.cod_diff_modified
+local REMOVED_ICON = wezterm.nerdfonts.cod_diff_removed
+
 ----------------------------------------------
 
 wezterm.on("format-tab-title", function(tab, tabs, _, _, hover, max_width)
@@ -104,9 +109,25 @@ local function get_key_mods(window)
 end
 
 local function create_right_status_info(window, pane)
+    local git_info = utils.get_git_status(pane)
     local key_mods = get_key_mods(window)
 
     local right_status = {}
+    if git_info ~= nil then
+        table.insert(right_status, { Foreground = { Color = colors.black_1 } })
+        table.insert(right_status, { Text = " " .. LEFT_BORDER })
+        table.insert(right_status, { Background = { Color = colors.black_1 } })
+        table.insert(right_status, { Foreground = { Color = colors.orange_2 } })
+        table.insert(right_status, { Text = " " .. GIT_ICON .. " " } )
+
+        table.insert(right_status, { Foreground = { Color = colors.green_1 } })
+        table.insert(right_status, { Text = " " ..  ADD_ICON .. " "  .. git_info.addCount } )
+        table.insert(right_status, { Foreground = { Color = colors.yellow_1 } })
+        table.insert(right_status, { Text = " " .. CHANGED_ICON .. " " .. git_info.changeCount })
+        table.insert(right_status, { Foreground = { Color = colors.red_1 } })
+        table.insert(right_status, { Text = " " .. REMOVED_ICON .. " " .. git_info.delCount })
+    end
+
     -- Key mods
     table.insert(right_status, { Foreground = { Color = colors.blue_2 } })
     table.insert(right_status, { Text = " " .. LEFT_BORDER })

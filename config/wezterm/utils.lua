@@ -75,4 +75,48 @@ function M.get_workspace_carousel()
     end
 end
 
+function M.get_git_status(pane)
+    local cwd = pane:get_current_working_dir()
+    if cwd == nil then
+        return nil
+    end
+
+    local git_dir = M.is_windows() and cwd.file_path:sub(2) or cwd.file_path
+    local success, stdout, stderr = wezterm.run_child_process { "git", "-C", git_dir,  "status", "-v", "-b", "-s" }
+    if not success then
+        return nil
+    else
+        local _, changeCount = string.gsub(stdout, "\n%sM", "")
+        local _, addCount = string.gsub(stdout, "\n%?%?", "")
+        local _, delCount = string.gsub(stdout, "\n%sD", "")
+
+        local localBranch, upstreamBranch = M.get_branch_names(stdout)
+
+        return {
+            localBranch = localBranch,
+            upstreamBranch = upstreamBranch,
+            addCount = addCount,
+            changeCount = changeCount,
+            delCount = delCount,
+        }
+    end
+end
+
+function M.get_branch_names(status_string)
+    local _, _, branchNames = string.find(status_string, "##%s([%w/%.]+)\n")
+
+    local localBranch = ""
+    local upstreamBranch = ""
+
+    local delimiterPos = string.find(branchNames, "%.%.%.")
+    if delimiterPos ~= nil then
+        localBranch = string.sub(branchNames, 1, delimiterPos)
+        upstreamBranch = string.sub(branchNames, delimiterPos)
+    else
+        localBranch = branchNames
+    end
+
+    return localBranch, upstreamBranch
+end
+
 return M
