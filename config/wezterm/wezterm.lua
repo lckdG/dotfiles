@@ -93,7 +93,7 @@ wezterm.on("update-status", function(window, pane)
 
     table.insert(left_status, { Background = { Color = black_1 } })
     table.insert(left_status, { Foreground = { Color = aqua_1 } })
-    table.insert(left_status, { Text = " " .. WORKSPACE_ICON .. " " })
+    table.insert(left_status, { Text = "  " .. WORKSPACE_ICON .. " " })
     if workspaces.left ~= nil then
         table.insert(left_status, { Foreground = { Color = gray_2 } })
         table.insert(left_status, { Text = " " .. workspaces.left .. " " })
@@ -135,7 +135,7 @@ wezterm.on("update-status", function(window, pane)
         { Text = " " .. LEFT_BORDER },
         { Foreground = { Color = white_1 } },
         { Background = { Color = blue_1 } },
-        { Text = " " .. TIME_ICON .. "  " .. wezterm.strftime "%H:%M" .. " " },
+        { Text = " " .. TIME_ICON .. "  " .. wezterm.strftime "%H:%M" .. "  " },
     }))
 end)
 
