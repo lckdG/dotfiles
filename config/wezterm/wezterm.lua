@@ -135,7 +135,7 @@ wezterm.on("update-status", function(window, pane)
         { Text = " " .. LEFT_BORDER },
         { Foreground = { Color = white_1 } },
         { Background = { Color = blue_1 } },
-        { Text = " " .. TIME_ICON .. "  " .. wezterm.strftime "%H:%M %d-%m-%Y" .. " " },
+        { Text = " " .. TIME_ICON .. "  " .. wezterm.strftime "%H:%M" .. " " },
     }))
 end)
 
