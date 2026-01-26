@@ -13,8 +13,10 @@ local WORKSPACE_ICON = wezterm.nerdfonts.md_folder_open
 
 local GIT_ICON = wezterm.nerdfonts.dev_git
 local UNKNOWN_ICON = wezterm.nerdfonts.fa_question
+
 local AHEAD_ICON = wezterm.nerdfonts.oct_arrow_up
 local BEHIND_ICON = wezterm.nerdfonts.oct_arrow_down
+local UP_TO_DATE_ICON = wezterm.nerdfonts.cod_check_all
 
 local ADD_ICON = wezterm.nerdfonts.cod_diff_added
 local CHANGED_ICON = wezterm.nerdfonts.cod_diff_modified
@@ -138,6 +140,11 @@ local function create_git_component(pane, format_array, show_upstream)
         if git_info.behindCount > 0 then
             table.insert(format_array, { Foreground = { Color = colors.purple_2 } })
             table.insert(format_array, { Text = " " .. BEHIND_ICON .. " " .. git_info.behindCount })
+        end
+
+        if git_info.aheadCount == 0 and git_info.behindCount == 0 then
+            table.insert(format_array, { Foreground = { Color = colors.green_2 } })
+            table.insert(format_array, { Text = " " .. UP_TO_DATE_ICON })
         end
 
         table.insert(format_array, { Foreground = { Color = colors.green_1 } })
