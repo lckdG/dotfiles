@@ -12,8 +12,8 @@ local KEY_ICON = wezterm.nerdfonts.md_keyboard_outline
 local WORKSPACE_ICON = wezterm.nerdfonts.md_folder_open
 
 local GIT_ICON = wezterm.nerdfonts.dev_git
-local LOCAL_BRANCH_ICON = wezterm.nerdfonts.dev_git_branch
-local REMOTE_BRANCH_ICON = wezterm.nerdfonts.cod_globe
+local AHEAD_ICON = wezterm.nerdfonts.oct_arrow_up
+local BEHIND_ICON = wezterm.nerdfonts.oct_arrow_down
 
 local ADD_ICON = wezterm.nerdfonts.cod_diff_added
 local CHANGED_ICON = wezterm.nerdfonts.cod_diff_modified
@@ -123,11 +123,21 @@ local function create_right_status_info(window, pane)
         table.insert(right_status, { Foreground = { Color = colors.orange_2 } })
         table.insert(right_status, { Text = " " .. GIT_ICON .. " " } )
 
-        table.insert(right_status, { Foreground = { Color =  colors.gray_1 } })
+        table.insert(right_status, { Foreground = { Color = colors.gray_1 } })
         table.insert(right_status, { Text = git_info.localBranch })
 
         if git_info.upstreamBranch ~= nil and git_info.upstreamBranch ~= "" then
             table.insert(right_status, { Text = " -> " .. git_info.upstreamBranch })
+        end
+
+        if git_info.aheadCount > 0 then
+            table.insert(right_status, { Foreground = { Color = colors.purple_2 } })
+            table.insert(right_status, { Text = " " .. AHEAD_ICON .. " " .. git_info.aheadCount })
+        end
+
+        if git_info.behindCount > 0 then
+            table.insert(right_status, { Foreground = { Color = colors.purple_2 } })
+            table.insert(right_status, { Text = " " .. BEHIND_ICON .. " " .. git_info.behindCount })
         end
 
         table.insert(right_status, { Foreground = { Color = colors.green_1 } })

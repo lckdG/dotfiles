@@ -83,7 +83,7 @@ function M.get_git_status(pane)
 
     local git_dir = M.is_windows() and cwd.file_path:sub(2) or cwd.file_path
     local success, stdout, stderr = wezterm.run_child_process { "git", "-C", git_dir,  "status", "-vbs" }
-    if not success then
+    if not success or stdout == nil then
         return nil
     else
         local _, changeCount = string.gsub(stdout, "\n%sM", "")
@@ -91,6 +91,7 @@ function M.get_git_status(pane)
         local _, delCount = string.gsub(stdout, "\n%sD", "")
 
         local localBranch, upstreamBranch = M.get_branch_names(stdout)
+        local aheadCount, behindCount = M.get_commit_diff(stdout)
 
         return {
             localBranch = localBranch,
@@ -98,6 +99,8 @@ function M.get_git_status(pane)
             addCount = addCount,
             changeCount = changeCount,
             delCount = delCount,
+            aheadCount = aheadCount,
+            behindCount = behindCount,
         }
     end
 end
@@ -117,6 +120,16 @@ function M.get_branch_names(status_string)
     end
 
     return localBranch, upstreamBranch
+end
+
+function M.get_commit_diff(status_string)
+    local _, _, aheadCount = string.find(status_string, "##%s.*%[ahead (%d+).*%]")
+    local _, _, behindCount = string.find(status_string, "##%s.*%[.*behind (%d+)%]")
+
+    aheadCount = aheadCount ~= nil and tonumber(aheadCount) or 0
+    behindCount = behindCount ~= nil and tonumber(behindCount) or 0
+
+    return aheadCount, behindCount
 end
 
 return M
