@@ -1,13 +1,19 @@
-@echo off
+@ECHO off
 
-if not exist %USERPROFILE%\.config mkdir %USERPROFILE%\.config
+SET CONFIG_DIR=%USERPROFILE%\.config
 
-call rmdir %LOCALAPPDATA%\nvim
-call rmdir %USERPROFILE%\.config\wezterm
-call rmdir %LOCALAPPDATA%\lazygit
+SET NVIM_DIR=%LOCALAPPDATA%\nvim
+SET WEZTERM_DIR=%CONFIG_DIR%\wezterm
+SET LG_DIR=%LOCALAPPDATA%\lazygit
 
-call mklink /D %LOCALAPPDATA%\nvim %~dp0..\config\nvim
-call mklink /D %USERPROFILE%\.config\wezterm %~dp0..\config\wezterm
-call mklink /D %LOCALAPPDATA%\lazygit %~dp0..\config\lazygit
+IF not exist %CONFIG_DIR% MKDIR %CONFIG_DIR%
+
+CAll RMDIR %NVIM_DIR%
+CAll RMDIR %WEZTERM_DIR%
+CAll RMDIR %LG_DIR%
+
+CAll MKLINK /D %NVIM_DIR% %~dp0..\config\nvim
+CAll MKLINK /D %WEZTERM_DIR% %~dp0..\config\wezterm
+CAll MKLINK /D %LG_DIR% %~dp0..\config\lazygit
 
 pause
