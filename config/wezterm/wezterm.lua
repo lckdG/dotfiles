@@ -1,5 +1,6 @@
 local wezterm = require 'wezterm'
 local config = wezterm.config_builder()
+local utils = require('utils')
 
 require('status')
 
@@ -62,7 +63,7 @@ local fonts_mapping = {
 
 local launch_menu = {}
 
-if wezterm.target_triple == "x86_64-pc-windows-msvc" then
+if utils.is_windows() then
     config.default_prog = { 'powershell.exe', '-NoLogo' }
     config.window_background_opacity = 0.0
     config.win32_system_backdrop = "Mica"
@@ -73,7 +74,7 @@ if wezterm.target_triple == "x86_64-pc-windows-msvc" then
         args = { "powershell.exe", "-NoLogo" }
     })
 
-elseif wezterm.target_triple == "x86_64-unknown-linux-gnu" then
+elseif utils.is_linux() then
     -- HACK: workaround to render on scaled displays
     config.dpi = 96
     config.default_prog = { "/usr/bin/fish" }

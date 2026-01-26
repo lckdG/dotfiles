@@ -2,6 +2,14 @@ local M = {}
 
 local wezterm = require 'wezterm'
 
+function M.is_windows()
+    return wezterm.target_triple == "x86_64-pc-windows-msvc"
+end
+
+function M.is_linux()
+    return wezterm.target_triple == "x86_64-unknown-linux-gnu"
+end
+
 function M.basename(s)
     return string.gsub(s, '(.*[/\\])(.*)', '%2')
 end
