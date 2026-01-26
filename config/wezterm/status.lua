@@ -63,38 +63,70 @@ end)
 
 local function create_left_status_info(window, pane)
     local workspaces = utils.get_workspace_carousel()
-    local left_status = {}
 
-    table.insert(left_status, { Background = { Color = colors.black_1 } })
-    table.insert(left_status, { Foreground = { Color = colors.aqua_1 } })
-    table.insert(left_status, { Text = "  " .. WORKSPACE_ICON .. " " })
-    if workspaces.left ~= nil then
-        table.insert(left_status, { Foreground = { Color = colors.gray_2 } })
-        table.insert(left_status, { Text = " " .. workspaces.left .. " " })
+    local workspace_icon_component = components.create_tab {
+        left_background = colors.black_1,
+        right_background = workspaces.left ~= nil and colors.black_1 or colors.aqua_1,
+        main_background = colors.black_1,
+        text_configs = {
+            {
+                foreground = colors.aqua_1,
+                icon = WORKSPACE_ICON,
+                text = "",
+            },
+        }
+    }
+
+    local has_left_workspace = workspaces.left ~= nil
+    local has_right_workspace = workspaces.right ~= nil
+
+    local left_workspace_component = {}
+    local right_workspace_component = {}
+
+    if has_left_workspace then
+        left_workspace_component = components.create_tab {
+            left_background = colors.black_1,
+            right_background = colors.aqua_1,
+            main_background = colors.black_1,
+            text_configs = {
+                {
+                    foreground = colors.gray_2,
+                    text = workspaces.left .. " ",
+                },
+            }
+        }
     end
 
-    table.insert(left_status, { Background = { Color = colors.aqua_1 } })
-    table.insert(left_status, { Foreground = { Color = colors.black_1 } })
-    table.insert(left_status, { Text = RIGHT_BORDER })
-    table.insert(left_status, { Attribute = { Intensity = "Bold" } })
-    table.insert(left_status, { Foreground = { Color = colors.white_2 } })
-    table.insert(left_status, { Text = " " ..  workspaces.active .. " " })
+    local active_workspace_component = components.create_tab {
+        left_background = colors.aqua_1,
+        right_background = has_right_workspace and colors.black_1 or colors.tab_bg,
+        main_background = colors.aqua_1,
+        text_configs = {
+            {
+                foreground = colors.white_2,
+                text = workspaces.active .. " "
+            },
+        }
+    }
 
-    if (workspaces.right ~= nil) then
-        table.insert(left_status, { Background = { Color = colors.black_1 } })
-        table.insert(left_status, { Foreground = { Color = colors.aqua_1 } })
-        table.insert(left_status, { Text = RIGHT_BORDER })
-
-        table.insert(left_status, { Foreground = { Color = colors.gray_2 } })
-        table.insert(left_status, { Attribute = { Intensity = "Normal" } })
-        table.insert(left_status, { Text = " " .. workspaces.right .. " " })
+    if has_right_workspace then
+        right_workspace_component = components.create_tab {
+            left_background = colors.black_1,
+            right_background = colors.tab_bg,
+            main_background = colors.black_1,
+            text_configs = {
+                {
+                    foreground = colors.gray_2,
+                    text = workspaces.right .. " "
+                },
+            }
+        }
     end
 
-    table.insert(left_status, { Background = { Color = colors.tab_bg } } )
-    table.insert(left_status, { Foreground = { Color = workspaces.right ~= nil and colors.black_1 or colors.aqua_1 } })
-    table.insert(left_status, { Text = RIGHT_BORDER })
+    local result = {}
+    utils.merge_tables(result, workspace_icon_component, left_workspace_component, active_workspace_component, right_workspace_component)
 
-    return left_status
+    return result
 end
 
 local function get_key_mods(window)
