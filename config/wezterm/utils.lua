@@ -82,7 +82,7 @@ function M.get_git_status(pane)
     end
 
     local git_dir = M.is_windows() and cwd.file_path:sub(2) or cwd.file_path
-    local success, stdout, stderr = wezterm.run_child_process { "git", "-C", git_dir,  "status", "-v", "-b", "-s" }
+    local success, stdout, stderr = wezterm.run_child_process { "git", "-C", git_dir,  "status", "-vbs" }
     if not success then
         return nil
     else
