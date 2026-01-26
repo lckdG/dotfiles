@@ -124,14 +124,14 @@ local function create_right_status_info(window, pane)
         table.insert(right_status, { Text = " " .. GIT_ICON .. " " } )
 
         table.insert(right_status, { Foreground = { Color =  colors.gray_1 } })
-        table.insert(right_status, { Text = " " .. LOCAL_BRANCH_ICON .. " " .. git_info.localBranch })
+        table.insert(right_status, { Text = git_info.localBranch })
 
         if git_info.upstreamBranch ~= nil and git_info.upstreamBranch ~= "" then
-            table.insert(right_status, { Text = " " .. REMOTE_BRANCH_ICON .. " " .. git_info.upstreamBranch })
+            table.insert(right_status, { Text = " -> " .. git_info.upstreamBranch })
         end
 
         table.insert(right_status, { Foreground = { Color = colors.green_1 } })
-        table.insert(right_status, { Text = " " ..  ADD_ICON .. " "  .. git_info.addCount } )
+        table.insert(right_status, { Text = "  " ..  ADD_ICON .. " "  .. git_info.addCount } )
         table.insert(right_status, { Foreground = { Color = colors.yellow_1 } })
         table.insert(right_status, { Text = " " .. CHANGED_ICON .. " " .. git_info.changeCount })
         table.insert(right_status, { Foreground = { Color = colors.red_1 } })

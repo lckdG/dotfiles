@@ -103,15 +103,15 @@ function M.get_git_status(pane)
 end
 
 function M.get_branch_names(status_string)
-    local _, _, branchNames = string.find(status_string, "##%s([%w/%.]+)\n")
+    local _, _, branchNames = string.find(status_string, "##%s([%w/%.]+)[%s\n]")
 
     local localBranch = ""
     local upstreamBranch = ""
 
     local delimiterPos = string.find(branchNames, "%.%.%.")
     if delimiterPos ~= nil then
-        localBranch = string.sub(branchNames, 1, delimiterPos)
-        upstreamBranch = string.sub(branchNames, delimiterPos)
+        localBranch = string.sub(branchNames, 1, delimiterPos - 1)
+        upstreamBranch = string.sub(branchNames, delimiterPos + 3)
     else
         localBranch = branchNames
     end
