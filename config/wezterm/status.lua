@@ -1,6 +1,7 @@
 local wezterm = require 'wezterm'
 local colors = require('colors')
 local utils = require('utils')
+local components = require('components')
 
 --------------- Useful Symbols ---------------
 
@@ -114,73 +115,81 @@ local function get_key_mods(window)
     return filtered_mods
 end
 
-local function create_git_component(pane, format_array, show_upstream)
+local function create_git_texts(pane, show_upstream)
     show_upstream = show_upstream or false
     local git_info = utils.get_git_status(pane)
 
-    table.insert(format_array, { Foreground = { Color = colors.black_1 } })
-    table.insert(format_array, { Text = " " .. LEFT_BORDER })
-    table.insert(format_array, { Background = { Color = colors.black_1 } })
-    table.insert(format_array, { Foreground = { Color = colors.orange_2 } })
-    table.insert(format_array, { Text = " " .. GIT_ICON .. " " } )
+    local config = {}
+    table.insert(config, { foreground = colors.orange_2, icon = GIT_ICON, text = "" })
 
     if git_info ~= nil then
-        table.insert(format_array, { Foreground = { Color = colors.gray_1 } })
-        table.insert(format_array, { Text = git_info.localBranch })
+        table.insert(config, { foreground = colors.gray_1, text = git_info.localBranch })
 
         if show_upstream and git_info.upstreamBranch ~= nil and git_info.upstreamBranch ~= "" then
-            table.insert(format_array, { Text = " -> " .. git_info.upstreamBranch })
+            table.insert(config, { foreground = colors.gray_1, text = " -> " .. git_info.upstreamBranch })
         end
 
         if git_info.aheadCount > 0 then
-            table.insert(format_array, { Foreground = { Color = colors.purple_2 } })
-            table.insert(format_array, { Text = " " .. AHEAD_ICON .. " " .. git_info.aheadCount })
+            table.insert(config, { foreground = colors.purple_2, icon = AHEAD_ICON, text = git_info.aheadCount })
         end
 
         if git_info.behindCount > 0 then
-            table.insert(format_array, { Foreground = { Color = colors.purple_2 } })
-            table.insert(format_array, { Text = " " .. BEHIND_ICON .. " " .. git_info.behindCount })
+            table.insert(config, { foreground = colors.purple_2, icon = BEHIND_ICON, text = git_info.behindCount })
         end
 
         if git_info.aheadCount == 0 and git_info.behindCount == 0 then
-            table.insert(format_array, { Foreground = { Color = colors.green_2 } })
-            table.insert(format_array, { Text = " " .. UP_TO_DATE_ICON })
+            table.insert(config, { foreground = colors.purple_2, icon = UP_TO_DATE_ICON, text = "" })
         end
 
-        table.insert(format_array, { Foreground = { Color = colors.green_1 } })
-        table.insert(format_array, { Text = "  " ..  ADD_ICON .. " "  .. git_info.addCount } )
-        table.insert(format_array, { Foreground = { Color = colors.yellow_1 } })
-        table.insert(format_array, { Text = " " .. CHANGED_ICON .. " " .. git_info.changeCount })
-        table.insert(format_array, { Foreground = { Color = colors.red_1 } })
-        table.insert(format_array, { Text = " " .. REMOVED_ICON .. " " .. git_info.delCount })
+        table.insert(config, { foreground = colors.green_1, icon = ADD_ICON, text = git_info.addCount })
+        table.insert(config, { foreground = colors.yellow_1, icon = CHANGED_ICON, text = git_info.changeCount })
+        table.insert(config, { foreground = colors.red_1, icon = REMOVED_ICON, text = git_info.delCount })
     else
-        table.insert(format_array, { Foreground = { Color = colors.gray_1 } })
-        table.insert(format_array, { Text = UNKNOWN_ICON .. " " })
+        table.insert(config, { foreground = colors.gray_1, icon = UNKNOWN_ICON, text = "" })
     end
+
+    return config
 end
 
 local function create_right_status_info(window, pane)
-    local key_mods = get_key_mods(window)
+    local git_texts = create_git_texts(pane, false)
+    local git_component = components.create_tab {
+        left_background = colors.tab_bg,
+        right_background = colors.black_1,
+        main_background = colors.black_1,
+        text_configs = git_texts
+    }
 
-    local right_status = {}
+    local mods = get_key_mods(window)
+    local keymods_component = components.create_tab {
+        left_background = colors.black_1,
+        right_background = colors.blue_2,
+        main_background = colors.blue_2,
+        text_configs = {
+            {
+                foreground = colors.black_2,
+                icon = KEY_ICON,
+                text = mods
+            },
+        }
+    }
 
-    create_git_component(pane, right_status)
+    local datetime_component = components.create_tab {
+        left_background = colors.blue_2,
+        right_background = colors.blue_1,
+        main_background = colors.blue_1,
+        text_configs = {
+            {
+                foreground = colors.white_1,
+                icon = TIME_ICON,
+                text = wezterm.strftime "%H:%M"
+            },
+        }
+    }
 
-    -- Key mods
-    table.insert(right_status, { Foreground = { Color = colors.blue_2 } })
-    table.insert(right_status, { Text = " " .. LEFT_BORDER })
-    table.insert(right_status, { Foreground = { Color = colors.black_2 } })
-    table.insert(right_status, { Background = { Color = colors.blue_2 } })
-    table.insert(right_status, { Text = " " .. KEY_ICON .. " " .. key_mods })
-
-    -- Current date time
-    table.insert(right_status, { Foreground = { Color = colors.blue_1 } })
-    table.insert(right_status, { Text = " " .. LEFT_BORDER })
-    table.insert(right_status, { Foreground = { Color = colors.white_1 } })
-    table.insert(right_status, { Background = { Color = colors.blue_1 } })
-    table.insert(right_status, { Text = " " .. TIME_ICON .. "  " .. wezterm.strftime "%H:%M" .. "  " })
-
-    return right_status
+    local result = {}
+    utils.merge_tables(result, git_component, keymods_component, datetime_component)
+    return result
 end
 
 wezterm.on("update-status", function(window, pane)
@@ -190,5 +199,4 @@ wezterm.on("update-status", function(window, pane)
     local right_status = create_right_status_info(window, pane)
     window:set_right_status(wezterm.format(right_status))
 end)
-
 
