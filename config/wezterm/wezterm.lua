@@ -124,10 +124,10 @@ wezterm.on("update-status", function(window, pane)
 
     window:set_right_status(wezterm.format({
         -- Key mods
-        { Foreground = { Color = black_4 } },
+        { Foreground = { Color = black_1 } },
         { Text = " " .. LEFT_BORDER },
-        { Foreground = { Color = gray_1 } },
-        { Background = { Color = black_4 } },
+        { Foreground = { Color = gray_2 } },
+        { Background = { Color = black_1 } },
         { Text = " " .. KEY_ICON .. " " .. filtered_mods },
 
         -- Current date time
