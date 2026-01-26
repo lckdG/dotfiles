@@ -1,13 +1,26 @@
 local M = {}
 
-M.aqua_1 = "689d6a"
-M.aqua_2 = "8ec07c"
+-- Color from the gruvbox material scheme: https://github.com/morhetz/gruvbox
+M.red_1 = "cc241d"
+M.red_2 = "fb4934"
+
+M.green_1 = "98971a"
+M.green_2 = "b8bb26"
+
+M.yellow_1 = "d79921"
+M.yellow_2 = "fabd2f"
 
 M.blue_1 = "458588"
 M.blue_2 = "83a598"
 
-M.yellow_1 = "d79921"
-M.yellow_2 = "fabd2f"
+M.purple_1 = "b16286"
+M.purple_2 = "d3869b"
+
+M.aqua_1 = "689d6a"
+M.aqua_2 = "8ec07c"
+
+M.orange_1 = "d65d0e"
+M.orange_2 = "fe8019"
 
 M.black_1 = "1d2021"
 M.black_2 = "282828"
