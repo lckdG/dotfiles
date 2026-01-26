@@ -49,7 +49,7 @@ wezterm.on("format-tab-title", function(tab, tabs, _, _, hover, max_width)
     }
 end)
 
-local function create_left_status_info()
+local function create_left_status_info(window, pane)
     local workspaces = utils.get_workspace_carousel()
     local left_status = {}
 
@@ -85,10 +85,7 @@ local function create_left_status_info()
     return left_status
 end
 
-wezterm.on("update-status", function(window, pane)
-    local left_status = create_left_status_info()
-    window:set_left_status(wezterm.format(left_status))
-
+local function get_key_mods(window)
     local mods, leds = window:keyboard_modifiers()
     local all_mods = window:leader_is_active() and "LEADER" or mods
 
@@ -103,21 +100,36 @@ wezterm.on("update-status", function(window, pane)
         end
     end
 
-    window:set_right_status(wezterm.format({
-        -- Key mods
-        { Foreground = { Color = colors.blue_2 } },
-        { Text = " " .. LEFT_BORDER },
-        { Foreground = { Color = colors.black_2 } },
-        { Background = { Color = colors.blue_2 } },
-        { Text = " " .. KEY_ICON .. " " .. filtered_mods },
+    return filtered_mods
+end
 
-        -- Current date time
-        { Foreground = { Color = colors.blue_1 } },
-        { Text = " " .. LEFT_BORDER },
-        { Foreground = { Color = colors.white_1 } },
-        { Background = { Color = colors.blue_1 } },
-        { Text = " " .. TIME_ICON .. "  " .. wezterm.strftime "%H:%M" .. "  " },
-    }))
+local function create_right_status_info(window, pane)
+    local key_mods = get_key_mods(window)
+
+    local right_status = {}
+    -- Key mods
+    table.insert(right_status, { Foreground = { Color = colors.blue_2 } })
+    table.insert(right_status, { Text = " " .. LEFT_BORDER })
+    table.insert(right_status, { Foreground = { Color = colors.black_2 } })
+    table.insert(right_status, { Background = { Color = colors.blue_2 } })
+    table.insert(right_status, { Text = " " .. KEY_ICON .. " " .. key_mods })
+
+    -- Current date time
+    table.insert(right_status, { Foreground = { Color = colors.blue_1 } })
+    table.insert(right_status, { Text = " " .. LEFT_BORDER })
+    table.insert(right_status, { Foreground = { Color = colors.white_1 } })
+    table.insert(right_status, { Background = { Color = colors.blue_1 } })
+    table.insert(right_status, { Text = " " .. TIME_ICON .. "  " .. wezterm.strftime "%H:%M" .. "  " })
+
+    return right_status
+end
+
+wezterm.on("update-status", function(window, pane)
+    local left_status = create_left_status_info(window, pane)
+    window:set_left_status(wezterm.format(left_status))
+
+    local right_status = create_right_status_info(window, pane)
+    window:set_right_status(wezterm.format(right_status))
 end)
 
 
