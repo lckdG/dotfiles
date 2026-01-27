@@ -6,6 +6,7 @@ M.red_2 = "fb4934"
 
 M.green_1 = "98971a"
 M.green_2 = "b8bb26"
+M.green_3 = "79740e"
 
 M.yellow_1 = "d79921"
 M.yellow_2 = "fabd2f"

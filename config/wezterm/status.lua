@@ -8,7 +8,8 @@ local components = require 'components'
 
 local TIME_ICON = wezterm.nerdfonts.fa_clock_o
 local KEY_ICON = wezterm.nerdfonts.md_keyboard_outline
-local WORKSPACE_ICON = wezterm.nerdfonts.md_folder_open
+local WORKSPACE_ICON = wezterm.nerdfonts.md_card_multiple
+local DIRECTORY_ICON = wezterm.nerdfonts.md_folder_open
 
 local GIT_ICON = wezterm.nerdfonts.dev_git
 local UNKNOWN_ICON = wezterm.nerdfonts.md_dog
@@ -55,12 +56,12 @@ local function create_left_status_info(window, pane)
     local workspaces = utils.get_workspace_carousel()
 
     local workspace_icon_component = components.create_tab {
-        left_background = colors.black_1,
-        right_background = workspaces.left ~= nil and colors.black_1 or colors.aqua_1,
-        main_background = colors.black_1,
+        left_background = colors.green_3,
+        right_background = workspaces.left ~= nil and colors.green_3 or colors.green_1,
+        main_background = colors.green_3,
         text_configs = {
             {
-                foreground = colors.aqua_1,
+                foreground = colors.white_1,
                 icon = WORKSPACE_ICON,
                 text = "",
             },
@@ -75,12 +76,12 @@ local function create_left_status_info(window, pane)
 
     if has_left_workspace then
         left_workspace_component = components.create_tab {
-            left_background = colors.black_1,
-            right_background = colors.aqua_1,
-            main_background = colors.black_1,
+            left_background = colors.green_3,
+            right_background = colors.green_1,
+            main_background = colors.green_3,
             text_configs = {
                 {
-                    foreground = colors.gray_2,
+                    foreground = colors.gray_1,
                     text = workspaces.left .. " ",
                 },
             }
@@ -88,12 +89,12 @@ local function create_left_status_info(window, pane)
     end
 
     local active_workspace_component = components.create_tab {
-        left_background = colors.aqua_1,
-        right_background = has_right_workspace and colors.black_1 or colors.tab_bg,
-        main_background = colors.aqua_1,
+        left_background = colors.green_1,
+        right_background = has_right_workspace and colors.green_3 or colors.black_1,
+        main_background = colors.green_1,
         text_configs = {
             {
-                foreground = colors.white_2,
+                foreground = colors.white_1,
                 text = workspaces.active .. " ",
                 attributes = {
                     intensity = Intensity.Bold
@@ -104,20 +105,37 @@ local function create_left_status_info(window, pane)
 
     if has_right_workspace then
         right_workspace_component = components.create_tab {
-            left_background = colors.black_1,
-            right_background = colors.tab_bg,
-            main_background = colors.black_1,
+            left_background = colors.green_3,
+            right_background = colors.black_1,
+            main_background = colors.green_3,
             text_configs = {
                 {
-                    foreground = colors.gray_2,
+                    foreground = colors.gray_1,
                     text = workspaces.right .. " "
                 },
             }
         }
     end
 
+    local short_cwd = utils.get_short_cwd(pane)
+    local cwd_component = components.create_tab {
+        left_background = colors.black_1,
+        right_background = colors.tab_bg,
+        main_background = colors.black_1,
+        text_configs = {
+            {
+                foreground = colors.aqua_1,
+                text = DIRECTORY_ICON .. " ",
+            },
+            {
+                foreground = colors.gray_2,
+                text = " " .. short_cwd .. " ",
+            }
+        }
+    }
+
     local result = {}
-    utils.merge_tables(result, workspace_icon_component, left_workspace_component, active_workspace_component, right_workspace_component)
+    utils.merge_tables(result, workspace_icon_component, left_workspace_component, active_workspace_component, right_workspace_component, cwd_component)
 
     return result
 end

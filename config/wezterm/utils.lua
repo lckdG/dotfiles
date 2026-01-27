@@ -21,6 +21,38 @@ function M.get_tab_title(tab)
     return M.basename(full_name)
 end
 
+---@return string?
+function M.get_cwd(pane)
+    local cwd = pane:get_current_working_dir()
+    if cwd == nil then
+        return nil
+    end
+
+    return M.is_windows() and cwd.file_path:sub(2) or cwd.file_path
+end
+
+function M.get_short_cwd(pane)
+    local cwd = M.get_cwd(pane)
+    if cwd == nil then
+        return nil
+    end
+
+    ---@cast cwd string
+
+    local sep = M.is_windows() and "\\" or "/"
+
+    local _, parent_count = cwd:gsub("/", "")
+    if parent_count > 3 then
+        local _, _, dir1, dir2, dir3 = string.find(cwd, ".*/(.+)/(.+)/(.+)$")
+
+        return ".." .. sep .. dir1 .. sep .. dir2 .. sep .. dir3
+    else
+        cwd = cwd:gsub("/", sep)
+    end
+
+    return cwd
+end
+
 function M.indexOf(value, array)
     for i, v in ipairs(array) do
         if v == value then
@@ -76,12 +108,7 @@ function M.get_workspace_carousel()
 end
 
 function M.get_git_status(pane)
-    local cwd = pane:get_current_working_dir()
-    if cwd == nil then
-        return nil
-    end
-
-    local git_dir = M.is_windows() and cwd.file_path:sub(2) or cwd.file_path
+    local git_dir = M.get_cwd(pane)
     local success, stdout, stderr = wezterm.run_child_process { "git", "-C", git_dir,  "status", "-vbs" }
     if not success or stdout == nil then
         return nil
