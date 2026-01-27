@@ -56,12 +56,12 @@ local function create_left_status_info(window, pane)
     local workspaces = utils.get_workspace_carousel()
 
     local workspace_icon_component = components.create_tab {
-        left_background = colors.green_3,
-        right_background = workspaces.left ~= nil and colors.green_3 or colors.green_1,
-        main_background = colors.green_3,
+        left_background = colors.black_3,
+        right_background = workspaces.left ~= nil and colors.black_3 or colors.aqua_1,
+        main_background = colors.black_3,
         text_configs = {
             {
-                foreground = colors.white_1,
+                foreground = colors.aqua_1,
                 icon = WORKSPACE_ICON,
                 text = "",
             },
@@ -76,9 +76,9 @@ local function create_left_status_info(window, pane)
 
     if has_left_workspace then
         left_workspace_component = components.create_tab {
-            left_background = colors.green_3,
-            right_background = colors.green_1,
-            main_background = colors.green_3,
+            left_background = colors.black_3,
+            right_background = colors.aqua_1,
+            main_background = colors.black_3,
             text_configs = {
                 {
                     foreground = colors.gray_1,
@@ -89,9 +89,9 @@ local function create_left_status_info(window, pane)
     end
 
     local active_workspace_component = components.create_tab {
-        left_background = colors.green_1,
-        right_background = has_right_workspace and colors.green_3 or colors.black_1,
-        main_background = colors.green_1,
+        left_background = colors.aqua_1,
+        right_background = has_right_workspace and colors.black_3 or colors.black_1,
+        main_background = colors.aqua_1,
         text_configs = {
             {
                 foreground = colors.white_1,
@@ -105,9 +105,9 @@ local function create_left_status_info(window, pane)
 
     if has_right_workspace then
         right_workspace_component = components.create_tab {
-            left_background = colors.green_3,
+            left_background = colors.black_3,
             right_background = colors.black_1,
-            main_background = colors.green_3,
+            main_background = colors.black_3,
             text_configs = {
                 {
                     foreground = colors.gray_1,
@@ -124,11 +124,11 @@ local function create_left_status_info(window, pane)
         main_background = colors.black_1,
         text_configs = {
             {
-                foreground = colors.aqua_1,
+                foreground = colors.white_1,
                 text = DIRECTORY_ICON .. " ",
             },
             {
-                foreground = colors.gray_2,
+                foreground = colors.white_2,
                 text = " " .. short_cwd .. " ",
             }
         }
