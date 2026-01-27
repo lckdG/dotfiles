@@ -8,6 +8,12 @@
 ---@field foreground string
 ---@field icon? string
 ---@field text string
+---@field attributes? FormatTextAttributes
+
+---@class (exact) FormatTextAttributes
+---@field underline? Underline
+---@field intensity? Intensity
+---@field italic? Italic
 
 local wezterm = require 'wezterm'
 local colors = require('colors')
@@ -58,7 +64,29 @@ function M.create_text(configs)
             table.insert(result, { Text = " " .. v.icon .. " " })
         end
 
+        local has_attr = v.attributes ~= nil
+        if has_attr then
+            ---@type FormatTextAttributes
+            local attr = v.attributes
+
+            if attr.underline ~= nil then
+                table.insert(result, { Attribute = { Underline = attr.underline } })
+            end
+
+            if attr.italic ~= nil then
+                table.insert(result, { Attribute = { Italic = attr.italic } })
+            end
+
+            if attr.intensity ~= nil then
+                table.insert(result, { Attribute = { Intensity = attr.intensity } })
+            end
+        end
+
         table.insert(result, { Text = tostring(text) })
+
+        if has_attr then
+            table.insert(result, "ResetAttributes")
+        end
     end
 
     return result

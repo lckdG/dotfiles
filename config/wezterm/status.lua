@@ -2,6 +2,7 @@ local wezterm = require 'wezterm'
 local colors = require('colors')
 local utils = require('utils')
 local components = require('components')
+local types = require 'types'
 
 --------------- Useful Symbols ---------------
 
@@ -93,7 +94,10 @@ local function create_left_status_info(window, pane)
         text_configs = {
             {
                 foreground = colors.white_2,
-                text = workspaces.active .. " "
+                text = workspaces.active .. " ",
+                attributes = {
+                    intensity = Intensity.Bold
+                }
             },
         }
     }
