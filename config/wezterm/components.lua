@@ -1,22 +1,5 @@
----@class (exact) TabConfig
----@field left_background? string
----@field right_background? string
----@field main_background string
----@field text_configs FormatText[]
-
----@class (exact) FormatText
----@field foreground string
----@field icon? string
----@field text string
----@field attributes? FormatTextAttributes
-
----@class (exact) FormatTextAttributes
----@field underline? Underline
----@field intensity? Intensity
----@field italic? Italic
-
 local wezterm = require 'wezterm'
-local colors = require('colors')
+local colors = require 'colors'
 
 local RIGHT_BORDER = wezterm.nerdfonts.ple_upper_left_triangle
 local LEFT_BORDER = wezterm.nerdfonts.ple_lower_right_triangle

@@ -1,10 +1,11 @@
 local wezterm = require 'wezterm'
 local config = wezterm.config_builder()
-local utils = require('utils')
 
-require('status')
+local utils = require 'utils'
+require 'types'
+require 'status'
 
-config.term = "wezterm"
+-- config.term = "wezterm"
 config.default_workspace = "home"
 
 config.front_end = "OpenGL"

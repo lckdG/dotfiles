@@ -1,8 +1,8 @@
 local wezterm = require 'wezterm'
-local colors = require('colors')
-local utils = require('utils')
-local components = require('components')
-local types = require 'types'
+
+local colors = require 'colors'
+local utils = require 'utils'
+local components = require 'components'
 
 --------------- Useful Symbols ---------------
 
