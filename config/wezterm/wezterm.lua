@@ -151,6 +151,7 @@ config.keys = {
 
     { key = "-", mods = "LEADER", action = act.SplitVertical { domain = "CurrentPaneDomain" } },
     { key = "|", mods = "LEADER", action = act.SplitHorizontal { domain = "CurrentPaneDomain" } },
+    { key = "|", mods = "LEADER|SHIFT", action = act.SplitHorizontal { domain = "CurrentPaneDomain" } },
     { key = "n", mods = "LEADER", action = act.ShowLauncherArgs { flags = "LAUNCH_MENU_ITEMS" } },
 
     { key = "h", mods = "LEADER", action = act.ActivatePaneDirection "Left" },
