@@ -10,7 +10,7 @@ local KEY_ICON = wezterm.nerdfonts.md_keyboard_outline
 local WORKSPACE_ICON = wezterm.nerdfonts.md_folder_open
 
 local GIT_ICON = wezterm.nerdfonts.dev_git
-local UNKNOWN_ICON = wezterm.nerdfonts.fa_question
+local UNKNOWN_ICON = wezterm.nerdfonts.md_dog
 
 local AHEAD_ICON = wezterm.nerdfonts.oct_arrow_up
 local BEHIND_ICON = wezterm.nerdfonts.oct_arrow_down
@@ -141,9 +141,9 @@ local function create_git_texts(pane, show_upstream)
     local git_info = utils.get_git_status(pane)
 
     local config = {}
-    table.insert(config, { foreground = colors.orange_2, icon = GIT_ICON, text = "" })
 
     if git_info ~= nil then
+        table.insert(config, { foreground = colors.orange_2, icon = GIT_ICON, text = "" })
         table.insert(config, { foreground = colors.gray_1, text = git_info.localBranch })
 
         if show_upstream and git_info.upstreamBranch ~= nil and git_info.upstreamBranch ~= "" then
@@ -166,7 +166,8 @@ local function create_git_texts(pane, show_upstream)
         table.insert(config, { foreground = colors.yellow_1, icon = CHANGED_ICON, text = git_info.changeCount })
         table.insert(config, { foreground = colors.red_1, icon = REMOVED_ICON, text = git_info.delCount })
     else
-        table.insert(config, { foreground = colors.gray_1, icon = UNKNOWN_ICON, text = "" })
+        table.insert(config, { foreground = colors.orange_2, icon = UNKNOWN_ICON, text = "" })
+        table.insert(config, { foreground = colors.gray_1, text = " Woof" })
     end
 
     return config
