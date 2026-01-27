@@ -122,7 +122,7 @@ local function create_left_status_info(window, pane)
         }
     end
 
-    local short_cwd = utils.get_short_cwd(pane)
+    local short_cwd = utils.get_short_cwd(pane) or "..."
     local cwd_component = components.create_tab {
         left_background = colors.black_1,
         right_background = colors.tab_bg,
