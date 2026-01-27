@@ -43,6 +43,7 @@ wezterm.on("format-tab-title", function(tab, tabs, _, _, hover, max_width)
         left_background = colors.tab_bg,
         right_background = colors.tab_bg,
         main_background = background,
+        border_side = BorderSide.Left,
         text_configs = {
             {
                 foreground = foreground,
@@ -59,6 +60,7 @@ local function create_left_status_info(window, pane)
         left_background = colors.black_3,
         right_background = workspaces.left ~= nil and colors.black_3 or colors.aqua_1,
         main_background = colors.black_3,
+        border_side = BorderSide.Left,
         text_configs = {
             {
                 foreground = colors.aqua_1,
@@ -79,6 +81,7 @@ local function create_left_status_info(window, pane)
             left_background = colors.black_3,
             right_background = colors.aqua_1,
             main_background = colors.black_3,
+            border_side = BorderSide.Left,
             text_configs = {
                 {
                     foreground = colors.gray_1,
@@ -92,6 +95,7 @@ local function create_left_status_info(window, pane)
         left_background = colors.aqua_1,
         right_background = has_right_workspace and colors.black_3 or colors.black_1,
         main_background = colors.aqua_1,
+        border_side = BorderSide.Left,
         text_configs = {
             {
                 foreground = colors.white_1,
@@ -108,6 +112,7 @@ local function create_left_status_info(window, pane)
             left_background = colors.black_3,
             right_background = colors.black_1,
             main_background = colors.black_3,
+            border_side = BorderSide.Left,
             text_configs = {
                 {
                     foreground = colors.gray_1,
@@ -122,6 +127,7 @@ local function create_left_status_info(window, pane)
         left_background = colors.black_1,
         right_background = colors.tab_bg,
         main_background = colors.black_1,
+        border_side = BorderSide.Left,
         text_configs = {
             {
                 foreground = colors.white_1,
@@ -201,6 +207,7 @@ local function create_right_status_info(window, pane)
         left_background = colors.tab_bg,
         right_background = colors.black_1,
         main_background = colors.black_1,
+        border_side = BorderSide.Right,
         text_configs = git_texts
     }
 
@@ -209,6 +216,7 @@ local function create_right_status_info(window, pane)
         left_background = colors.black_1,
         right_background = colors.blue_2,
         main_background = colors.blue_2,
+        border_side = BorderSide.Right,
         text_configs = {
             {
                 foreground = colors.black_2,
@@ -222,6 +230,7 @@ local function create_right_status_info(window, pane)
         left_background = colors.blue_2,
         right_background = colors.blue_1,
         main_background = colors.blue_1,
+        border_side = BorderSide.Right,
         text_configs = {
             {
                 foreground = colors.white_1,

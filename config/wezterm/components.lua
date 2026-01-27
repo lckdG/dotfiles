@@ -1,8 +1,18 @@
 local wezterm = require 'wezterm'
 local colors = require 'colors'
 
-local RIGHT_BORDER = wezterm.nerdfonts.ple_upper_left_triangle
-local LEFT_BORDER = wezterm.nerdfonts.ple_lower_right_triangle
+local nerdfonts = wezterm.nerdfonts
+
+local BORDER = {
+    Left = {
+        Left = nerdfonts.ple_upper_right_triangle,
+        Right = nerdfonts.ple_lower_left_triangle
+    },
+    Right = {
+        Left = nerdfonts.ple_lower_right_triangle,
+        Right = nerdfonts.ple_upper_left_triangle
+    }
+}
 
 local M = {}
 
@@ -13,11 +23,14 @@ function M.create_tab(tab_config)
     local right_background = tab_config.right_background or colors.black_1
     local main_background = tab_config.main_background
 
+    local side = tab_config.border_side or BorderSide.Left
+    local border = BORDER[side]
+
     local status_format = {}
 
     table.insert(status_format, { Background = { Color = left_background } })
     table.insert(status_format, { Foreground = { Color = main_background } })
-    table.insert(status_format, { Text = LEFT_BORDER })
+    table.insert(status_format, { Text = border.Left })
 
     table.insert(status_format, { Background = { Color = main_background } })
     local texts = M.create_text(tab_config.text_configs)
@@ -27,7 +40,7 @@ function M.create_tab(tab_config)
 
     table.insert(status_format, { Background = { Color = right_background } })
     table.insert(status_format, { Foreground = { Color = main_background } })
-    table.insert(status_format, { Text = RIGHT_BORDER })
+    table.insert(status_format, { Text = border.Right })
 
     return status_format
 end

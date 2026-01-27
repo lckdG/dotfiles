@@ -2,7 +2,14 @@
 ---@field left_background? string
 ---@field right_background? string
 ---@field main_background string
+---@field border_side? BorderSide
 ---@field text_configs FormatText[]
+
+---@enum BorderSide
+BorderSide = {
+    Left = "Left",
+    Right = "Right"
+}
 
 ---@class (exact) FormatText
 ---@field foreground string
