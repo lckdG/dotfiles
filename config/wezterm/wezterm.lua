@@ -163,6 +163,9 @@ config.keys = {
     { key = "UpArrow", mods = "LEADER|CTRL", action = act.AdjustPaneSize { "Up", 5 } },
     { key = "RightArrow", mods = "LEADER|CTRL", action = act.AdjustPaneSize { "Right", 5 } },
 
+    { key = "UpArrow", mods = "CTRL|SHIFT", action = act.ScrollToPrompt(-1) },
+    { key = "DownArrow", mods = "CTRL|SHIFT", action = act.ScrollToPrompt(1) },
+
     { key = "z", mods = "LEADER", action = act.TogglePaneZoomState },
     { key = "f", mods = "LEADER", action = act.ToggleFullScreen },
 
