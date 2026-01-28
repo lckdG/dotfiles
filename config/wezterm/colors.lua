@@ -37,4 +37,75 @@ M.white_2 = "ebdbb2"
 
 M.tab_bg = "333333"
 
+M.predefined = {
+    tab_a = {
+        backgrounds = {
+            left = M.black_3,
+            main = M.aqua_3,
+            sub = M.black_3,
+            right = M.aqua_1,
+        },
+        foreground = {
+            icon = M.aqua_1,
+            main = M.white_1,
+            sub = M.gray_1,
+        }
+    },
+    tab_b = {
+        backgrounds = {
+            left = M.aqua_1,
+            main = M.aqua_1,
+            sub = M.black_3,
+            right = M.tab_bg,
+        },
+        foreground = {
+            icon = M.black_1,
+            main = M.black_2,
+        }
+    },
+    tab_x = {
+        backgrounds = {
+            left = M.blue_2,
+            main = M.blue_1,
+            sub = M.black_3,
+            right = M.blue_1,
+        },
+        foreground = {
+            icon = M.white_1,
+            main = M.white_1,
+        }
+    },
+    tab_y = {
+        backgrounds = {
+            left = M.black_1,
+            main = M.blue_2,
+            sub = M.black_3,
+            right = M.blue_2,
+        },
+        foregorund = {
+            icon = M.black_2,
+            main = M.black_2,
+        }
+    },
+    tab_z = {
+        backgrounds = {
+            left = M.tab_bg,
+            main = M.black_1,
+            sub = M.black_3,
+            right = M.black_1,
+        },
+        foreground = {
+            icon = M.orange_2,
+            main = M.gray_1,
+        }
+    }
+}
+
+M.git_colors = {
+    commit_diff = M.purple_2,
+    add_count = M.green_1,
+    change_count = M.yellow_1,
+    remove_count = M.red_1,
+}
+
 return M
