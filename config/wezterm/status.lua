@@ -161,7 +161,9 @@ local function get_key_mods(window)
         end
     end
 
-    return filtered_mods
+    local key_table = window:active_key_table() or "Default"
+
+    return key_table .. "  " ..  filtered_mods
 end
 
 local function create_git_texts(pane, show_upstream)

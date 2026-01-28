@@ -32,8 +32,8 @@ function M.setup_keys(config)
 
         -- Key tables
         { key = "Escape", mods = "LEADER", action = act.PopKeyTable },
-        { key = "p", mods = "LEADER", action = act.ActivateKeyTable { name = "pane_manipulation", one_shot = false } },
-        { key = "s", mods = "LEADER", action = act.ActivateKeyTable { name = "font_manipulation", one_shot = false } },
+        { key = "p", mods = "LEADER", action = act.ActivateKeyTable { name = "Pane", one_shot = false } },
+        { key = "s", mods = "LEADER", action = act.ActivateKeyTable { name = "Font", one_shot = false } },
 
         { key = "c", mods = "CTRL|SHIFT", action = act.CopyTo "Clipboard" },
         { key = "v", mods = "CTRL|SHIFT", action = act.PasteFrom "Clipboard" },
@@ -85,7 +85,7 @@ function M.setup_keys(config)
     }
 
     config.key_tables = {
-        pane_manipulation = {
+        Pane = {
             { key = "c", action = act.RotatePanes "Clockwise" },
             { key = "C", action = act.RotatePanes "CounterClockwise" },
 
@@ -99,7 +99,7 @@ function M.setup_keys(config)
             { key = "UpArrow", action = act.AdjustPaneSize { "Up", 5 } },
             { key = "RightArrow", action = act.AdjustPaneSize { "Right", 5 } },
         },
-        font_manipulation = {
+        Font = {
             { key = "-", action = act.DecreaseFontSize },
             { key = "=", action = act.IncreaseFontSize },
             { key = "0", action = act.ResetFontSize },
