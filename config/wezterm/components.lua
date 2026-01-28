@@ -38,7 +38,6 @@ local DEFAULT_COLOR = "1d2021"
 
 local M = {}
 
----@private
 ---@param config TabConfig
 ---@return table
 function M.create_tab(config)

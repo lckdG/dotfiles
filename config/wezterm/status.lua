@@ -20,10 +20,14 @@ wezterm.on("format-tab-title", function(tab, tabs, _, _, hover, max_width)
     end
 
     return components.create_tab {
-        left_background = colors.tab_bg,
-        right_background = colors.tab_bg,
-        main_background = background,
-        border_side = BorderSide.Left,
+        description = {
+            backgrounds = {
+                left = colors.tab_bg,
+                main = background,
+                right = colors.tab_bg,
+            },
+            border_side = BorderSide.Left,
+        },
         text_configs = {
             {
                 foreground = foreground,
