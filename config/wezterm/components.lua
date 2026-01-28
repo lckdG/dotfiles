@@ -71,6 +71,7 @@ function M.create_tab(config)
     return status_format
 end
 
+---@private
 ---@param configs FormatText[]
 ---@return table
 function M.create_text(configs)
