@@ -2,17 +2,17 @@
 ---@field description ComponentDescription
 ---@field text_configs FormatText[]
 
----@class ComponentDescription
+---@class (exact) ComponentDescription
 ---@field backgrounds ComponentBackground
 ---@field border_side BorderSide
 
----@class ComponentBackground
+---@class (exact) ComponentBackground
 ---@field main string
 ---@field sub? string
 ---@field left string
 ---@field right string
----@enum BorderSide
 
+---@enum (keys) BorderSide
 BorderSide = {
     Left = "Left",
     Right = "Right"
@@ -28,6 +28,15 @@ BorderSide = {
 ---@field underline? Underline
 ---@field intensity? Intensity
 ---@field italic? Italic
+
+---@class (exact) PredefinedComponent
+---@field description ComponentDescription
+---@field text_color PredefinedTextColor
+
+---@class (exact) PredefinedTextColor
+---@field icon string
+---@field main string
+---@field sub? string
 
 ---@enum (keys) Underline
 Underline = {
