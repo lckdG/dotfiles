@@ -19,6 +19,7 @@ M.purple_2 = "d3869b"
 
 M.aqua_1 = "689d6a"
 M.aqua_2 = "8ec07c"
+M.aqua_3 = "427b58"
 
 M.orange_1 = "d65d0e"
 M.orange_2 = "fe8019"

@@ -1,11 +1,18 @@
 ---@class (exact) TabConfig
----@field left_background? string
----@field right_background? string
----@field main_background string
----@field border_side? BorderSide
+---@field description ComponentDescription
 ---@field text_configs FormatText[]
 
+---@class ComponentDescription
+---@field backgrounds ComponentBackground
+---@field border_side BorderSide
+
+---@class ComponentBackground
+---@field main string
+---@field sub? string
+---@field left string
+---@field right string
 ---@enum BorderSide
+
 BorderSide = {
     Left = "Left",
     Right = "Right"
@@ -44,3 +51,4 @@ Italic = {
     On = true,
     Off = false,
 }
+

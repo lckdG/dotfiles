@@ -167,4 +167,23 @@ function M.merge_tables(result, ...)
     end
 end
 
+function M.get_key_mods(window)
+    local mods, leds = window:keyboard_modifiers()
+    local all_mods = window:leader_is_active() and "LEADER" or mods
+
+    local filtered_mods = "NONE"
+    for match in string.gmatch(all_mods, "([^|]+)") do
+        if not string.find(match, "_") then
+            if filtered_mods == "NONE" then
+                filtered_mods = match
+            else
+                filtered_mods = match .. "|" .. filtered_mods
+            end
+        end
+    end
+
+    local key_table = window:active_key_table() or "Default"
+    return key_table .. "  " ..  filtered_mods
+end
+
 return M

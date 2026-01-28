@@ -1,8 +1,10 @@
 local wezterm = require 'wezterm'
 local colors = require 'colors'
+local utils = require 'utils'
+
+------------------ Useful Symbols ------------------
 
 local nerdfonts = wezterm.nerdfonts
-
 local BORDER = {
     Left = {
         Left = nerdfonts.ple_upper_right_triangle,
@@ -14,16 +16,41 @@ local BORDER = {
     }
 }
 
+local TIME_ICON = nerdfonts.fa_clock_o
+local KEY_ICON = nerdfonts.md_keyboard_outline
+local WORKSPACE_ICON = nerdfonts.md_card_multiple
+local DIRECTORY_ICON = nerdfonts.md_folder_open
+
+local GIT_ICON = nerdfonts.dev_git
+local UNKNOWN_ICON = nerdfonts.md_dog
+
+local AHEAD_ICON = nerdfonts.oct_arrow_up
+local BEHIND_ICON = nerdfonts.oct_arrow_down
+local UP_TO_DATE_ICON = nerdfonts.cod_check_all
+
+local ADD_ICON = nerdfonts.cod_diff_added
+local CHANGED_ICON = nerdfonts.cod_diff_modified
+local REMOVED_ICON = nerdfonts.cod_diff_removed
+
+----------------------------------------------------
+
+local DEFAULT_COLOR = "1d2021"
+
 local M = {}
 
----@param tab_config TabConfig
+---@private
+---@param config TabConfig
 ---@return table
-function M.create_tab(tab_config)
-    local left_background = tab_config.left_background or colors.black_1
-    local right_background = tab_config.right_background or colors.black_1
-    local main_background = tab_config.main_background
+function M.create_tab(config)
+    local description = config.description
+    local text_configs = config.text_configs
 
-    local side = tab_config.border_side or BorderSide.Left
+    local backgrounds = description.backgrounds
+    local left_background = backgrounds.left or DEFAULT_COLOR
+    local right_background = backgrounds.right or DEFAULT_COLOR
+    local main_background = backgrounds.main
+
+    local side = description.border_side or BorderSide.Left
     local border = BORDER[side]
 
     local status_format = {}
@@ -33,7 +60,7 @@ function M.create_tab(tab_config)
     table.insert(status_format, { Text = border.Left })
 
     table.insert(status_format, { Background = { Color = main_background } })
-    local texts = M.create_text(tab_config.text_configs)
+    local texts = M.create_text(text_configs)
     for _, v in ipairs(texts) do
         table.insert(status_format, v)
     end
@@ -86,6 +113,211 @@ function M.create_text(configs)
     end
 
     return result
+end
+
+---@param description ComponentDescription
+---@return table
+function M.create_workspace_component(description)
+    local backgrounds = description.backgrounds
+
+    local left = backgrounds.left
+    local main = backgrounds.main
+    local sub = backgrounds.sub or backgrounds.main
+    local right = backgrounds.right
+
+    local workspaces = utils.get_workspace_carousel()
+
+    local workspace_icon_component = M.create_tab {
+        description = {
+            backgrounds = {
+                left = left,
+                main = sub,
+                right = workspaces.left ~= nil and sub or main,
+            },
+            border_side = description.border_side,
+        },
+        text_configs = {
+            {
+                foreground = colors.aqua_1,
+                icon = WORKSPACE_ICON,
+                text = "",
+            },
+        }
+    }
+
+    local has_left_workspace = workspaces.left ~= nil
+    local has_right_workspace = workspaces.right ~= nil
+
+    local left_workspace_component = {}
+    local right_workspace_component = {}
+
+    if has_left_workspace then
+        left_workspace_component = M.create_tab {
+            description = {
+                backgrounds = {
+                    left = left,
+                    main = sub,
+                    right = main,
+                },
+                border_side = description.border_side,
+            },
+
+            text_configs = {
+                {
+                    foreground = colors.gray_1,
+                    text = workspaces.left .. " ",
+                },
+            }
+        }
+    end
+
+    local active_workspace_component = M.create_tab {
+        description = {
+            backgrounds = {
+                left = main,
+                main = main,
+                right = workspaces.right ~= nil and sub or right,
+            },
+            border_side = description.border_side,
+        },
+        text_configs = {
+            {
+                foreground = colors.white_1,
+                text = workspaces.active .. " ",
+                attributes = {
+                    intensity = Intensity.Bold
+                }
+            },
+        }
+    }
+
+    if has_right_workspace then
+        right_workspace_component = M.create_tab {
+            description = {
+                backgrounds = {
+                    left = sub,
+                    main = sub,
+                    right = right,
+                },
+                border_side = description.border_side,
+            },
+            text_configs = {
+                {
+                    foreground = colors.gray_1,
+                    text = workspaces.right .. " "
+                },
+            }
+        }
+    end
+
+    local result = {}
+    utils.merge_tables(result, workspace_icon_component, left_workspace_component, active_workspace_component, right_workspace_component)
+
+    return result
+end
+
+---@param pane unknown
+---@param description ComponentDescription
+---@return table
+function M.create_cwd_component(pane, description)
+    local short_cwd = utils.get_short_cwd(pane) or "..."
+    return M.create_tab {
+        description = description,
+        text_configs = {
+            {
+                foreground = colors.black_1,
+                text = DIRECTORY_ICON .. " ",
+            },
+            {
+                foreground = colors.black_2,
+                text = " " .. short_cwd .. " ",
+            }
+        }
+    }
+end
+
+---@param description ComponentDescription
+---@return table
+function M.create_time_component(description)
+    return M.create_tab {
+        description = description,
+        text_configs = {
+            {
+                foreground = colors.white_1,
+                icon = TIME_ICON,
+                text = wezterm.strftime "%H:%M"
+            },
+        }
+    }
+end
+
+---@param window unknown
+---@param description ComponentDescription
+---@return table
+function M.create_keymod_component(window, description)
+    local mods = utils.get_key_mods(window)
+    return M.create_tab {
+        description = description,
+        text_configs = {
+            {
+                foreground = colors.black_2,
+                icon = KEY_ICON,
+                text = mods
+            },
+        }
+    }
+end
+
+---@private
+---@param pane unknown
+---@param show_upstream? boolean
+function M.create_git_texts(pane, show_upstream)
+    show_upstream = show_upstream or false
+    local git_info = utils.get_git_status(pane)
+
+    local config = {}
+
+    if git_info ~= nil then
+        table.insert(config, { foreground = colors.orange_2, icon = GIT_ICON, text = "" })
+        table.insert(config, { foreground = colors.gray_1, text = git_info.localBranch })
+
+        if show_upstream and git_info.upstreamBranch ~= nil and git_info.upstreamBranch ~= "" then
+            table.insert(config, { foreground = colors.gray_1, text = " -> " .. git_info.upstreamBranch })
+        end
+
+        if git_info.aheadCount > 0 then
+            table.insert(config, { foreground = colors.purple_2, icon = AHEAD_ICON, text = git_info.aheadCount })
+        end
+
+        if git_info.behindCount > 0 then
+            table.insert(config, { foreground = colors.purple_2, icon = BEHIND_ICON, text = git_info.behindCount })
+        end
+
+        if git_info.aheadCount == 0 and git_info.behindCount == 0 then
+            table.insert(config, { foreground = colors.purple_2, icon = UP_TO_DATE_ICON, text = "" })
+        end
+
+        table.insert(config, { foreground = colors.green_1, icon = ADD_ICON, text = git_info.addCount })
+        table.insert(config, { foreground = colors.yellow_1, icon = CHANGED_ICON, text = git_info.changeCount })
+        table.insert(config, { foreground = colors.red_1, icon = REMOVED_ICON, text = git_info.delCount })
+    else
+        table.insert(config, { foreground = colors.orange_2, icon = UNKNOWN_ICON, text = "" })
+        table.insert(config, { foreground = colors.gray_1, text = " Woof" })
+    end
+
+    return config
+end
+
+---@param pane unknown
+---@param show_upstream? boolean
+---@param description ComponentDescription
+---@return table
+function M.create_git_component(pane, show_upstream, description)
+    local texts = M.create_git_texts(pane, show_upstream)
+    return M.create_tab {
+        description = description,
+        text_configs = texts,
+    }
 end
 
 return M
