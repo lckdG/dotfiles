@@ -212,10 +212,7 @@ function M.create_workspace(component)
         }
     end
 
-    local result = {}
-    utils.merge_tables(result, workspace_icon_component, left_workspace_component, active_workspace_component, right_workspace_component)
-
-    return result
+    return utils.merge_tables(workspace_icon_component, left_workspace_component, active_workspace_component, right_workspace_component)
 end
 
 ---@param pane unknown

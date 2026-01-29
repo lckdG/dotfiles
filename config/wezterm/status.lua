@@ -43,10 +43,7 @@ local function create_left_status_info(window, pane)
     local workspaces_component = components.create_workspace(tabs.tab_a)
     local cwd_component = components.create_cwd(pane, tabs.tab_b)
 
-    local result = {}
-    utils.merge_tables(result, workspaces_component, cwd_component)
-
-    return result
+    return utils.merge_tables(workspaces_component, cwd_component)
 end
 
 local function create_right_status_info(window, pane)
@@ -57,9 +54,7 @@ local function create_right_status_info(window, pane)
 
     local datetime_component = components.create_time(tabs.tab_x)
 
-    local result = {}
-    utils.merge_tables(result, git_component, keymods_component, datetime_component)
-    return result
+    return utils.merge_tables(git_component, keymods_component, datetime_component)
 end
 
 wezterm.on("update-status", function(window, pane)
