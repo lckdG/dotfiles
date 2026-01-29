@@ -78,37 +78,38 @@ function M.create_text(configs)
     local result = {}
 
     for _, v in ipairs(configs) do
-        local foreground = v.foreground
-        local text = v.text
+        if v.icon or v.text then
+            table.insert(result, { Foreground = { Color = v.foreground } })
 
-        table.insert(result, { Foreground = { Color = foreground } })
-
-        if v.icon then
-            table.insert(result, { Text = " " .. v.icon .. " " })
-        end
-
-        local has_attr = v.attributes ~= nil
-        if has_attr then
-            ---@type FormatTextAttributes
-            local attr = v.attributes
-
-            if attr.underline ~= nil then
-                table.insert(result, { Attribute = { Underline = attr.underline } })
+            if v.icon then
+                table.insert(result, { Text = " " .. v.icon .. " " })
             end
 
-            if attr.italic ~= nil then
-                table.insert(result, { Attribute = { Italic = attr.italic } })
+            if v.text then
+                local has_attr = v.attributes ~= nil
+                if has_attr then
+                    ---@type FormatTextAttributes
+                    local attr = v.attributes
+
+                    if attr.underline ~= nil then
+                        table.insert(result, { Attribute = { Underline = attr.underline } })
+                    end
+
+                    if attr.italic ~= nil then
+                        table.insert(result, { Attribute = { Italic = attr.italic } })
+                    end
+
+                    if attr.intensity ~= nil then
+                        table.insert(result, { Attribute = { Intensity = attr.intensity } })
+                    end
+                end
+
+                table.insert(result, { Text = tostring(v.text) })
+
+                if has_attr then
+                    table.insert(result, "ResetAttributes")
+                end
             end
-
-            if attr.intensity ~= nil then
-                table.insert(result, { Attribute = { Intensity = attr.intensity } })
-            end
-        end
-
-        table.insert(result, { Text = tostring(text) })
-
-        if has_attr then
-            table.insert(result, "ResetAttributes")
         end
     end
 

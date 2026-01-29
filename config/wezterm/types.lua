@@ -21,7 +21,7 @@ BorderSide = {
 ---@class (exact) FormatText
 ---@field foreground string
 ---@field icon? string
----@field text string
+---@field text? string
 ---@field attributes? FormatTextAttributes
 
 ---@class (exact) FormatTextAttributes
