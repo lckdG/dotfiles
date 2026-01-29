@@ -1,6 +1,7 @@
 local wezterm = require 'wezterm'
 
 local colors = require 'colors'
+local config = require 'config'
 local utils = require 'utils'
 local components = require 'components'
 
@@ -38,24 +39,9 @@ wezterm.on("format-tab-title", function(tab, tabs, _, _, hover, max_width)
 end)
 
 local function create_left_status_info(window, pane)
-    local workspaces_component = components.create_workspace_component {
-        backgrounds = {
-            left = colors.black_3,
-            sub = colors.black_3,
-            main = colors.aqua_3,
-            right = colors.aqua_1
-        },
-        border_side = BorderSide.Left,
-    }
-
-    local cwd_component = components.create_cwd_component(pane, {
-        backgrounds = {
-            left = colors.aqua_1,
-            main = colors.aqua_1,
-            right = colors.tab_bg,
-        },
-        border_side = BorderSide.Left
-    })
+    local tabs = config.tabs
+    local workspaces_component = components.create_workspace_component(tabs.tab_a.description)
+    local cwd_component = components.create_cwd_component(pane, tabs.tab_b.description)
 
     local result = {}
     utils.merge_tables(result, workspaces_component, cwd_component)
@@ -64,32 +50,12 @@ local function create_left_status_info(window, pane)
 end
 
 local function create_right_status_info(window, pane)
-    local git_component = components.create_git_component(pane, false, {
-        backgrounds = {
-            left = colors.tab_bg,
-            main = colors.black_1,
-            right = colors.black_1,
-        },
-        border_side = BorderSide.Right,
-    })
+    local tabs = config.tabs
+    local git_component = components.create_git_component(pane, false, tabs.tab_z.description)
 
-    local keymods_component = components.create_keymod_component(window, {
-        backgrounds = {
-            left = colors.black_1,
-            main = colors.blue_2,
-            right = colors.blue_2,
-        },
-        border_side = BorderSide.Right,
-    })
+    local keymods_component = components.create_keymod_component(window, tabs.tab_y.description)
 
-    local datetime_component = components.create_time_component {
-        backgrounds = {
-            left = colors.blue_2,
-            main = colors.blue_1,
-            right = colors.blue_1,
-        },
-        border_side = BorderSide.Right,
-    }
+    local datetime_component = components.create_time_component(tabs.tab_x.description)
 
     local result = {}
     utils.merge_tables(result, git_component, keymods_component, datetime_component)
