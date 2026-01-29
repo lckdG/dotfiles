@@ -8,7 +8,7 @@ keybindings.setup_mouse(config)
 keybindings.setup_keys(config)
 
 require 'types'
-require 'status'
+require 'events'
 
 -- config.term = "wezterm"
 config.default_workspace = "home"
