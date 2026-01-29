@@ -14,8 +14,11 @@ map('n', '<leader>a;', '<S-a>;<Esc>', { desc = "Add a semicolon to EOL" })
 map('n', '<leader>a,', '<S-a>,<Esc>', { desc = "Add a comma to EOL" })
 
 -- Fake insert leader
-map('i', '<C-e>b', "<C-c>o{<CR>", { remap = true, silent = true })
-map('i', '<C-e>,', "<C-c><S-a>,", { remap = true, silent = true })
+map('i', '<C-e>h', "<C-c><S-i>", { noremap = true, silent = true })
+map('i', '<C-e>l', "<C-c><S-a>", { noremap = true, silent = true })
+map('i', '<C-e>b', "<C-c>o{<CR>", { noremap = true, silent = true })
+map('i', '<C-e>v', "<C-c>$a<Space>{<CR>", { noremap = true, silent = true })
+map('i', '<C-e>,', "<C-c><S-a>,", { noremap = true, silent = true })
 map('i', '<C-e>;', "<C-c><S-a>;", { remap = true, silent = true })
 
 -- -- C++ specific
