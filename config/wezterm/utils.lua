@@ -113,9 +113,15 @@ function M.get_git_status(pane)
     if not success or stdout == nil then
         return nil
     else
-        local _, changeCount = string.gsub(stdout, "\n%sM", "")
         local _, addCount = string.gsub(stdout, "\n%?%?", "")
-        local _, delCount = string.gsub(stdout, "\n%sD", "")
+        local _, stagedAddCount = string.gsub(stdout, "\nA[%w%s]", "")
+        local _, changeCount = string.gsub(stdout, "\n[%w%s]M", "")
+        local _, stagedChangeCount = string.gsub(stdout, "\nM[%w%s]", "")
+        local _, delCount = string.gsub(stdout, "\n[%w%s]D", "")
+        local _, stagedDelCount = string.gsub(stdout, "\nD[%w%s]", "")
+        local _, renameCount = string.gsub(stdout, "\nR[%w%s]", "")
+
+        print(changeCount .. " " .. stagedChangeCount)
 
         local localBranch, upstreamBranch = M.get_branch_names(stdout)
         local aheadCount, behindCount = M.get_commit_diff(stdout)
@@ -124,8 +130,12 @@ function M.get_git_status(pane)
             localBranch = localBranch,
             upstreamBranch = upstreamBranch,
             addCount = addCount,
+            stagedAddCount = stagedAddCount,
             changeCount = changeCount,
+            stagedChangeCount = stagedChangeCount,
             delCount = delCount,
+            stagedDelCount = stagedDelCount,
+            renameCount = renameCount,
             aheadCount = aheadCount,
             behindCount = behindCount,
         }

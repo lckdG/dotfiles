@@ -26,11 +26,11 @@ local UNKNOWN_ICON = nerdfonts.md_dog
 
 local AHEAD_ICON = nerdfonts.oct_arrow_up
 local BEHIND_ICON = nerdfonts.oct_arrow_down
-local UP_TO_DATE_ICON = nerdfonts.cod_check_all
 
 local ADD_ICON = nerdfonts.cod_diff_added
 local CHANGED_ICON = nerdfonts.cod_diff_modified
 local REMOVED_ICON = nerdfonts.cod_diff_removed
+local RENAMED_ICON = nerdfonts.cod_diff_renamed
 
 ----------------------------------------------------
 
@@ -236,6 +236,14 @@ function M.create_cwd(pane, component)
     }
 end
 
+local function create_git_element_text(local_count, staged_count)
+    if staged_count > 0 then
+        return local_count .. "|" .. staged_count
+    end
+
+    return local_count
+end
+
 ---@private
 ---@param pane unknown
 ---@param show_upstream? boolean
@@ -263,13 +271,18 @@ function M.create_git_texts(pane, show_upstream, text_color)
             table.insert(config, { foreground = git_colors.commit_diff, icon = BEHIND_ICON, text = git_info.behindCount })
         end
 
-        if git_info.aheadCount == 0 and git_info.behindCount == 0 then
-            table.insert(config, { foreground = git_colors.commit_diff, icon = UP_TO_DATE_ICON, text = "" })
-        end
+        local add_text = create_git_element_text(git_info.addCount, git_info.stagedAddCount)
+        table.insert(config, { foreground = git_colors.add_count, icon = ADD_ICON, text = add_text })
 
-        table.insert(config, { foreground = git_colors.add_count, icon = ADD_ICON, text = git_info.addCount })
-        table.insert(config, { foreground = git_colors.change_count, icon = CHANGED_ICON, text = git_info.changeCount })
-        table.insert(config, { foreground = git_colors.remove_count, icon = REMOVED_ICON, text = git_info.delCount })
+        local change_text = create_git_element_text(git_info.changeCount, git_info.stagedChangeCount)
+        table.insert(config, { foreground = git_colors.change_count, icon = CHANGED_ICON, text = change_text })
+
+        local del_text = create_git_element_text(git_info.delCount, git_info.stagedDelCount)
+        table.insert(config, { foreground = git_colors.remove_count, icon = REMOVED_ICON, text = del_text })
+
+        if git_info.renameCount > 0 then
+            table.insert(config, { foreground = git_colors.rename_count, icon = RENAMED_ICON, text = git_info.renameCount })
+        end
     else
         table.insert(config, { foreground = text_color.icon, icon = UNKNOWN_ICON, text = "" })
         table.insert(config, { foreground = text_color.main, text = " Woof" })

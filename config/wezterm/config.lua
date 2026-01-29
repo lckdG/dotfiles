@@ -91,6 +91,7 @@ M.git_colors = {
     add_count = colors.green_1,
     change_count = colors.yellow_1,
     remove_count = colors.red_1,
+    rename_count = colors.orange_1,
 }
 
 M.default_color = colors.black_4
