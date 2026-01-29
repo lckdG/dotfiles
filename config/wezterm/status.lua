@@ -40,8 +40,8 @@ end)
 
 local function create_left_status_info(window, pane)
     local tabs = config.tabs
-    local workspaces_component = components.create_workspace_component(tabs.tab_a.description)
-    local cwd_component = components.create_cwd_component(pane, tabs.tab_b.description)
+    local workspaces_component = components.create_workspace(tabs.tab_a)
+    local cwd_component = components.create_cwd(pane, tabs.tab_b)
 
     local result = {}
     utils.merge_tables(result, workspaces_component, cwd_component)

@@ -1,5 +1,4 @@
 local wezterm = require 'wezterm'
-local colors = require 'colors'
 local utils = require 'utils'
 local config = require 'config'
 
@@ -117,9 +116,12 @@ function M.create_text(configs)
     return result
 end
 
----@param description ComponentDescription
+---@param component PredefinedComponent
 ---@return table
-function M.create_workspace_component(description)
+function M.create_workspace(component)
+    local text_color = component.text_color
+
+    local description = component.description
     local backgrounds = description.backgrounds
 
     local left = backgrounds.left
@@ -140,7 +142,7 @@ function M.create_workspace_component(description)
         },
         text_configs = {
             {
-                foreground = colors.aqua_1,
+                foreground = text_color.icon,
                 icon = WORKSPACE_ICON,
                 text = "",
             },
@@ -166,7 +168,7 @@ function M.create_workspace_component(description)
 
             text_configs = {
                 {
-                    foreground = colors.gray_1,
+                    foreground = text_color.sub or text_color.main,
                     text = workspaces.left .. " ",
                 },
             }
@@ -184,7 +186,7 @@ function M.create_workspace_component(description)
         },
         text_configs = {
             {
-                foreground = colors.white_1,
+                foreground = text_color.main,
                 text = workspaces.active .. " ",
                 attributes = {
                     intensity = Intensity.Bold
@@ -205,7 +207,7 @@ function M.create_workspace_component(description)
             },
             text_configs = {
                 {
-                    foreground = colors.gray_1,
+                    foreground = text_color.sub or text_color.main,
                     text = workspaces.right .. " "
                 },
             }
@@ -219,53 +221,22 @@ function M.create_workspace_component(description)
 end
 
 ---@param pane unknown
----@param description ComponentDescription
+---@param component PredefinedComponent
 ---@return table
-function M.create_cwd_component(pane, description)
+function M.create_cwd(pane, component)
+    local text_color = component.text_color
     local short_cwd = utils.get_short_cwd(pane) or "..."
     return M.create_tab {
-        description = description,
+        description = component.description,
         text_configs = {
             {
-                foreground = colors.black_1,
+                foreground = text_color.icon,
                 text = DIRECTORY_ICON .. " ",
             },
             {
-                foreground = colors.black_2,
+                foreground = text_color.main,
                 text = " " .. short_cwd .. " ",
             }
-        }
-    }
-end
-
----@param description ComponentDescription
----@return table
-function M.create_time_component(description)
-    return M.create_tab {
-        description = description,
-        text_configs = {
-            {
-                foreground = colors.white_1,
-                icon = TIME_ICON,
-                text = wezterm.strftime "%H:%M"
-            },
-        }
-    }
-end
-
----@param window unknown
----@param description ComponentDescription
----@return table
-function M.create_keymod_component(window, description)
-    local mods = utils.get_key_mods(window)
-    return M.create_tab {
-        description = description,
-        text_configs = {
-            {
-                foreground = colors.black_2,
-                icon = KEY_ICON,
-                text = mods
-            },
         }
     }
 end
@@ -310,18 +281,6 @@ function M.create_git_texts(pane, show_upstream, text_color)
     end
 
     return config
-end
-
----@param pane unknown
----@param show_upstream? boolean
----@param description ComponentDescription
----@return table
-function M.create_git_component(pane, show_upstream, description)
-    local texts = M.create_git_texts(pane, show_upstream)
-    return M.create_tab {
-        description = description,
-        text_configs = texts,
-    }
 end
 
 ---@param component PredefinedComponent
