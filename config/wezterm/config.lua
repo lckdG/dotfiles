@@ -93,5 +93,7 @@ M.git_colors = {
     remove_count = colors.red_1,
 }
 
+M.default_color = colors.black_4
+
 return M
 

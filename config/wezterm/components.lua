@@ -1,6 +1,6 @@
 local wezterm = require 'wezterm'
 local utils = require 'utils'
-local config = require 'config'
+local term_config = require 'config'
 
 ------------------ Useful Symbols ------------------
 
@@ -34,8 +34,6 @@ local REMOVED_ICON = nerdfonts.cod_diff_removed
 
 ----------------------------------------------------
 
-local DEFAULT_COLOR = "1d2021"
-
 local M = {}
 
 ---@param config TabConfig
@@ -45,8 +43,8 @@ function M.create_tab(config)
     local text_configs = config.text_configs
 
     local backgrounds = description.backgrounds
-    local left_background = backgrounds.left or DEFAULT_COLOR
-    local right_background = backgrounds.right or DEFAULT_COLOR
+    local left_background = backgrounds.left or term_config.default_color
+    local right_background = backgrounds.right or term_config.default_color
     local main_background = backgrounds.main
 
     local side = description.border_side or BorderSide.Left
@@ -247,7 +245,7 @@ end
 ---@param text_color PredefinedTextColor
 function M.create_git_texts(pane, show_upstream, text_color)
     show_upstream = show_upstream or false
-    local git_colors = config.git_colors
+    local git_colors = term_config.git_colors
     local git_info = utils.get_git_status(pane)
 
     local config = {}
