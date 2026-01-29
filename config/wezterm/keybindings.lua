@@ -31,9 +31,9 @@ function M.setup_keys(config)
         { key = "c", mods = "LEADER", action = act.ActivateCopyMode },
 
         -- Key tables
-        { key = "Escape", mods = "LEADER", action = act.PopKeyTable },
-        { key = "p", mods = "LEADER", action = act.ActivateKeyTable { name = "Pane", one_shot = false } },
-        { key = "s", mods = "LEADER", action = act.ActivateKeyTable { name = "Font", one_shot = false } },
+        { key = "Escape", mods = "LEADER", action = act.ClearKeyTableStack },
+        { key = "p", mods = "LEADER", action = act.ActivateKeyTable { name = "Pane", one_shot = false, prevent_fallback = true } },
+        { key = "s", mods = "LEADER", action = act.ActivateKeyTable { name = "Font", one_shot = false, prevent_fallback = true } },
 
         { key = "c", mods = "CTRL|SHIFT", action = act.CopyTo "Clipboard" },
         { key = "v", mods = "CTRL|SHIFT", action = act.PasteFrom "Clipboard" },
@@ -89,21 +89,24 @@ function M.setup_keys(config)
             { key = "c", action = act.RotatePanes "Clockwise" },
             { key = "C", action = act.RotatePanes "CounterClockwise" },
 
-            { key = "h", action = act.AdjustPaneSize { "Left", 5 } },
-            { key = "j", action = act.AdjustPaneSize { "Down", 5 } },
-            { key = "k", action = act.AdjustPaneSize { "Up", 5 } },
-            { key = "l", action = act.AdjustPaneSize { "Right", 5 } },
+            { key = "h", action = act.ActivatePaneDirection "Left" },
+            { key = "j", action = act.ActivatePaneDirection "Down" },
+            { key = "k", action = act.ActivatePaneDirection "Up" },
+            { key = "l", action = act.ActivatePaneDirection "Right" },
 
-            { key = "LeftArrow", action = act.AdjustPaneSize { "Left", 5 } },
-            { key = "DownArrow", action = act.AdjustPaneSize { "Down", 5 } },
-            { key = "UpArrow", action = act.AdjustPaneSize { "Up", 5 } },
-            { key = "RightArrow", action = act.AdjustPaneSize { "Right", 5 } },
+            { key = "LeftArrow", action = act.AdjustPaneSize { "Left", 2 } },
+            { key = "DownArrow", action = act.AdjustPaneSize { "Down", 2 } },
+            { key = "UpArrow", action = act.AdjustPaneSize { "Up", 2 } },
+            { key = "RightArrow", action = act.AdjustPaneSize { "Right", 2 } },
+
+            { key = "Escape", action = act.PopKeyTable },
         },
         Font = {
             { key = "-", action = act.DecreaseFontSize },
             { key = "=", action = act.IncreaseFontSize },
             { key = "0", action = act.ResetFontSize },
 
+            { key = "Escape", action = act.PopKeyTable },
         }
     }
 end
