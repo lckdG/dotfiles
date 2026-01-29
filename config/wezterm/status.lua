@@ -40,21 +40,23 @@ end)
 
 local function create_left_status_info(window, pane)
     local tabs = term_config.tabs
-    local workspaces_component = components.create_workspace(tabs.tab_a)
-    local cwd_component = components.create_cwd(pane, tabs.tab_b)
+    local tab_tables = {
+        a = components.create_workspace(tabs.tab_a),
+        b = components.create_cwd(pane, tabs.tab_b)
+    }
 
-    return utils.merge_tables(workspaces_component, cwd_component)
+    return utils.merge_tables(tab_tables.a, tab_tables.b)
 end
 
 local function create_right_status_info(window, pane)
     local tabs = term_config.tabs
-    local git_component = components.create_git(pane, false, tabs.tab_z)
+    local tab_tables = {
+        x = components.create_time(tabs.tab_x),
+        y = components.create_keymod(window, tabs.tab_y),
+        z = components.create_git(pane, false, tabs.tab_z),
+    }
 
-    local keymods_component = components.create_keymod(window, tabs.tab_y)
-
-    local datetime_component = components.create_time(tabs.tab_x)
-
-    return utils.merge_tables(git_component, keymods_component, datetime_component)
+    return utils.merge_tables(tab_tables.z, tab_tables.y, tab_tables.x)
 end
 
 wezterm.on("update-status", function(window, pane)
