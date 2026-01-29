@@ -1,6 +1,7 @@
 local wezterm = require 'wezterm'
 local colors = require 'colors'
 local utils = require 'utils'
+local config = require 'config'
 
 ------------------ Useful Symbols ------------------
 
@@ -272,38 +273,40 @@ end
 ---@private
 ---@param pane unknown
 ---@param show_upstream? boolean
-function M.create_git_texts(pane, show_upstream)
+---@param text_color PredefinedTextColor
+function M.create_git_texts(pane, show_upstream, text_color)
     show_upstream = show_upstream or false
+    local git_colors = config.git_colors
     local git_info = utils.get_git_status(pane)
 
     local config = {}
 
     if git_info ~= nil then
-        table.insert(config, { foreground = colors.orange_2, icon = GIT_ICON, text = "" })
-        table.insert(config, { foreground = colors.gray_1, text = git_info.localBranch })
+        table.insert(config, { foreground = text_color.icon, icon = GIT_ICON, text = "" })
+        table.insert(config, { foreground = text_color.main, text = git_info.localBranch })
 
         if show_upstream and git_info.upstreamBranch ~= nil and git_info.upstreamBranch ~= "" then
-            table.insert(config, { foreground = colors.gray_1, text = " -> " .. git_info.upstreamBranch })
+            table.insert(config, { foreground = text_color.main, text = " -> " .. git_info.upstreamBranch })
         end
 
         if git_info.aheadCount > 0 then
-            table.insert(config, { foreground = colors.purple_2, icon = AHEAD_ICON, text = git_info.aheadCount })
+            table.insert(config, { foreground = git_colors.commit_diff, icon = AHEAD_ICON, text = git_info.aheadCount })
         end
 
         if git_info.behindCount > 0 then
-            table.insert(config, { foreground = colors.purple_2, icon = BEHIND_ICON, text = git_info.behindCount })
+            table.insert(config, { foreground = git_colors.commit_diff, icon = BEHIND_ICON, text = git_info.behindCount })
         end
 
         if git_info.aheadCount == 0 and git_info.behindCount == 0 then
-            table.insert(config, { foreground = colors.purple_2, icon = UP_TO_DATE_ICON, text = "" })
+            table.insert(config, { foreground = git_colors.commit_diff, icon = UP_TO_DATE_ICON, text = "" })
         end
 
-        table.insert(config, { foreground = colors.green_1, icon = ADD_ICON, text = git_info.addCount })
-        table.insert(config, { foreground = colors.yellow_1, icon = CHANGED_ICON, text = git_info.changeCount })
-        table.insert(config, { foreground = colors.red_1, icon = REMOVED_ICON, text = git_info.delCount })
+        table.insert(config, { foreground = git_colors.add_count, icon = ADD_ICON, text = git_info.addCount })
+        table.insert(config, { foreground = git_colors.change_count, icon = CHANGED_ICON, text = git_info.changeCount })
+        table.insert(config, { foreground = git_colors.remove_count, icon = REMOVED_ICON, text = git_info.delCount })
     else
-        table.insert(config, { foreground = colors.orange_2, icon = UNKNOWN_ICON, text = "" })
-        table.insert(config, { foreground = colors.gray_1, text = " Woof" })
+        table.insert(config, { foreground = text_color.icon, icon = UNKNOWN_ICON, text = "" })
+        table.insert(config, { foreground = text_color.main, text = " Woof" })
     end
 
     return config
@@ -317,6 +320,60 @@ function M.create_git_component(pane, show_upstream, description)
     local texts = M.create_git_texts(pane, show_upstream)
     return M.create_tab {
         description = description,
+        text_configs = texts,
+    }
+end
+
+---@param component PredefinedComponent
+---@return table
+function M.create_time(component)
+    local text_color = component.text_color
+
+    return M.create_tab {
+        description = component.description,
+        text_configs = {
+            {
+                foreground = text_color.icon,
+                icon = TIME_ICON,
+            },
+            {
+                foreground = text_color.main,
+                text = wezterm.strftime "%H:%M"
+            }
+        }
+    }
+end
+
+---@param window unknown
+---@param component PredefinedComponent
+---@return table
+function M.create_keymod(window, component)
+    local mods = utils.get_key_mods(window)
+    local text_color = component.text_color
+    return M.create_tab {
+        description = component.description,
+        text_configs = {
+            {
+                foreground = text_color.icon,
+                icon = KEY_ICON,
+            },
+            {
+                foreground = text_color.main,
+                text = mods,
+            }
+        }
+    }
+end
+
+---@param pane unknown
+---@param show_upstream? boolean
+---@param component PredefinedComponent
+---@return table
+function M.create_git(pane, show_upstream, component)
+    local text_color = component.text_color
+    local texts = M.create_git_texts(pane, show_upstream, text_color)
+    return M.create_tab {
+        description = component.description,
         text_configs = texts,
     }
 end

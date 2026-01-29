@@ -51,11 +51,11 @@ end
 
 local function create_right_status_info(window, pane)
     local tabs = config.tabs
-    local git_component = components.create_git_component(pane, false, tabs.tab_z.description)
+    local git_component = components.create_git(pane, false, tabs.tab_z)
 
-    local keymods_component = components.create_keymod_component(window, tabs.tab_y.description)
+    local keymods_component = components.create_keymod(window, tabs.tab_y)
 
-    local datetime_component = components.create_time_component(tabs.tab_x.description)
+    local datetime_component = components.create_time(tabs.tab_x)
 
     local result = {}
     utils.merge_tables(result, git_component, keymods_component, datetime_component)
