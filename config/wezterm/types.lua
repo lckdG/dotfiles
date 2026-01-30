@@ -15,7 +15,8 @@
 ---@enum (keys) BorderSide
 BorderSide = {
     Left = "Left",
-    Right = "Right"
+    Right = "Right",
+    Center = "Center",
 }
 
 ---@class (exact) FormatText

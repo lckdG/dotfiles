@@ -13,6 +13,10 @@ local BORDER = {
     Right = {
         Left = nerdfonts.ple_lower_right_triangle,
         Right = nerdfonts.ple_upper_left_triangle
+    },
+    Center = {
+        Left = "",
+        Right = ""
     }
 }
 

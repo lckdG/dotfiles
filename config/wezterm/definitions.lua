@@ -95,7 +95,7 @@ M.tabs = {
                 main = colors.black_3,
                 right = colors.tab_bg,
             },
-            border_side = BorderSide.Left
+            border_side = BorderSide.Center
         },
         text_color = {
             icon = colors.gray_2,
@@ -110,7 +110,7 @@ M.tabs = {
                 main = colors.white_2,
                 right = colors.tab_bg,
             },
-            border_side = BorderSide.Left,
+            border_side = BorderSide.Center,
         },
         text_color = {
             icon = colors.black_2,
