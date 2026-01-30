@@ -3,6 +3,8 @@ local colors = require 'colors'
 local M = {}
 
 M.tab_bar_color = colors.tab_bg
+M.tab_padding = 2
+
 M.default_color = colors.black_4
 
 M.tabs = {

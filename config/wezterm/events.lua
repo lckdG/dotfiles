@@ -4,11 +4,12 @@ local definitions = require 'definitions'
 local components = require 'components'
 local utils = require 'utils'
 
-wezterm.on("format-tab-title", function(tab, tabs, _, _, hover, max_width)
+wezterm.on("format-tab-title", function(tab, tabs, _, _, _, _)
     if #tabs == 1 then
         return { }
     end
 
+    local pad = string.rep(" ", definitions.tab_padding)
     local tabs_def = definitions.tabs
     local tab_def = tab.is_active and tabs_def.mux_tab_active or tabs_def.mux_tab_inactive
 
@@ -17,7 +18,7 @@ wezterm.on("format-tab-title", function(tab, tabs, _, _, hover, max_width)
         text_configs = {
             {
                 foreground = tab_def.text_color.main,
-                text = " " .. tab.tab_index + 1 .. " ",
+                text = pad .. tab.tab_index + 1 .. pad,
             },
         }
     }

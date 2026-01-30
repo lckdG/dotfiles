@@ -16,7 +16,7 @@ local BORDER = {
     },
     Center = {
         Left = "",
-        Right = ""
+        Right = " "
     }
 }
 
