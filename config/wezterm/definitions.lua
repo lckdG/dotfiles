@@ -87,6 +87,36 @@ M.tabs = {
             main = colors.gray_1,
         }
     },
+    ---@type PredefinedComponent
+    mux_tab_inactive = {
+        description = {
+            backgrounds = {
+                left = colors.tab_bg,
+                main = colors.black_4,
+                right = colors.tab_bg,
+            },
+            border_side = BorderSide.Left
+        },
+        text_color = {
+            icon = colors.gray_2,
+            main = colors.gray_2,
+        }
+    },
+    ---@type PredefinedComponent
+    mux_tab_active = {
+        description = {
+            backgrounds = {
+                left = colors.tab_bg,
+                main = colors.yellow_1,
+                right = colors.tab_bg,
+            },
+            border_side = BorderSide.Left,
+        },
+        text_color = {
+            icon = colors.white_1,
+            main = colors.white_1,
+        }
+    }
 }
 
 M.git_colors = {

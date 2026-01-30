@@ -1,37 +1,22 @@
 local wezterm = require 'wezterm'
 
-local colors = require 'colors'
 local definitions = require 'definitions'
-local utils = require 'utils'
 local components = require 'components'
+local utils = require 'utils'
 
 wezterm.on("format-tab-title", function(tab, tabs, _, _, hover, max_width)
     if #tabs == 1 then
         return { }
     end
 
-    local background = colors.black_4
-    local foreground = colors.gray_2
-
-    if tab.is_active then
-        background = colors.yellow_1
-        foreground = colors.white_1
-    elseif hover then
-        foreground = colors.black_4
-    end
+    local tabs_def = definitions.tabs
+    local tab_def = tab.is_active and tabs_def.mux_tab_active or tabs_def.mux_tab_inactive
 
     return components.create_tab {
-        description = {
-            backgrounds = {
-                left = colors.tab_bg,
-                main = background,
-                right = colors.tab_bg,
-            },
-            border_side = BorderSide.Left,
-        },
+        description = tab_def.description,
         text_configs = {
             {
-                foreground = foreground,
+                foreground = tab_def.text_color.main,
                 text = " " .. tab.tab_index + 1 .. " ",
             },
         }
