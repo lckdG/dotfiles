@@ -1,6 +1,6 @@
 local wezterm = require 'wezterm'
 local utils = require 'utils'
-local term_config = require 'config'
+local definitions = require 'definitions'
 
 ------------------ Useful Symbols ------------------
 
@@ -43,8 +43,8 @@ function M.create_tab(config)
     local text_configs = config.text_configs
 
     local backgrounds = description.backgrounds
-    local left_background = backgrounds.left or term_config.default_color
-    local right_background = backgrounds.right or term_config.default_color
+    local left_background = backgrounds.left or definitions.default_color
+    local right_background = backgrounds.right or definitions.default_color
     local main_background = backgrounds.main
 
     local side = description.border_side or BorderSide.Left
@@ -250,7 +250,7 @@ end
 ---@param text_color PredefinedTextColor
 function M.create_git_texts(pane, show_upstream, text_color)
     show_upstream = show_upstream or false
-    local git_colors = term_config.git_colors
+    local git_colors = definitions.git_colors
     local git_info = utils.get_git_status(pane)
 
     local config = {}

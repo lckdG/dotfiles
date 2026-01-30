@@ -1,10 +1,10 @@
+require 'types'
+
 local wezterm = require 'wezterm'
 local config = wezterm.config_builder()
 
-require 'types'
-
 local utils = require 'utils'
-local term_config = require 'config'
+local definitions = require 'definitions'
 
 require 'events'
 
@@ -50,7 +50,7 @@ config.unicode_version = 14
 config.color_scheme = 'Gruvbox dark, hard (base16)'
 config.colors = {
     tab_bar = {
-        background = term_config.tab_bar_color,
+        background = definitions.tab_bar_color,
     }
 }
 

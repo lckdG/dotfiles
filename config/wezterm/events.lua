@@ -1,7 +1,7 @@
 local wezterm = require 'wezterm'
 
 local colors = require 'colors'
-local term_config = require 'config'
+local definitions = require 'definitions'
 local utils = require 'utils'
 local components = require 'components'
 
@@ -39,7 +39,7 @@ wezterm.on("format-tab-title", function(tab, tabs, _, _, hover, max_width)
 end)
 
 local function create_left_status_info(window, pane)
-    local tabs = term_config.tabs
+    local tabs = definitions.tabs
     local tab_tables = {
         a = components.create_workspace(tabs.tab_a),
         b = components.create_cwd(pane, tabs.tab_b)
@@ -49,7 +49,7 @@ local function create_left_status_info(window, pane)
 end
 
 local function create_right_status_info(window, pane)
-    local tabs = term_config.tabs
+    local tabs = definitions.tabs
     local tab_tables = {
         x = components.create_time(tabs.tab_x),
         y = components.create_keymod(window, tabs.tab_y),
