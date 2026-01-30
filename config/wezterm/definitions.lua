@@ -11,15 +11,15 @@ M.tabs = {
         description = {
             backgrounds = {
                 left = colors.black_3,
-                main = colors.aqua_3,
+                main = colors.black_4,
                 sub = colors.black_3,
-                right = colors.aqua_1,
+                right = colors.black_2,
             },
             border_side = BorderSide.Left,
         },
         text_color = {
-            icon = colors.aqua_1,
-            main = colors.white_1,
+            icon = colors.yellow_1,
+            main = colors.white_2,
             sub = colors.gray_1,
         }
     },
@@ -27,31 +27,31 @@ M.tabs = {
     tab_b = {
         description = {
             backgrounds = {
-                left = colors.aqua_1,
-                main = colors.aqua_1,
-                sub = colors.black_3,
+                left = colors.black_2,
+                main = colors.black_2,
+                sub = colors.black_2,
                 right = colors.tab_bg,
             },
             border_side = BorderSide.Left,
         },
         text_color = {
-            icon = colors.black_1,
-            main = colors.black_2,
+            icon = colors.yellow_1,
+            main = colors.gray_1,
         }
     },
     ---@type PredefinedComponent
     tab_x = {
         description = {
             backgrounds = {
-                left = colors.blue_2,
-                main = colors.blue_1,
+                left = colors.black_2,
+                main = colors.black_4,
                 sub = colors.black_3,
-                right = colors.blue_1,
+                right = colors.black_4,
             },
             border_side = BorderSide.Right,
         },
         text_color = {
-            icon = colors.white_1,
+            icon = colors.blue_2,
             main = colors.white_1,
         }
     },
@@ -60,15 +60,15 @@ M.tabs = {
         description = {
             backgrounds = {
                 left = colors.black_1,
-                main = colors.blue_2,
+                main = colors.black_2,
                 sub = colors.black_3,
-                right = colors.blue_2,
+                right = colors.black_2,
             },
             border_side = BorderSide.Right,
         },
         text_color = {
-            icon = colors.black_2,
-            main = colors.black_2,
+            icon = colors.blue_1,
+            main = colors.gray_1,
         }
     },
     ---@type PredefinedComponent
@@ -92,7 +92,7 @@ M.tabs = {
         description = {
             backgrounds = {
                 left = colors.tab_bg,
-                main = colors.black_4,
+                main = colors.black_3,
                 right = colors.tab_bg,
             },
             border_side = BorderSide.Left
@@ -107,14 +107,14 @@ M.tabs = {
         description = {
             backgrounds = {
                 left = colors.tab_bg,
-                main = colors.yellow_1,
+                main = colors.white_2,
                 right = colors.tab_bg,
             },
             border_side = BorderSide.Left,
         },
         text_color = {
-            icon = colors.white_1,
-            main = colors.white_1,
+            icon = colors.black_2,
+            main = colors.black_2,
         }
     }
 }
