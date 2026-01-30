@@ -6,11 +6,8 @@ local config = wezterm.config_builder()
 local utils = require 'utils'
 local definitions = require 'definitions'
 
+require 'keybindings'.configure(config)
 require 'events'
-
-local keybindings = require 'keybindings'
-keybindings.setup_mouse(config)
-keybindings.setup_keys(config)
 
 -- config.term = "wezterm"
 config.default_workspace = "home"

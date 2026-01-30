@@ -3,6 +3,12 @@ local act = wezterm.action
 
 local M = {}
 
+function M.configure(config_table)
+    M.setup_mouse(config_table)
+    M.setup_keys(config_table)
+end
+
+---@private
 ---@param config table
 function M.setup_mouse(config)
     config.mouse_bindings = {
@@ -21,6 +27,7 @@ function M.setup_mouse(config)
     }
 end
 
+---@private
 ---@param config table
 function M.setup_keys(config)
     config.disable_default_key_bindings = true
