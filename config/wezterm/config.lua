@@ -2,6 +2,9 @@ local colors = require 'colors'
 
 local M = {}
 
+M.tab_bar_color = colors.tab_bg
+M.default_color = colors.black_4
+
 M.tabs = {
     ---@type PredefinedComponent
     tab_a = {
@@ -93,8 +96,6 @@ M.git_colors = {
     remove_count = colors.red_1,
     rename_count = colors.orange_1,
 }
-
-M.default_color = colors.black_4
 
 return M
 

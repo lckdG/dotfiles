@@ -35,7 +35,7 @@ M.gray_2 = "928374"
 M.white_1 = "fbf1c7"
 M.white_2 = "ebdbb2"
 
-M.tab_bg = "333333"
+M.tab_bg = M.black_2
 
 return M
 

@@ -1,14 +1,16 @@
 local wezterm = require 'wezterm'
 local config = wezterm.config_builder()
 
+require 'types'
+
 local utils = require 'utils'
+local term_config = require 'config'
+
+require 'events'
 
 local keybindings = require 'keybindings'
 keybindings.setup_mouse(config)
 keybindings.setup_keys(config)
-
-require 'types'
-require 'events'
 
 -- config.term = "wezterm"
 config.default_workspace = "home"
@@ -46,6 +48,11 @@ config.font_size = 13
 config.unicode_version = 14
 
 config.color_scheme = 'Gruvbox dark, hard (base16)'
+config.colors = {
+    tab_bar = {
+        background = term_config.tab_bar_color,
+    }
+}
 
 config.default_cursor_style = "BlinkingBlock"
 config.cursor_blink_rate = 600
