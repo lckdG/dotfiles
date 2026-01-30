@@ -121,8 +121,6 @@ function M.get_git_status(pane)
         local _, stagedDelCount = string.gsub(stdout, "\nD[%w%s]", "")
         local _, renameCount = string.gsub(stdout, "\nR[%w%s]", "")
 
-        print(changeCount .. " " .. stagedChangeCount)
-
         local localBranch, upstreamBranch = M.get_branch_names(stdout)
         local aheadCount, behindCount = M.get_commit_diff(stdout)
 
