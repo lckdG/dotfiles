@@ -1,7 +1,7 @@
 return {
     "nvim-treesitter/nvim-treesitter-textobjects",
     branch = "main",
-    event = "BufRead",
+    lazy = true,
     init = function ()
         vim.g.no_plugin_maps = true
     end,
@@ -10,9 +10,13 @@ return {
             select = {
                 lookahead = true,
                 include_surrounding_whitespace = false,
+                selection_modes = {
+                    ["@function.outer"] = 'V',
+                    ["@function.inner"] = 'V',
+                }
             },
             move = {
-                set_jumps = false,
+                set_jumps = true,
             },
         }
     end

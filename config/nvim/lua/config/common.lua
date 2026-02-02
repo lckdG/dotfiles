@@ -2,7 +2,6 @@ vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
 vim.o.mouse = ''
-vim.o.guifont = 'JetBrainsMono Nerd Font:h13'
 vim.o.termguicolors = true
 
 vim.o.number = true
@@ -20,8 +19,8 @@ vim.o.undofile = true
 vim.o.ignorecase = true
 vim.o.smartcase = true
 
-vim.o.updatetime = 250
-vim.o.timeoutlen = 250
+vim.o.updatetime = 2000
+vim.o.timeoutlen = 500
 
 vim.o.splitright = true
 vim.o.splitbelow = true
@@ -48,14 +47,8 @@ vim.o.foldlevel = 99
 vim.o.foldlevelstart = 99
 vim.o.foldenable = true
 
--- Neovide configs
-if vim.g.neovide then
-    vim.g.neovide_scale_factor = 0.9
-    vim.g.neovide_cursor_animate_command_line = false
-end
-
 -- Shell configs
-if vim.fn.has("win32") then
+if vim.fn.has("win32") == 1 then
     -- Set ups for using powershell with nvim
     vim.o.shell = "powershell.exe"
     vim.o.shellxquote = ''
@@ -63,6 +56,6 @@ if vim.fn.has("win32") then
     vim.o.shellquote = ''
     vim.o.shellpipe = '| Out-File -Encoding UTF8 %s'
     vim.o.shellredir = '| Out-File -Encoding UTF8 %s'
-elseif vim.fn.has("linux") then
+elseif vim.fn.has("linux") == 1 then
     vim.o.shell = "/usr/bin/fish"
 end

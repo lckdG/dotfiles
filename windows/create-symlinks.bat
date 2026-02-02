@@ -1,9 +1,19 @@
-@echo off
+@ECHO off
 
-call rmdir %LOCALAPPDATA%\nvim
-call del %USERPROFILE%\.wezterm.lua
+SET CONFIG_DIR=%USERPROFILE%\.config
 
-call mklink /D %LOCALAPPDATA%\nvim %~dp0..\config\nvim
-call mklink %USERPROFILE%\.wezterm.lua %~dp0..\config\wezterm\wezterm.lua
+SET NVIM_DIR=%LOCALAPPDATA%\nvim
+SET WEZTERM_DIR=%CONFIG_DIR%\wezterm
+SET LG_DIR=%LOCALAPPDATA%\lazygit
+
+IF not exist %CONFIG_DIR% MKDIR %CONFIG_DIR%
+
+CAll RMDIR %NVIM_DIR%
+CAll RMDIR %WEZTERM_DIR%
+CAll RMDIR %LG_DIR%
+
+CAll MKLINK /D %NVIM_DIR% %~dp0..\config\nvim
+CAll MKLINK /D %WEZTERM_DIR% %~dp0..\config\wezterm
+CAll MKLINK /D %LG_DIR% %~dp0..\config\lazygit
 
 pause
