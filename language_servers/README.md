@@ -76,7 +76,7 @@ Installation steps:
 - Ensure required [.NET version](https://dotnet.microsoft.com/en-us/download/dotnet) is installed.
 - Follow the link that matches your OS.
 - Download the nupkg, *extract as zip*.
-- Add <path_to_Roslyn>/content/LanguageServer/<OS-arch>/ to your *PATH*
+- Add `<path_to_Roslyn>/content/LanguageServer/<OS-arch>/` to your `PATH`
 
 > [!NOTE]
 > Customize Analysis:
