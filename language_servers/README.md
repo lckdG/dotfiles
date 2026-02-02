@@ -54,7 +54,7 @@ sudo pacman -S lua-language-server
 ## pyright
 https://github.com/microsoft/pyright
 
-[!NOTE]
+> [!NOTE]
 > Pyright is obviously used for python code. However it is recommended to install the LSP through npm
 > ¯\\_(ツ)_/¯
 
@@ -78,7 +78,7 @@ Installation steps:
 - Download the nupkg, *extract as zip*.
 - Add <path_to_Roslyn>/content/LanguageServer/<OS>/ to your *PATH*
 
-[!NOTE]
+> [!NOTE]
 > Customize Analysis:
 > - Copy **roslyn/.editorconfig** to the root of your project
 > - Edit the file, [instruction here](https://learn.microsoft.com/en-us/visualstudio/code-quality/use-roslyn-analyzers?view=visualstudio#manually-configure-rule-severity-in-an-editorconfig-file)
