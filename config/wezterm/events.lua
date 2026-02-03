@@ -13,7 +13,7 @@ wezterm.on("format-tab-title", function(tab, tabs, _, _, _, _)
     local tabs_def = definitions.tabs
     local tab_def = tab.is_active and tabs_def.mux_tab_active or tabs_def.mux_tab_inactive
 
-    return components.create_tab {
+    local tab_formats = components.create_tab {
         description = tab_def.description,
         text_configs = {
             {
@@ -22,6 +22,16 @@ wezterm.on("format-tab-title", function(tab, tabs, _, _, _, _)
             },
         }
     }
+
+    local padding = {}
+    if  tab.tab_index == 0 then
+        local padding_def = definitions.mux_tab_padding
+        table.insert(padding, { Background = padding_def.Background })
+        table.insert(padding, { Foreground = padding_def.Foreground })
+        table.insert(padding, { Text = string.rep(" ", 3) })
+    end
+
+    return utils.merge_tables(padding, tab_formats)
 end)
 
 local function create_left_status_info(window, pane)

@@ -118,7 +118,12 @@ M.tabs = {
             icon = colors.black_2,
             main = colors.black_2,
         }
-    }
+    },
+}
+
+M.mux_tab_padding = {
+    Background = { Color = colors.black_2 },
+    Foreground = { Color = colors.tab_bg },
 }
 
 M.git_colors = {
