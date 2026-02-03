@@ -28,12 +28,15 @@ M.black_1 = "1d2021"
 M.black_2 = "282828"
 M.black_3 = "3c3836"
 M.black_4 = "504945"
+M.black_5 = "665c54"
+M.black_6 = "7c6f64"
 
 M.gray_1 = "a89984"
 M.gray_2 = "928374"
 
 M.white_1 = "fbf1c7"
 M.white_2 = "ebdbb2"
+M.white_3 = "d5c4a1"
 
 M.tab_bg = M.black_2
 

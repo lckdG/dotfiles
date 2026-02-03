@@ -12,43 +12,43 @@ M.tabs = {
     tab_a = {
         description = {
             backgrounds = {
-                left = colors.black_3,
-                main = colors.black_4,
-                sub = colors.black_3,
-                right = colors.black_2,
+                left = colors.black_5,
+                main = colors.black_6,
+                sub = colors.black_5,
+                right = colors.black_4,
             },
             border_side = BorderSide.Left,
         },
         text_color = {
             icon = colors.yellow_1,
-            main = colors.white_2,
-            sub = colors.gray_1,
+            main = colors.white_1,
+            sub = colors.black_1,
         }
     },
     ---@type PredefinedComponent
     tab_b = {
         description = {
             backgrounds = {
-                left = colors.black_2,
-                main = colors.black_2,
-                sub = colors.black_2,
+                left = colors.black_4,
+                main = colors.black_4,
+                sub = colors.black_4,
                 right = colors.tab_bg,
             },
             border_side = BorderSide.Left,
         },
         text_color = {
             icon = colors.yellow_1,
-            main = colors.gray_1,
+            main = colors.white_3,
         }
     },
     ---@type PredefinedComponent
     tab_x = {
         description = {
             backgrounds = {
-                left = colors.black_2,
-                main = colors.black_4,
-                sub = colors.black_3,
-                right = colors.black_4,
+                left = colors.black_4,
+                main = colors.black_6,
+                sub = colors.black_5,
+                right = colors.black_6,
             },
             border_side = BorderSide.Right,
         },
@@ -61,16 +61,16 @@ M.tabs = {
     tab_y = {
         description = {
             backgrounds = {
-                left = colors.black_1,
-                main = colors.black_2,
-                sub = colors.black_3,
-                right = colors.black_2,
+                left = colors.black_2,
+                main = colors.black_4,
+                sub = colors.black_4,
+                right = colors.black_4,
             },
             border_side = BorderSide.Right,
         },
         text_color = {
             icon = colors.blue_1,
-            main = colors.gray_1,
+            main = colors.white_3,
         }
     },
     ---@type PredefinedComponent
