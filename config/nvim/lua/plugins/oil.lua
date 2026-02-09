@@ -26,7 +26,7 @@ return {
             ["?"] = { "actions.show_help", mode = "n" },
             ["<CR>"] = "actions.select",
             ["p"] = "actions.preview",
-            ["<Esc>"] = { "actions.close", mode = "n" },
+            ["<C-q>"] = { "actions.close", mode = "n" },
             ["<C-r>"] = "actions.refresh",
             ["-"] = { "actions.parent", mode = "n" },
             ["_"] = { "actions.open_cwd", mode = "n" },
