@@ -21,9 +21,9 @@ map('i', '<C-e>v', "<C-c>$a<Space>{<CR>", { remap = true, silent = true })
 map('i', '<C-e>,', "<C-c><S-a>,", { remap = true, silent = true })
 map('i', '<C-e>;', "<C-c><S-a>;", { remap = true, silent = true })
 
--- -- C++ specific
-map('i', '<C-e>-', "->", { remap = true, silent = true })
-map('i', '<C-e>s', "::", { remap = true, silent = true })
+map('i', '<C-e><', "<-", { noremap = true, silent = true })
+map('i', '<C-e>>', "->", { noremap = true, silent = true })
+map('i', '<C-e>s', "::", { noremap = true, silent = true })
 
 map('n', '<A-j>', ":m .+1<CR>==", { noremap = true, silent = true, desc = "Move line down" })
 map('n', '<A-k>', ":m .-2<CR>==", { noremap = true, silent = true, desc = "Move line up" })
