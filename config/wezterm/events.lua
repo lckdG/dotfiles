@@ -63,3 +63,11 @@ wezterm.on("update-status", function(window, pane)
     window:set_right_status(wezterm.format(right_status))
 end)
 
+wezterm.on("maximize-window", function(window, pane)
+    window:maximize()
+end)
+
+wezterm.on("restore-window", function(window, pane)
+    window:restore()
+end)
+

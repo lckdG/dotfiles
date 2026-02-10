@@ -41,6 +41,7 @@ function M.setup_keys(config)
         { key = "Escape", mods = "LEADER", action = act.ClearKeyTableStack },
         { key = "p", mods = "LEADER", action = act.ActivateKeyTable { name = "Pane", one_shot = false, prevent_fallback = true } },
         { key = "s", mods = "LEADER", action = act.ActivateKeyTable { name = "Font", one_shot = false, prevent_fallback = true } },
+        { key = "z", mods = "LEADER", action = act.ActivateKeyTable { name = "Zoom", one_shot = false, prevent_fallback = true } },
 
         { key = "c", mods = "CTRL|SHIFT", action = act.CopyTo "Clipboard" },
         { key = "v", mods = "CTRL|SHIFT", action = act.PasteFrom "Clipboard" },
@@ -67,12 +68,6 @@ function M.setup_keys(config)
         { key = "l", mods = "LEADER", action = act.ActivatePaneDirection "Right" },
         { key = "UpArrow", mods = "CTRL|SHIFT", action = act.ScrollToPrompt(-1) },
         { key = "DownArrow", mods = "CTRL|SHIFT", action = act.ScrollToPrompt(1) },
-
-        { key = "z", mods = "LEADER", action = act.TogglePaneZoomState },
-        { key = "f", mods = "LEADER", action = act.ToggleFullScreen },
-
-        { key = "d", mods = "LEADER", action = act.CloseCurrentPane { confirm = true } },
-        { key = "x", mods = "LEADER", action = act.CloseCurrentTab { confirm = true } },
 
         { key = "w", mods = "LEADER", action = act.ShowLauncherArgs({ flags = "FUZZY|WORKSPACES" }) },
         { key = "w", mods = "LEADER|SHIFT", action = act.PromptInputLine {
@@ -106,12 +101,28 @@ function M.setup_keys(config)
             { key = "UpArrow", action = act.AdjustPaneSize { "Up", 2 } },
             { key = "RightArrow", action = act.AdjustPaneSize { "Right", 2 } },
 
+            { key = "D", action = act.CloseCurrentPane { confirm = true } },
+            { key = "d", action = act.CloseCurrentTab { confirm = true } },
+
             { key = "Escape", action = act.PopKeyTable },
         },
         Font = {
             { key = "-", action = act.DecreaseFontSize },
             { key = "=", action = act.IncreaseFontSize },
             { key = "0", action = act.ResetFontSize },
+
+            { key = "Escape", action = act.PopKeyTable },
+        },
+        Zoom = {
+            { key = "z", action = act.TogglePaneZoomState },
+            { key = "f", action = act.ToggleFullScreen },
+            { key = "M", action = act.EmitEvent "maximize-window" },
+            { key = "m", action = act.EmitEvent "restore-window" },
+
+            { key = "h", action = act.ActivatePaneDirection "Left" },
+            { key = "j", action = act.ActivatePaneDirection "Down" },
+            { key = "k", action = act.ActivatePaneDirection "Up" },
+            { key = "l", action = act.ActivatePaneDirection "Right" },
 
             { key = "Escape", action = act.PopKeyTable },
         }
