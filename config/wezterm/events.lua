@@ -31,7 +31,7 @@ wezterm.on("format-tab-title", function(tab, tabs, _, _, _, _)
         table.insert(padding, { Text = string.rep(" ", 3) })
     end
 
-    return utils.merge_tables(padding, tab_formats)
+    return utils.merge_lists(padding, tab_formats)
 end)
 
 local function create_left_status_info(window, pane)
@@ -41,7 +41,7 @@ local function create_left_status_info(window, pane)
         b = components.create_cwd(pane, tabs.tab_b)
     }
 
-    return utils.merge_tables(tab_tables.a, tab_tables.b)
+    return utils.merge_lists(tab_tables.a, tab_tables.b)
 end
 
 local function create_right_status_info(window, pane)
@@ -52,7 +52,7 @@ local function create_right_status_info(window, pane)
         z = components.create_git(pane, false, tabs.tab_z),
     }
 
-    return utils.merge_tables(tab_tables.z, tab_tables.y, tab_tables.x)
+    return utils.merge_lists(tab_tables.z, tab_tables.y, tab_tables.x)
 end
 
 wezterm.on("update-status", function(window, pane)

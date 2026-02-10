@@ -167,11 +167,21 @@ function M.get_commit_diff(status_string)
     return aheadCount, behindCount
 end
 
-function M.merge_tables(...)
+function M.merge_lists(...)
     local result = {}
     for _, t in ipairs({...}) do
         for _, v in ipairs(t) do
             table.insert(result, v)
+        end
+    end
+    return result
+end
+
+function M.merge_tables(...)
+    local result = {}
+    for _, t in ipairs({...}) do
+        for k, v in pairs(t) do
+            result[k] = v
         end
     end
 

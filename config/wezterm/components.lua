@@ -216,7 +216,7 @@ function M.create_workspace(component)
         }
     end
 
-    return utils.merge_tables(workspace_icon_component, left_workspace_component, active_workspace_component, right_workspace_component)
+    return utils.merge_lists(workspace_icon_component, left_workspace_component, active_workspace_component, right_workspace_component)
 end
 
 ---@param pane unknown
