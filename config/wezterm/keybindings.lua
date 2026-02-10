@@ -39,9 +39,8 @@ function M.setup_keys(config)
 
         -- Key tables
         { key = "Escape", mods = "LEADER", action = act.ClearKeyTableStack },
-        { key = "p", mods = "LEADER", action = act.ActivateKeyTable { name = "Pane", one_shot = false, prevent_fallback = true } },
-        { key = "s", mods = "LEADER", action = act.ActivateKeyTable { name = "Font", one_shot = false, prevent_fallback = true } },
-        { key = "z", mods = "LEADER", action = act.ActivateKeyTable { name = "Zoom", one_shot = false, prevent_fallback = true } },
+        { key = "p", mods = "LEADER", action = act.ActivateKeyTable { name = "Managing", one_shot = false, prevent_fallback = true } },
+        { key = "f", mods = "LEADER", action = act.ActivateKeyTable { name = "Font", one_shot = false, prevent_fallback = true } },
 
         { key = "c", mods = "CTRL|SHIFT", action = act.CopyTo "Clipboard" },
         { key = "v", mods = "CTRL|SHIFT", action = act.PasteFrom "Clipboard" },
@@ -87,7 +86,12 @@ function M.setup_keys(config)
     }
 
     config.key_tables = {
-        Pane = {
+        Managing = {
+            { key = "z", action = act.TogglePaneZoomState },
+            { key = "f", action = act.ToggleFullScreen },
+            { key = "M", action = act.EmitEvent "maximize-window" },
+            { key = "m", action = act.EmitEvent "restore-window" },
+
             { key = "c", action = act.RotatePanes "Clockwise" },
             { key = "C", action = act.RotatePanes "CounterClockwise" },
 
@@ -113,19 +117,6 @@ function M.setup_keys(config)
 
             { key = "Escape", action = act.PopKeyTable },
         },
-        Zoom = {
-            { key = "z", action = act.TogglePaneZoomState },
-            { key = "f", action = act.ToggleFullScreen },
-            { key = "M", action = act.EmitEvent "maximize-window" },
-            { key = "m", action = act.EmitEvent "restore-window" },
-
-            { key = "h", action = act.ActivatePaneDirection "Left" },
-            { key = "j", action = act.ActivatePaneDirection "Down" },
-            { key = "k", action = act.ActivatePaneDirection "Up" },
-            { key = "l", action = act.ActivatePaneDirection "Right" },
-
-            { key = "Escape", action = act.PopKeyTable },
-        }
     }
 end
 
