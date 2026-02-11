@@ -56,9 +56,6 @@ function M.setup_keys(config)
         { key = "l", mods = "CTRL|SHIFT", action = act.ShowDebugOverlay },
         { key = "f", mods = "CTRL|SHIFT", action = act.Search { CaseSensitiveString="" }},
 
-        { key = "-", mods = "LEADER", action = act.SplitVertical { domain = "CurrentPaneDomain" } },
-        { key = "|", mods = "LEADER", action = act.SplitHorizontal { domain = "CurrentPaneDomain" } },
-        { key = "|", mods = "LEADER|SHIFT", action = act.SplitHorizontal { domain = "CurrentPaneDomain" } },
         { key = "n", mods = "LEADER", action = act.ShowLauncherArgs { flags = "LAUNCH_MENU_ITEMS" } },
 
         { key = "h", mods = "LEADER", action = act.ActivatePaneDirection "Left" },
@@ -104,6 +101,10 @@ function M.setup_keys(config)
             { key = "DownArrow", action = act.AdjustPaneSize { "Down", 2 } },
             { key = "UpArrow", action = act.AdjustPaneSize { "Up", 2 } },
             { key = "RightArrow", action = act.AdjustPaneSize { "Right", 2 } },
+
+            { key = "-", action = act.SplitVertical { domain = "CurrentPaneDomain" } },
+            { key = "|", action = act.SplitHorizontal { domain = "CurrentPaneDomain" } },
+            { key = "|", mods = "SHIFT", action = act.SplitHorizontal { domain = "CurrentPaneDomain" } },
 
             { key = "D", action = act.CloseCurrentPane { confirm = true } },
             { key = "d", action = act.CloseCurrentTab { confirm = true } },
