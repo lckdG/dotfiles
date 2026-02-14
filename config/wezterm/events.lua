@@ -63,11 +63,19 @@ wezterm.on("update-status", function(window, pane)
     window:set_right_status(wezterm.format(right_status))
 end)
 
-wezterm.on("maximize-window", function(window, pane)
-    window:maximize()
-end)
+wezterm.on("toggle-maximize-window", function(window, pane)
+    local win_dimensions = window:get_dimensions()
+    if win_dimensions.is_full_screen then
+        return
+    end
 
-wezterm.on("restore-window", function(window, pane)
-    window:restore()
+    local state = wezterm.GLOBAL.maximize_state or 0
+    if state == 0 then
+        window:maximize()
+    else
+        window:restore()
+    end
+
+    wezterm.GLOBAL.maximize_state = (state + 1) % 2
 end)
 

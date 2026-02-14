@@ -18,6 +18,7 @@ config.max_fps = 180
 
 config.initial_cols = 140
 config.initial_rows = 30
+wezterm.GLOBAL.maximize_state = 0
 
 -- config.window_decorations = "RESIZE | TITLE"
 config.window_decorations = "RESIZE"

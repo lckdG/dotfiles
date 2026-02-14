@@ -34,6 +34,9 @@ function M.setup_keys(config)
 
     config.leader = { key = "b", mods = "CTRL", timeout_milisecond = 2000 }
     config.keys = {
+        { key = "F11", action = act.ToggleFullScreen },
+        { key = "m", mods = "LEADER", action = act.EmitEvent "toggle-maximize-window" },
+
         { key = "b", mods = "LEADER|CTRL", action = act.SendString "\x02" },
         { key = "c", mods = "LEADER", action = act.ActivateCopyMode },
 
@@ -85,9 +88,6 @@ function M.setup_keys(config)
     config.key_tables = {
         Managing = {
             { key = "z", action = act.TogglePaneZoomState },
-            { key = "f", action = act.ToggleFullScreen },
-            { key = "M", action = act.EmitEvent "maximize-window" },
-            { key = "m", action = act.EmitEvent "restore-window" },
 
             { key = "c", action = act.RotatePanes "Clockwise" },
             { key = "C", action = act.RotatePanes "CounterClockwise" },
