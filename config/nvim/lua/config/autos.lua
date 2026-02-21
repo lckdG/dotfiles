@@ -11,6 +11,9 @@ vim.api.nvim_create_autocmd('LspAttach', {
         map('grd', require('telescope.builtin').lsp_definitions, '[G]o to [D]efinition')
         map('gO', require('telescope.builtin').lsp_document_symbols, 'Open Document Symbols')
         map('grt', require('telescope.builtin').lsp_type_definitions, '[G]oto [T]ype Definition')
+        map('gf', function ()
+            vim.lsp.buf.format()
+        end, 'Format document', { 'n', 'v', 'x' })
 
         local client = vim.lsp.get_client_by_id(event.data.client_id)
         if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight, event.buf) then
