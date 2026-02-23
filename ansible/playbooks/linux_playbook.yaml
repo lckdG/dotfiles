@@ -1,5 +1,41 @@
 - name: Placeholder
+  hosts: linux_local
+  become: yes
   tasks:
-    - name: Print message
-      ansible.builtin.debug:
-        msg: Placeholder
+    - name: Update current system
+      community.general.pacman:
+        update_cache: true
+        upgrade: true
+
+    - name: Configure git
+      ansible.builtin.shell: |
+        git config --global core.autocrlf input
+        git config --global credential.credentialStore secretservice
+
+    - name: Install essential applications
+      community.general.pacman:
+        name:
+          - git-lfs
+          - wl-clipboard
+          - cmake
+          - fastfetch
+          - htop
+          - ibus-bamboo
+
+    - name: Install main applications
+      community.general.pacman:
+        name:
+          - stow
+          - fish
+          - wezterm
+          - code
+          - neovim
+          - lazygit
+
+    - name: Install fonts
+      community.general.pacman:
+        name:
+          - ttf-jetbrains-mono-nerd
+          - ttf-nerd-fonts-symbols-mono
+          - ttf-lilex-nerd
+

@@ -1,3 +1,4 @@
-local:
-  - hosts: 127.0.0.1
-    connection: local
+linux_local:
+  hosts:
+    localhost:
+      ansible_connection: local
