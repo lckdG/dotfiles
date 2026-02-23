@@ -25,7 +25,7 @@ return {
         keymaps = {
             ["?"] = { "actions.show_help", mode = "n" },
             ["<CR>"] = "actions.select",
-            ["p"] = "actions.preview",
+            ["<C-p>"] = "actions.preview",
             ["<C-q>"] = { "actions.close", mode = "n" },
             ["<C-r>"] = "actions.refresh",
             ["-"] = { "actions.parent", mode = "n" },
