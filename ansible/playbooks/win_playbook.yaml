@@ -1,0 +1,5 @@
+- name: Placeholder
+  tasks:
+    - name: Print message
+      ansible.builtin.debug:
+        msg: Placeholder
