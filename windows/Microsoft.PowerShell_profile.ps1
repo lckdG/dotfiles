@@ -11,6 +11,16 @@ function Invoke-Starship-PreCommand {
 
 Invoke-Expression (&starship init powershell)
 
+function PyEnv {
+    param (
+        [string]$Name
+    )
+
+    $filePath = "D:\pyenv\{0}\Scripts\Activate.ps1" -f $Name
+    & $filePath
+}
+
+Set-Alias -Name pe -Value PyEnv
 Set-Alias -Name lg -Value lazygit
 Set-Alias -Name sdh -Value Stop-Computer
 Set-Alias -Name sdr -Value Restart-Computer
