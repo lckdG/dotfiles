@@ -1,4 +1,4 @@
-- name: Placeholder
+- name: Configure system
   hosts: linux_local
   become: yes
   tasks:
@@ -16,19 +16,19 @@
       community.general.pacman:
         name:
           - git-lfs
-          - wl-clipboard
           - cmake
           - fastfetch
           - htop
-          - ibus-bamboo
 
     - name: Install main applications
       community.general.pacman:
         name:
+          - ibus-bamboo
           - stow
           - fish
           - wezterm
           - code
+          - wl-clipboard
           - neovim
           - lazygit
 

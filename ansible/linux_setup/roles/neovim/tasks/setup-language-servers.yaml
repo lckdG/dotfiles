@@ -1,0 +1,4 @@
+---
+- name: Install lua language server
+  community.general.pacman:
+    name: lua-language-server

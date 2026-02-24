@@ -1,0 +1,30 @@
+---
+- name: Configure git
+  ansible.builtin.shell: |
+    git config --global core.autocrlf input
+    git config --global credential.credentialStore secretservice
+
+- name: Install fonts
+  community.general.pacman:
+    name:
+      - ttf-jetbrains-mono-nerd
+      - ttf-nerd-fonts-symbols-mono
+      - ttf-lilex-nerd
+
+- name: Install main applications
+  community.general.pacman:
+    name:
+      - ibus-bamboo
+      - stow
+      - fish
+      - wezterm
+      - code
+      - lazygit
+
+- name: Install AUR packages
+  community.general.pacman:
+    name:
+      - sourcegit-bin
+      - pinta
+      - unityhub
+    executable: yay

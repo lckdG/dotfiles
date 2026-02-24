@@ -1,0 +1,22 @@
+---
+- name: Download dotnet sh
+  get_url:
+    url: https://dot.net/v1/dotnet-install.sh
+    dest: /tmp/dotnet-install.sh
+    mode: '0755'
+    force: 'yes'
+
+- name: Install dotnet
+  ansible.builtin.shell: /tmp/dotnet-install.sh --channel 10.0
+
+- name: Create Roslyn dir
+  ansible.builtin.file:
+    path: ~/Apps/Roslyn/downloads
+    mode: '0644'
+    state: directory
+    recurse: yes
+
+- name: Copy csproj to downloads
+  ansible.builtin.copy:
+    src: Server.csproj
+    dest: ~/Apps/Roslyn/downloads

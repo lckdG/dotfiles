@@ -1,0 +1,13 @@
+---
+- name: Download rust installer
+  get_url:
+    url: https://sh.rustup.rs
+    dest: /tmp/sh.rustup.rs
+    mode: '0755'
+    force: 'yes'
+
+- name: Install rust
+  ansible.builtin.shell: /tmp/sh.rustup.rs -y
+
+- name: Install tree-sitter-cli
+  ansible.builtin.shell: cargo install --locked tree-sitter-cli

@@ -1,0 +1,13 @@
+---
+- name: Update current system
+  community.general.pacman:
+    update_cache: true
+    upgrade: true
+
+- name: Install essential applications
+  community.general.pacman:
+    name:
+      - git-lfs
+      - cmake
+      - fastfetch
+      - htop
