@@ -20,6 +20,7 @@ map('i', '<C-e>b', "<C-c>o{<CR>", { remap = true, silent = true })
 map('i', '<C-e>v', "<C-c>$a<Space>{<CR>", { remap = true, silent = true })
 map('i', '<C-e>,', "<C-c><S-a>,", { remap = true, silent = true })
 map('i', '<C-e>;', "<C-c><S-a>;", { remap = true, silent = true })
+map('i', '<C-e>u', "<C-c>g~awea", { remap = true, silent = true, desc = "Toggle case of a word" })
 
 map('i', '<C-e><', "<-", { noremap = true, silent = true })
 map('i', '<C-e>>', "->", { noremap = true, silent = true })
@@ -29,6 +30,7 @@ map('n', '<A-j>', ":m .+1<CR>==", { noremap = true, silent = true, desc = "Move 
 map('n', '<A-k>', ":m .-2<CR>==", { noremap = true, silent = true, desc = "Move line up" })
 map('v', '<A-j>', ":m '>+1<CR>gv=gv", { noremap = true, silent = true, desc = "Move block down" })
 map('v', '<A-k>', ":m '<-2<CR>gv=gv", { noremap = true, silent = true, desc = "Move block up" })
+map('n', '<A-u>', "g~awea", { remap = true, silent = true, desc = "Toggle case of a word" })
 
 map('', "H", "^", { noremap = true, desc = "^" })
 map('', "L", "$", { noremap = true, desc = "$" })
