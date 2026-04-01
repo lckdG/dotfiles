@@ -46,3 +46,54 @@ vim.api.nvim_create_user_command("LspLog", function ()
     vim.cmd('tabnew ' .. vim.lsp.log.get_filename())
 end, {})
 
+-- Unreal suite, to be moved
+local function OpenUproject(fileName)
+    local execCmd
+    if vim.fn.has('win32') then
+        execCmd = '!./"' .. fileName .. '"'
+    else
+        error("No command for Linux set!", 2)
+    end
+    vim.cmd(execCmd, {})
+end
+
+vim.api.nvim_create_user_command("UnrealOpenProject", function ()
+    local cmd
+    if vim.fn.has('win32') == 1 then
+        cmd = "!Get-ChildItem -Path . -Filter '*.uproject' | Select-Object -ExpandProperty FullName"
+    else
+        cmd = "!find . -name '*.uproject'"
+    end
+
+    local cmdOut = vim.api.nvim_exec2(cmd, { output = true })
+    local projectFiles = {}
+
+    local skipFirst = true
+    for file in string.gmatch(cmdOut.output, "[^\r\n]+") do
+        if skipFirst then
+            skipFirst = false
+        else
+            local fileName = vim.fs.basename(file)
+            table.insert(projectFiles, fileName)
+        end
+    end
+
+    if #projectFiles == 1 then
+        OpenUproject(projectFiles[1])
+    else
+        local prompt = "Multiple uprojects found, choose one:\n"
+        for index, file in ipairs(projectFiles) do
+            prompt = prompt .. tostring(index) .. ": " .. file .. "\n"
+        end
+
+        vim.ui.input({ prompt = prompt }, function (input)
+            if input == nil or input == "" then
+                return
+            end
+
+            local chosen = tonumber(input)
+            OpenUproject(projectFiles[chosen])
+        end)
+    end
+end, {})
+
