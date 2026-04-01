@@ -4,6 +4,9 @@ local cmd = vim.fn.has("win32") == 1 and {
     "clangd"
 }
 
+table.insert(cmd, "--background-index")
+table.insert(cmd, "--clang-tidy")
+
 return {
     cmd = cmd,
 }
