@@ -1,3 +1,5 @@
+local isWindows = vim.fn.has('win32') == 1
+
 -- Auto Session
 vim.api.nvim_create_user_command("ReloadSession", function ()
     require('auto-session').restore_session(nil, { show_message = true, is_autorestore = false, is_startup_autorestore = false })
@@ -49,7 +51,7 @@ end, {})
 -- Unreal suite, to be moved
 local function OpenUproject(fileName)
     local execCmd
-    if vim.fn.has('win32') then
+    if isWindows then
         execCmd = '!./"' .. fileName .. '"'
     else
         error("No command for Linux set!", 2)
@@ -59,7 +61,7 @@ end
 
 vim.api.nvim_create_user_command("UnrealOpenProject", function ()
     local cmd
-    if vim.fn.has('win32') == 1 then
+    if isWindows then
         cmd = "!Get-ChildItem -Path . -Filter '*.uproject' | Select-Object -ExpandProperty FullName"
     else
         cmd = "!find . -name '*.uproject'"
@@ -94,6 +96,15 @@ vim.api.nvim_create_user_command("UnrealOpenProject", function ()
             local chosen = tonumber(input)
             OpenUproject(projectFiles[chosen])
         end)
+    end
+end, {})
+
+vim.api.nvim_create_user_command("UnrealRebuildClangd", function ()
+    if isWindows then
+        -- Temporary solution!
+        vim.cmd("!./RebuildClang.bat")
+    else
+        error("No command for Linux set!", 2)
     end
 end, {})
 
