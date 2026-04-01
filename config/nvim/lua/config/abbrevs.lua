@@ -13,10 +13,10 @@ cabbr("lz", "Lazy")
 cabbr("rl", "ReloadSession")
 
 -- Lsp commands
-cabbr("lsr", "LspRestart")
-cabbr("lsl", "LspLog")
-cabbr("lss", "LspStart")
-cabbr("lsS", "LspStop")
+cabbr("lsr", "lsp restart")
+cabbr("lsl", "LspLog") -- Defined in commands.lua
+cabbr("lss", "lsp start")
+cabbr("lsS", "lsp stop")
 
 -- Quickfix
 cabbr("qf", "Quickfix")
