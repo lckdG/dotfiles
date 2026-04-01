@@ -4,6 +4,7 @@ local cabbr = vim.cmd.cabbrev
 -- Abbrev builtin commands
 cabbr("Qa", "qa")
 cabbr("ch", "checkhealth")
+cabbr("rs", "restart")
 
 -- Lazy.nvim
 cabbr("Lz", "Lazy")
@@ -27,4 +28,7 @@ cabbr("Reg", "reg")
 
 cabbr("cts", "ClearTrailingSpaces")
 cabbr("lg", "LazyGit")
+
+cabbr("uo", "UnrealOpenProject")
+cabbr("uc", "UnrealRebuildClangd")
 
