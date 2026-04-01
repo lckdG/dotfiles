@@ -15,8 +15,8 @@ cabbr("rl", "ReloadSession")
 -- Lsp commands
 cabbr("lsr", "lsp restart")
 cabbr("lsl", "LspLog") -- Defined in commands.lua
-cabbr("lss", "lsp start")
-cabbr("lsS", "lsp stop")
+cabbr("lse", "lsp enable")
+cabbr("lsd", "lsp disable")
 
 -- Quickfix
 cabbr("qf", "Quickfix")
