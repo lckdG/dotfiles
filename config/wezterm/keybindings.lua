@@ -48,10 +48,10 @@ function M.setup_keys(config)
         { key = "c", mods = "CTRL|SHIFT", action = act.CopyTo "Clipboard" },
         { key = "v", mods = "CTRL|SHIFT", action = act.PasteFrom "Clipboard" },
 
-        { key = "]", mods = "CTRL", action = act.ActivateTabRelative(1) },
-        { key = "[", mods = "CTRL", action = act.ActivateTabRelative(-1) },
-        { key = "}", mods = "CTRL|SHIFT", action = act.MoveTabRelative(1) },
-        { key = "{", mods = "CTRL|SHIFT", action = act.MoveTabRelative(-1) },
+        { key = "}", mods = "CTRL|SHIFT", action = act.ActivateTabRelative(1) },
+        { key = "{", mods = "CTRL|SHIFT", action = act.ActivateTabRelative(-1) },
+        -- { key = "}", mods = "CTRL|SHIFT", action = act.MoveTabRelative(1) },
+        -- { key = "{", mods = "CTRL|SHIFT", action = act.MoveTabRelative(-1) },
         { key = "]", mods = "LEADER|CTRL", action = act.SwitchWorkspaceRelative(1)},
         { key = "[", mods = "LEADER|CTRL", action = act.SwitchWorkspaceRelative(-1)},
 
