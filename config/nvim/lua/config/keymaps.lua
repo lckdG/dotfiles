@@ -3,7 +3,6 @@ map('', '<Space>', '<Nop>', { noremap = true, silent = true })
 
 -- Keymaps
 map('n', '<Esc>', '<cmd>nohlsearch<CR>')
-map({ 'n', 'o', 'x' }, '<A-r>', '"', { noremap = true, silent = true, desc = "Registers" })
 
 -- Search and focus
 map('n', 'n', 'nzz')
