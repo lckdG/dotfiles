@@ -149,8 +149,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
             return
         end
 
-        -- Switching between source and header files, with custom search, fallback to LSP function if the search fails
-        vim.api.nvim_create_user_command("SwitchSourceHeader", function ()
+        local function GetSourceHeader()
             local extension = vim.fn.expand("%:t:e")
             local desiredExt = extension == "cpp" and "h" or "cpp"
 
@@ -159,8 +158,14 @@ vim.api.nvim_create_autocmd('LspAttach', {
                 return name:match(fileName .. "%." .. desiredExt)
             end, { limit = 1, type = "file", path = "Source" })
 
-            if #switchingFiles > 0 then
-                vim.cmd("e " .. switchingFiles[1])
+            return #switchingFiles > 0 and switchingFiles[1] or nil
+        end
+
+        -- Switching between source and header files, with custom search, fallback to LSP function if the search fails
+        vim.api.nvim_create_user_command("SwitchSourceHeader", function ()
+            local switchingFile = GetSourceHeader()
+            if switchingFile ~= nil then
+                vim.cmd("e " .. switchingFile)
             else
                 vim.cmd("LspClangdSwitchSourceHeader")
             end
@@ -206,6 +211,102 @@ vim.api.nvim_create_autocmd('LspAttach', {
             else
                 error("No command for Linux set!", 2)
             end
+        end, {})
+
+        ---Very specific function for Unreal cpp
+        ---@param node TSNode
+        local function GetClassName(node)
+            ---@type TSNode?
+            local classDefinition = node
+            while classDefinition ~= nil and classDefinition:type() ~= "function_definition" do
+                classDefinition = classDefinition:parent()
+            end
+
+            if classDefinition == nil or classDefinition:type() ~= "function_definition" then
+                return
+            end
+
+            local classIdentifier = classDefinition:child(1)
+            return classIdentifier ~= nil and vim.treesitter.get_node_text(classIdentifier, 0) or ""
+        end
+
+        ---Very specific function for Unreal cpp
+        ---@param node TSNode
+        local function GetDeclaration(node)
+            if node:type() == "function_declarator" then
+                local result = {}
+                for child in node:iter_children() do
+                    local type = child:type()
+                    if type == "identifier" or type == "parameter_list" then
+                        result[type] = vim.treesitter.get_node_text(child, 0)
+                    end
+                end
+
+                local prevSibling = node:prev_sibling()
+                if prevSibling ~= nil and prevSibling:type() == "primitive_type" then
+                    result["primitive_type"] = vim.treesitter.get_node_text(prevSibling, 0)
+                end
+
+                return result
+            end
+
+            return {}
+        end
+
+        local function ParseImplementation(declaration, className)
+            local content = {}
+            local declarationText = ""
+
+            if declaration["primitive_type"] ~= nil then
+                declarationText = declarationText .. declaration["primitive_type"] .. " "
+            end
+
+            declarationText = declarationText .. className .. "::" .. declaration["identifier"] .. declaration["parameter_list"]
+            table.insert(content, declarationText)
+            table.insert(content, "{")
+            table.insert(content, "")
+            table.insert(content, "}")
+
+            return content
+        end
+
+        vim.api.nvim_create_user_command("CreateImpl", function ()
+            if vim.fn.expand("%:t:e") ~= "h" then
+                print("Not a header file!")
+                return
+            end
+
+            local node = vim.treesitter.get_node()
+            if node == nil then
+                return
+            end
+
+            node = node:parent()
+            if node == nil or node:type() ~= "function_declarator" then
+                return
+            end
+
+            local cppFile = GetSourceHeader()
+            if cppFile == nil then
+                return
+            end
+
+            local declaration = GetDeclaration(node)
+            local className = GetClassName(node)
+            if className == "" or next(declaration) == nil then
+                print("Cannot create implementation from current token!")
+            end
+
+            local parsed = ParseImplementation(declaration, className)
+
+            local buf = vim.fn.bufnr(cppFile)
+            if buf == -1 or not vim.api.nvim_buf_is_loaded(buf) then
+                buf = vim.fn.bufadd(cppFile)
+                vim.fn.bufload(buf)
+            end
+
+            local insertLine = vim.api.nvim_buf_line_count(buf)
+            vim.api.nvim_buf_set_lines(buf, insertLine, insertLine, false, parsed)
         end, {})
 
         -- Abbreviations
