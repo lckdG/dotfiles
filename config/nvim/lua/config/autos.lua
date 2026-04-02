@@ -105,3 +105,117 @@ vim.api.nvim_create_autocmd('FileType', {
     end
 })
 
+---@class (exact) UprojectFindOpts
+---@field nameOnly boolean
+
+-- For Unreal, to be moved
+-- Still need testing and preparing for Linux
+vim.api.nvim_create_autocmd('LspAttach', {
+    group = vim.api.nvim_create_augroup('unreal-attach', { clear = true }),
+    callback = function(event)
+        local client = vim.lsp.get_client_by_id(event.data.client_id)
+        if client == nil or client.name ~= "clangd" then
+            return
+        end
+
+        ---Find uproject files in current directory
+        ---@param opts UprojectFindOpts
+        ---@return table
+        local function findUprojects(opts)
+            if opts == nil then
+                opts = { nameOnly = false }
+            end
+
+            local files = vim.fs.find(function(name, _)
+                return name:match('.*%.uproject')
+            end, { type = "file" })
+
+            if opts.nameOnly then
+                local result = {}
+                for _, file in ipairs(files) do
+                    table.insert(result, vim.fs.basename(file))
+                end
+
+                return result
+            end
+
+            return files
+        end
+
+        -- Only enable if any uproject file is found
+        local uprojectFiles = findUprojects { nameOnly = false }
+
+        if #uprojectFiles == 0 then
+            return
+        end
+
+        -- Switching between source and header files, with custom search, fallback to LSP function if the search fails
+        vim.api.nvim_create_user_command("SwitchSourceHeader", function ()
+            local extension = vim.fn.expand("%:t:e")
+            local desiredExt = extension == "cpp" and "h" or "cpp"
+
+            local fileName = vim.fn.expand("%:t:r")
+            local switchingFiles = vim.fs.find(function (name, _)
+                return name:match(fileName .. "%." .. desiredExt)
+            end, { limit = 1, type = "file", path = "Source" })
+
+            if #switchingFiles > 0 then
+                vim.cmd("e " .. switchingFiles[1])
+            else
+                vim.cmd("LspClangdSwitchSourceHeader")
+            end
+        end, {})
+
+        local isWindows = vim.fn.has('win32') == 1
+        local function OpenUproject(fileName)
+            local execCmd
+            if isWindows then
+                execCmd = '!./"' .. fileName .. '"'
+            else
+                error("No command for Linux set!", 2)
+            end
+            vim.cmd(execCmd, {})
+        end
+
+        vim.api.nvim_create_user_command("UnrealOpenProject", function ()
+            local projectFiles = findUprojects { nameOnly = true }
+
+            if #projectFiles == 1 then
+                OpenUproject(projectFiles[1])
+            else
+                local prompt = "Multiple uprojects found, choose one:\n"
+                for index, file in ipairs(projectFiles) do
+                    prompt = prompt .. tostring(index) .. ": " .. file .. "\n"
+                end
+
+                vim.ui.input({ prompt = prompt }, function (input)
+                    if input == nil or input == "" then
+                        return
+                    end
+
+                    local chosen = tonumber(input)
+                    OpenUproject(projectFiles[chosen])
+                end)
+            end
+        end, {})
+
+        vim.api.nvim_create_user_command("UnrealRebuildClangd", function ()
+            if isWindows then
+                -- Temporary solution!
+                vim.cmd("!./RebuildClang.bat")
+            else
+                error("No command for Linux set!", 2)
+            end
+        end, {})
+
+        -- Abbreviations
+        local cabbr = vim.cmd.cabbrev
+        local iabbr = vim.cmd.iabbrev
+
+        cabbr("uo", "UnrealOpenProject")
+        cabbr("uc", "UnrealRebuildClangd")
+        cabbr("ss", "SwitchSourceHeader")
+
+        iabbr("upr", "UPROPERTY()<Left>")
+    end,
+})

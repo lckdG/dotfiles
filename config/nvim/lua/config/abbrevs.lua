@@ -29,6 +29,3 @@ cabbr("Reg", "reg")
 cabbr("cts", "ClearTrailingSpaces")
 cabbr("lg", "LazyGit")
 
-cabbr("uo", "UnrealOpenProject")
-cabbr("uc", "UnrealRebuildClangd")
-
