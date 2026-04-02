@@ -305,6 +305,15 @@ vim.api.nvim_create_autocmd('LspAttach', {
                 vim.fn.bufload(buf)
             end
 
+            -- String matching, should be token checks
+            local bufLines = vim.api.nvim_buf_get_lines(buf, 0, -1, false)
+            for index, line in ipairs(bufLines) do
+                if line == parsed[1] then
+                    print("Function already defined at line " .. tostring(index))
+                    return
+                end
+            end
+
             local insertLine = vim.api.nvim_buf_line_count(buf)
             vim.api.nvim_buf_set_lines(buf, insertLine, insertLine, false, parsed)
         end, {})
