@@ -1,4 +1,17 @@
+local resolved = require("roslyn.utils").get_roslyn_lsp_path()
+local exe = resolved or "Microsoft.CodeAnalysis.LanguageServer"
+local logLevel = "Information"
+
+local data_dir = vim.fn.stdpath("data")
+local extensionLogDir = vim.fs.joinpath(data_dir, "roslynExtensionLogs")
+
 return {
+    cmd = {
+        exe,
+        "--stdio",
+        "--logLevel", logLevel,
+        "--extensionLogDirectory", extensionLogDir
+    },
     settings = {
         ["csharp|background_analysis"] = {
             dotnet_analyzer_diagnostics_scope = "openFiles",
