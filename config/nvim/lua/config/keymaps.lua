@@ -30,6 +30,7 @@ map('n', '<A-k>', ":m .-2<CR>==", { noremap = true, silent = true, desc = "Move 
 map('v', '<A-j>', ":m '>+1<CR>gv=gv", { noremap = true, silent = true, desc = "Move block down" })
 map('v', '<A-k>', ":m '<-2<CR>gv=gv", { noremap = true, silent = true, desc = "Move block up" })
 map('n', '<A-u>', "g~awea", { remap = true, silent = true, desc = "Toggle case of a word" })
+map({'n', 'v'}, '<A-r>', '"', { remap = true, silent = true })
 
 map('', "H", "^", { noremap = true, desc = "^" })
 map('', "L", "$", { noremap = true, desc = "$" })
