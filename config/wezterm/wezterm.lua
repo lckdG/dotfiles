@@ -20,7 +20,6 @@ config.initial_cols = 140
 config.initial_rows = 30
 wezterm.GLOBAL.maximize_state = 0
 
--- config.window_decorations = "RESIZE | TITLE"
 config.window_decorations = "RESIZE"
 
 config.window_close_confirmation = "NeverPrompt"
@@ -86,8 +85,8 @@ if utils.is_windows() then
     })
 
 elseif utils.is_linux() then
-    -- HACK: workaround to render on scaled displays
-    config.dpi = 96
+    config.window_decorations = "TITLE | " .. config.window_decorations
+
     config.default_prog = { "/usr/bin/fish" }
     config.font = wezterm.font_with_fallback(fonts_mapping["linux"])
     -- config.window_background_opacity = 0.95
