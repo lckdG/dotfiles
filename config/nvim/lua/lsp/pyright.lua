@@ -15,5 +15,13 @@ for _, name in ipairs({ 'basedpyright-langserver', 'pyright-langserver' }) do
 end
 
 return bin and {
-    cmd = { bin, '--stdio' }
+    cmd = { bin, '--stdio' },
+    settings = {
+        python = {
+            analysis = {
+                autoSearchPaths = false,
+                typeCheckingMode = "off"
+            }
+        }
+    }
 } or {}
