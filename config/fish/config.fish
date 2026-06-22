@@ -9,7 +9,6 @@ if status is-interactive
     fish_add_path $HOME/.dotnet
     fish_add_path $HOME/.dotnet/tools
     fish_add_path $HOME/.local/share/gem/ruby/3.4.0/bin
-    fish_add_path $HOME/Apps/Roslyn/content/LanguageServer/linux-x64/
     fish_add_path $HOME/Apps/flutter/bin/
 
     # Abbreviations
