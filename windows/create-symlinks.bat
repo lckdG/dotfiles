@@ -6,14 +6,19 @@ SET NVIM_DIR=%LOCALAPPDATA%\nvim
 SET WEZTERM_DIR=%CONFIG_DIR%\wezterm
 SET LG_DIR=%LOCALAPPDATA%\lazygit
 
+SET PS_PROFILE=Microsoft.PowerShell_profile.ps1
+SET PS_PROFILE_PATH=%USERPROFILE%\Documents\WindowsPowerShell\%PS_PROFILE%
+
 IF not exist %CONFIG_DIR% MKDIR %CONFIG_DIR%
 
-CAll RMDIR %NVIM_DIR%
-CAll RMDIR %WEZTERM_DIR%
-CAll RMDIR %LG_DIR%
+CALL RMDIR %NVIM_DIR%
+CALL RMDIR %WEZTERM_DIR%
+CALL RMDIR %LG_DIR%
+CALL DEL %PS_PROFILE_PATH%
 
-CAll MKLINK /D %NVIM_DIR% %~dp0..\config\nvim
-CAll MKLINK /D %WEZTERM_DIR% %~dp0..\config\wezterm
-CAll MKLINK /D %LG_DIR% %~dp0..\config\lazygit
+CALL MKLINK /D %NVIM_DIR% %~dp0..\config\nvim
+CALL MKLINK /D %WEZTERM_DIR% %~dp0..\config\wezterm
+CALL MKLINK /D %LG_DIR% %~dp0..\config\lazygit
+CALL MKLINK %PS_PROFILE_PATH% %~dp0\%PS_PROFILE%
 
 pause
