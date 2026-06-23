@@ -20,6 +20,16 @@ function PyEnv {
     & $filePath
 }
 
+function yz {
+	$tmp = (New-TemporaryFile).FullName
+	yazi.exe @args --cwd-file="$tmp"
+	$cwd = Get-Content -Path $tmp -Encoding UTF8
+	if ($cwd -and $cwd -ne $PWD.Path -and (Test-Path -LiteralPath $cwd -PathType Container)) {
+		Set-Location -LiteralPath (Resolve-Path -LiteralPath $cwd).Path
+	}
+	Remove-Item -Path $tmp
+}
+
 Set-Alias -Name pe -Value PyEnv
 Set-Alias -Name lg -Value lazygit
 Set-Alias -Name sdh -Value Stop-Computer
