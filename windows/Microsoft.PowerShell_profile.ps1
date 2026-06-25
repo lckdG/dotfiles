@@ -11,6 +11,8 @@ function Invoke-Starship-PreCommand {
 
 Invoke-Expression (&starship init powershell)
 
+Invoke-Expression (& { (zoxide init powershell | Out-String) })
+
 function PyEnv {
     param (
         [string]$Name

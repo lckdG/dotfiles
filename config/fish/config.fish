@@ -22,3 +22,5 @@ if status is-interactive
     abbr -a --position anywhere -- --bg "> /dev/null 2>&1 &"
 end
 
+zoxide init fish | source
+
