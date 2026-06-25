@@ -7,7 +7,15 @@ wrap = "yes"
 
 [opener]
 edit = [
-    { run = "nvim %s", block = true, orphan = true, for = "unix" },
-    { run = "nvim %s", block = true, orphan = true, for = "windows" },
+    { run = "nvim %s", block = true, orphan = true },
 ]
 
+edit_dir = [
+    { run = "nvim %d", block = true, orphan = true, desc = "Nvim in directory"}
+]
+
+[open]
+rules = [
+    { mime = "*/", use = ["edit", "edit_dir", "open", "reveal"] },
+    { mime = "text/*", use = ["edit", "edit_dir", "reveal"] },
+]
