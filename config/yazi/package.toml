@@ -1,0 +1,9 @@
+[[plugin.deps]]
+use = "yazi-rs/plugins:full-border"
+rev = "38efe09"
+hash = "1e3b6c8b03dae81c3672ec9e9700b666"
+
+[[flavor.deps]]
+use = "melindachang/kanagawa-paper"
+rev = "7f3cd1d"
+hash = "184f56ddb3e3db4a001926b793c183d1"
