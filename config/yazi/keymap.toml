@@ -1,0 +1,4 @@
+[tasks]
+prepend_keymap = [
+    { on = ["d"], run = "cancel", desc = "Cancel the task" },
+]

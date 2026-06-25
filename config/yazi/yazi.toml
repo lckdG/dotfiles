@@ -1,0 +1,13 @@
+[mgr]
+ratio = [1, 4, 4]
+linemode = "size"
+
+[preview]
+wrap = "yes"
+
+[opener]
+edit = [
+    { run = "nvim %s", block = true, orphan = true, for = "unix" },
+    { run = "nvim %s", block = true, orphan = true, for = "windows" },
+]
+
