@@ -15,6 +15,7 @@ if status is-interactive
 
     abbr -a ff fastfetch
     abbr -a lg lazygit
+    abbr -a yz yazi
 
     abbr -a sdh shutdown -h
     abbr -a sdr shutdown -r
