@@ -56,6 +56,20 @@ map('n', '<C-Left>', windowStep .. '<C-w><', { desc = 'Decrease window width', r
 map('n', '<C-Up>', windowStep .. '<C-w>+', { desc = 'Increase window height', remap = true, silent = true } )
 map('n', '<C-Down>', windowStep .. '<C-w>-', { desc = 'Decease window height', remap = true, silent = true } )
 
+-- News to Neovim 0.12
+map('n', '<leader>u', function ()
+    local success, result = pcall(function ()
+        require 'undotree'
+        return true
+    end)
+
+    if not (success and result) then
+        vim.cmd.packadd("nvim.undotree")
+    end
+
+    vim.cmd("Undotree")
+end)
+
 -- Telescope
 map('n', '<leader>ff', function() require('telescope.builtin').find_files() end, { desc = 'Telescope fuzzy find files' })
 map('n', '<leader>fg', function() require('telescope.builtin').live_grep() end, { desc = 'Telescope live grep' })
