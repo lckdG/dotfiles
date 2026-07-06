@@ -14,6 +14,13 @@ local ensure_installed = {
     'cpp',
 }
 
+local function EnableParser(bufnr, parser_name)
+    local success, parser, _ = pcall(vim.treesitter.get_parser, bufnr, parser_name)
+    if success and parser ~= nil then
+        vim.treesitter.start(bufnr, parser_name)
+    end
+end
+
 return {
     "nvim-treesitter/nvim-treesitter",
     branch = 'main',
@@ -57,14 +64,17 @@ return {
                     return
                 end
 
-                local success, parser_installed = pcall(vim.treesitter.get_parser, bufnr, parser_name)
-                if not (success and parser_installed) then
-                    require("nvim-treesitter").install( { parser_name } ):wait(30000)
-                end
-
-                success, parser_installed = pcall(vim.treesitter.get_parser, bufnr, parser_name)
-                if not (success and parser_installed) then
-                    vim.treesitter.start(bufnr, parser_name)
+                local success, parser, _ = pcall(vim.treesitter.get_parser, bufnr, parser_name)
+                if not success or parser == nil then
+                    require("nvim-treesitter").install( { parser_name } ):await(function (err, ...)
+                        if err ~= nil then
+                            vim.notify(err, vim.log.levels.ERROR)
+                        else
+                            EnableParser(bufnr, parser_name)
+                        end
+                    end)
+                else
+                    EnableParser(bufnr, parser_name)
                 end
             end
         })
