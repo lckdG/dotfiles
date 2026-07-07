@@ -11,11 +11,20 @@ if status is-interactive
     fish_add_path $HOME/.local/share/gem/ruby/3.4.0/bin
     fish_add_path $HOME/Apps/flutter/bin/
 
+    # Functions
+    function yz
+        set tmp (mktemp -t "yazi-cwd.XXXXXX")
+        command yazi $argv --cwd-file="$tmp"
+        if read -z cwd < "$tmp"; and [ "$cwd" != "$PWD" ]; and test -d "$cwd"
+            builtin cd -- "$cwd"
+        end
+        command rm -f -- "$tmp"
+    end
+
     # Abbreviations
 
     abbr -a ff fastfetch
     abbr -a lg lazygit
-    abbr -a yz yazi
 
     abbr -a sdh shutdown -h
     abbr -a sdr shutdown -r
