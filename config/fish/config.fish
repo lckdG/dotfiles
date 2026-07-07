@@ -6,6 +6,7 @@ if status is-interactive
 
     set -x DOTNET_ROOT $HOME/.dotnet
 
+    fish_add_path $HOME/.local/bin
     fish_add_path $HOME/.dotnet
     fish_add_path $HOME/.dotnet/tools
     fish_add_path $HOME/.local/share/gem/ruby/3.4.0/bin
