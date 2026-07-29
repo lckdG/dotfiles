@@ -4,10 +4,12 @@ telescope_ignore_patterns = {
     "%.mesh", "%.fbx", "%.obj", -- 3D models
     "%.otf", "%.ttf", -- Fonts
     "%.exe", -- Executables
-    "%.asmdef", "%.dll", -- Libraries
+    "%.asmdef", "%.dll", "%.lib", "%.modules", -- Libraries
     "%.tgz$", "%.tar$", "%.zip$", "%.gz$", "%.iso$", "%.rar$", -- Archive files
     "%.tga", "%.png", "%.jpg", "%.jpeg", "%.psd", "%.gif", "%.tif", "%.svg", -- Images, phew
-    "%.meta", "%.unity", "%.prefab", "%.anim", "%.mesh", "%.hdr", "%.exr", "%_probes%.asset", "%.controller", "%.overrideController", -- Unity specific, but don't ignore the .metas
+    "%.meta", "%.unity", "%.prefab", "%.anim", "%.mesh", "%.hdr", "%.exr", "%_probes%.asset", "%.controller", "%.overrideController", -- Unity specific
+    "%.uasset", "%.umap", "%.pdb", "%.archive", "%.natvis", -- Unreal specific
+    "%.po", "%.manifest", -- Mischellaneous
 }
 
 return {
