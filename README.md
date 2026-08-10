@@ -2,9 +2,12 @@
 
 The archive for the dotfiles that I use daily, mostly (but not bounded to) consists the configurations of:
 - [Neovim](./config/nvim)
-- Fish shell
-- Wezterm
+- [Fish shell](./config/fish)
+- [Wezterm](./config/wezterm)
+- [Lazygit](./config/lazygit)
+- [Yazi](./config/yazi)
 - [Linux setup](./linux)
+- [Windows setup](./windows)
 
 ## The Idea
 

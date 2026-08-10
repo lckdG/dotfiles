@@ -31,22 +31,28 @@ The specific plugin options can be found in **lua/plugins/<plugin_name>.lua**. O
 - **nvim-treesitter** - Syntax highlighting
 - **blink.cmp** - Auto Complete
 - **nvim-ufo** - Fold improvements
+- **fidget.nvim** - LSP progress & notifications
 
 ### Language Server
 
 - **nvim-lspconfig** - LSP configurations
+- **mason.nvim** - LSP/tool installer
 - **symbol-usage.nvim** - Codelens
 - **tiny-inline-diagnostic.nvim** - Improve the diagnostic messages
 - **roslyn.nvim** - Roslyn LSP improvements
+- **lazydev.nvim** - Lua dev & type support
+- **flutter-tools.nvim** - Flutter/Dart support
 
 ### TUI
 
 - **todo-comments.nvim** - Highlight & quickly find TODOs, HACKs, BUGs comments
 - **nvim-web-devicons** - Well, icons ;)
+- **lualine.nvim** - Statusline
 
 ### Quality of Life
 
 - **nvim-treesitter-textobjects** - Improve textobjects manipulation
+- **nvim-treesitter-context** - Sticky scope context
 - **vim-sandwich** - QoL for handling brackets, parentheses of current selection
 - **vim-autopairs** - QoL for brackets, parentheses pairing
 - **rainbow-delimiters.nvim** - QoL to look at the brackets clearly
@@ -67,11 +73,15 @@ Theme is loaded right after LazyVim, set up in *init.lua* file.
 - **gruvbox-material.nvim**
 
 ## Language Servers
-Instructions are now maintained at [this documentation](../../language_servers/README.md).
 
-> [!NOTE]
-> I used to use mason.nvim to install the language servers, however I decided to switch to the brute-force myself to install and add the executables to the shell paths.
-> Either approaches work, but I feel it's fun to dig into each source to know how they are built, what are the steps, etc.
+Installed and managed via **mason.nvim**. Per-server setup lives in **lua/lsp/<server_name>.lua**:
+- **lua_ls** - Lua
+- **roslyn** - C#
+- **clangd** - C/C++
+- **pyright** - Python
+- **ts_ls** - TypeScript/JavaScript
+- **gopls** - Go
+- **cssls** - CSS
 
 ## Running on Windows
 
