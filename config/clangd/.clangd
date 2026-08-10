@@ -1,0 +1,13 @@
+CompileFlags:
+    CompilationDatabase: <CHANGE_IT>
+
+Diagnostics:
+    Suppress: [
+        "drv_unknown_argument",
+        "init_conversion_failed",
+        "enum_class_stored_per_non_type",
+        "builtin_definition",
+    ]
+    UnusedIncludes: None
+    MissingIncludes: None
+
