@@ -53,7 +53,6 @@ return {
             },
             extensions = {
                 "quickfix",
-                "toggleterm",
             },
         }
     end
