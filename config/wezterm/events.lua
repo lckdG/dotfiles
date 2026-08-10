@@ -13,12 +13,14 @@ wezterm.on("format-tab-title", function(tab, tabs, _, _, _, _)
     local tabs_def = definitions.tabs
     local tab_def = tab.is_active and tabs_def.mux_tab_active or tabs_def.mux_tab_inactive
 
+    local tab_title = utils.get_tab_title(tab)
+
     local tab_formats = components.create_tab {
         description = tab_def.description,
         text_configs = {
             {
                 foreground = tab_def.text_color.main,
-                text = pad .. tab.tab_index + 1 .. pad,
+                text = pad .. tab.tab_index + 1 .. ": " .. tab_title .. pad,
             },
         }
     }

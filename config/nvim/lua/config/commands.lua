@@ -34,14 +34,6 @@ vim.api.nvim_create_user_command("ClearTrailingSpaces", function ()
     vim.cmd([[ wa ]])
 end, {})
 
-vim.api.nvim_create_user_command("LazyGit", function ()
-    if Lazygit == nil then
-        vim.notify("Error: no lazygit terminal is loaded", vim.log.levels.ERROR)
-    else
-        Lazygit:toggle()
-    end
-end, {})
-
 vim.api.nvim_create_user_command("LspLog", function ()
     vim.cmd('tabnew ' .. vim.lsp.log.get_filename())
 end, {})

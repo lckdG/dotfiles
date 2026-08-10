@@ -50,10 +50,36 @@ function M.setup_keys(config)
 
         { key = "}", mods = "CTRL|SHIFT", action = act.ActivateTabRelative(1) },
         { key = "{", mods = "CTRL|SHIFT", action = act.ActivateTabRelative(-1) },
-        -- { key = "}", mods = "CTRL|SHIFT", action = act.MoveTabRelative(1) },
-        -- { key = "{", mods = "CTRL|SHIFT", action = act.MoveTabRelative(-1) },
         { key = "]", mods = "LEADER|CTRL", action = act.SwitchWorkspaceRelative(1)},
         { key = "[", mods = "LEADER|CTRL", action = act.SwitchWorkspaceRelative(-1)},
+
+        { key = "t", mods = "LEADER", action = wezterm.action_callback(function(window, pane)
+            local tab, new_pane, _ = window:mux_window():spawn_tab {}
+            window:perform_action(
+                act.PromptInputLine {
+                    description = wezterm.format {
+                        { Attribute = { Intensity = "Bold" } },
+                        { Text = "Enter name for new tab" },
+                    },
+                    action = wezterm.action_callback(function(win, _, line)
+                        if line and line ~= "" then
+                            tab:set_title(line)
+                        end
+                    end),
+                },
+                new_pane
+            )
+        end) },
+
+        { key = "1", mods = "LEADER", action = act.ActivateTab(0) },
+        { key = "2", mods = "LEADER", action = act.ActivateTab(1) },
+        { key = "3", mods = "LEADER", action = act.ActivateTab(2) },
+        { key = "4", mods = "LEADER", action = act.ActivateTab(3) },
+        { key = "5", mods = "LEADER", action = act.ActivateTab(4) },
+        { key = "6", mods = "LEADER", action = act.ActivateTab(5) },
+        { key = "7", mods = "LEADER", action = act.ActivateTab(6) },
+        { key = "8", mods = "LEADER", action = act.ActivateTab(7) },
+        { key = "9", mods = "LEADER", action = act.ActivateTab(8) },
 
         { key = "r", mods = "CTRL|SHIFT", action = act.ReloadConfiguration },
         { key = "l", mods = "CTRL|SHIFT", action = act.ShowDebugOverlay },

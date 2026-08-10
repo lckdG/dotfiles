@@ -77,34 +77,6 @@ vim.api.nvim_create_autocmd('VimLeavePre', {
     end
 })
 
-vim.api.nvim_create_autocmd('TermOpen', {
-    pattern = { "term://*" },
-    group = vim.api.nvim_create_augroup('toggleterm-attach', { clear = true }),
-    callback = function ()
-        local opts = { buffer = 0 }
-        local map = vim.keymap.set
-
-        map('t', '<Esc>', [[ <C-\><C-n> ]], opts)
-        map('t', '<C-h>', [[ <Cmd>wincmd h<CR> ]], opts)
-        map('t', '<C-j>', [[ <Cmd>wincmd j<CR> ]], opts)
-        map('t', '<C-k>', [[ <Cmd>wincmd k<CR> ]], opts)
-        map('t', '<C-l>', [[ <Cmd>wincmd l<CR> ]], opts)
-        map('t', '<C-q>', [[ <Cmd>wincmd q<CR> ]], opts)
-    end
-})
-
-local ft_augroup = vim.api.nvim_create_augroup('ft_settings', { clear = true })
-vim.api.nvim_create_autocmd('FileType', {
-    pattern = "dart",
-    group = ft_augroup,
-    callback = function ()
-        vim.opt_local.tabstop = 2
-        vim.opt_local.softtabstop = 2
-        vim.opt_local.shiftwidth = 2
-        vim.opt_local.expandtab = true
-    end
-})
-
 ---@class (exact) UprojectFindOpts
 ---@field nameOnly boolean
 
