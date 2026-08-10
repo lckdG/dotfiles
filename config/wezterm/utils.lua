@@ -15,6 +15,10 @@ function M.basename(s)
 end
 
 function M.get_tab_title(tab)
+    if tab.tab_title ~= nil and tab.tab_title ~= "" then
+        return tab.tab_title
+    end
+
     local process_name = tab.active_pane.foreground_process_name
     local full_name = (process_name ~= nil and process_name ~= "") and process_name or tab.active_pane.title
 

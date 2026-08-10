@@ -71,6 +71,18 @@ function M.setup_keys(config)
             )
         end) },
 
+        { key = ",", mods = "LEADER", action = act.PromptInputLine {
+            description = wezterm.format {
+                { Attribute = { Intensity = "Bold" } },
+                { Text = "Enter new name for tab" },
+            },
+            action = wezterm.action_callback(function(win, pane, line)
+                if line then
+                    win:active_tab():set_title(line)
+                end
+            end),
+        }},
+
         { key = "1", mods = "LEADER", action = act.ActivateTab(0) },
         { key = "2", mods = "LEADER", action = act.ActivateTab(1) },
         { key = "3", mods = "LEADER", action = act.ActivateTab(2) },
