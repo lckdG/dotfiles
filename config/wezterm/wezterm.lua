@@ -65,9 +65,9 @@ local fonts_mapping = {
         "Symbols Nerd Font",
     },
     linux = {
-        { family = "LilexNerdFont", weight = "Medium", italic = false },
-        "GoMonoNerdFont",
-        "SymbolsNerdFont",
+        { family = "Lilex Nerd Font", weight = "Medium", italic = false },
+        "GoMono Nerd Font",
+        "Symbols Nerd Font",
     }
 }
 
