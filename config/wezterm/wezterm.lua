@@ -12,7 +12,7 @@ require 'events'
 -- config.term = "wezterm"
 config.default_workspace = "home"
 
-config.front_end = "OpenGL"
+config.front_end = "WebGpu"
 config.animation_fps = 60
 config.max_fps = 180
 
@@ -89,8 +89,8 @@ elseif utils.is_linux() then
 
     config.default_prog = { "/usr/bin/fish" }
     config.font = wezterm.font_with_fallback(fonts_mapping["linux"])
-    -- config.window_background_opacity = 0.95
-    -- config.kde_window_background_blur = true
+    config.window_background_opacity = 0.96
+    config.kde_window_background_blur = true
 
     table.insert(launch_menu, {
         label = "Fish",
