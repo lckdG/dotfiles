@@ -90,7 +90,7 @@ elseif utils.is_linux() then
     config.default_prog = { "/usr/bin/fish" }
     config.font = wezterm.font_with_fallback(fonts_mapping["linux"])
     config.window_background_opacity = 0.96
-    config.kde_window_background_blur = true
+    config.wayland_window_background_blur = true
 
     table.insert(launch_menu, {
         label = "Fish",
