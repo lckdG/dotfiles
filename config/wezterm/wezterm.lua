@@ -12,7 +12,13 @@ require 'events'
 -- config.term = "wezterm"
 config.default_workspace = "home"
 
-config.front_end = "WebGpu"
+config.front_end = "OpenGL"
+for _, gpu in ipairs(wezterm.gui.enumerate_gpus()) do
+    if gpu.device_type == "DiscreteGpu" then
+        config.front_end = "WebGpu"
+    end
+end
+
 config.animation_fps = 60
 config.max_fps = 180
 

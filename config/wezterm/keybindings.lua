@@ -147,6 +147,9 @@ function M.setup_keys(config)
             { key = "D", action = act.CloseCurrentPane { confirm = true } },
             { key = "d", action = act.CloseCurrentTab { confirm = true } },
 
+            { key = "n", action = act.SendKey { key = "n" } },
+            { key = "y", action = act.SendKey { key = "y" } },
+
             { key = "Escape", action = act.PopKeyTable },
         },
         Font = {
