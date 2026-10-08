@@ -144,8 +144,8 @@ function M.setup_keys(config)
             { key = "|", action = act.SplitHorizontal { domain = "CurrentPaneDomain" } },
             { key = "|", mods = "SHIFT", action = act.SplitHorizontal { domain = "CurrentPaneDomain" } },
 
-            { key = "D", action = act.CloseCurrentPane { confirm = true } },
-            { key = "d", action = act.CloseCurrentTab { confirm = true } },
+            { key = "D", action = act.CloseCurrentTab { confirm = true } },
+            { key = "d", action = act.CloseCurrentPane { confirm = true } },
 
             { key = "n", action = act.SendKey { key = "n" } },
             { key = "y", action = act.SendKey { key = "y" } },
