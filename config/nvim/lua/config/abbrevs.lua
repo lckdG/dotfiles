@@ -3,6 +3,7 @@ local cabbr = vim.cmd.cabbrev
 
 -- Abbrev builtin commands
 cabbr("Qa", "qa")
+cabbr("Wa", "wa")
 cabbr("ch", "checkhealth")
 cabbr("rs", "restart")
 
