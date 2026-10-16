@@ -5,10 +5,10 @@ vim.filetype.add {
         hlsl = 'glsl',
     },
     pattern = {
-        ["[Jj]enkinsfile.*"] = 'groovy',
+        ['.*%.Jenkinsfile'] = 'groovy',
     },
     filename = {
-        [".clangd"] = 'yaml',
+        ['.clangd'] = 'yaml',
     }
 }
 
