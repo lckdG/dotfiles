@@ -11,13 +11,13 @@ return {
     },
     opts = {
         cmd_abbreviations = {
-            uo  = "OpenProject",
-            uc  = "RebuildClangd",
-            uss = "SwitchSourceHeader",
-            uci = "CreateImpl",
-            ucm = "CompleteMacro",
-            ufs = "FindSource",
-            ugs = "GrepSource",
+            uo  = "Project Open",
+            uc  = "Build Clangd",
+            uci = "Code Impl",
+            ucm = "Code Macro",
+            uss = "Code SwitchSourceHeader",
+            ufs = "Search Files",
+            ugs = "Search Grep",
         },
     },
     extensions = {
