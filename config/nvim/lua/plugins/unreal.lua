@@ -19,33 +19,33 @@ return {
             ufs = "Search Files",
             ugs = "Search Grep",
         },
-    },
-    extensions = {
-        telescope = {
-            ignores = {
-                "%.exe", -- Executables
-                "%.dll",
-                "%.lib",
-                "%.modules", -- Libraries, modules, etc.
-                "%.uasset",
-                "%.umap",
-                "%.pdb",
-                "%.archive",
-                "%.natvis", -- Unreal specific
-                "%.po",
-                "%.manifest", -- Localization assets
-                "%.uexp",
-                "%.dmp",
-                "%.pb",
-                "%.bin", -- Something I dont really know :)
+        extensions = {
+            telescope = {
+                ignores = {
+                    "%.exe", -- Executables
+                    "%.dll",
+                    "%.lib",
+                    "%.modules", -- Libraries, modules, etc.
+                    "%.uasset",
+                    "%.umap",
+                    "%.pdb",
+                    "%.archive",
+                    "%.natvis", -- Unreal specific
+                    "%.po",
+                    "%.manifest", -- Localization assets
+                    "%.uexp",
+                    "%.dmp",
+                    "%.pb",
+                    "%.bin", -- Something I dont really know :)
 
-                -- Generated Directories
-                IgnoreDirToPattern("Binaries"),
-                IgnoreDirToPattern("Build"),
-                IgnoreDirToPattern("DerivedDataCache"),
-                IgnoreDirToPattern("Intermediate"),
-                IgnoreDirToPattern("Cooked"),
-            },
+                    -- Generated Directories
+                    IgnoreDirToPattern("Binaries"),
+                    IgnoreDirToPattern("Build"),
+                    IgnoreDirToPattern("DerivedDataCache"),
+                    IgnoreDirToPattern("Intermediate"),
+                    IgnoreDirToPattern("Cooked"),
+                },
+            }
         }
-    }
+    },
 }
